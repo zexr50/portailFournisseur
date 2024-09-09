@@ -7,5 +7,6 @@ use Illuminate\Support\Facades\Route;
 });
 */
 
-Route::get('/', function () {return view('index');});
+Route::get('/', function () {return view('views/index');}); //dumb page
+Route::get('/Accueil', function () {return view('views/pageAccueil');});
 
