@@ -8,28 +8,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <script src="{{ asset('js/navbarMenu.js') }}">
     @yield('css')
     @yield('js')
 </head>
 <body>
 <div>
-<header>
-        <nav class="navbar  fixed-top navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img id="logo" src="{{ asset('img/V3R_Logo.svg') }}" alt="Logo V3R"></a>
-            
-            <div class="dropdown">
-                <button class="navbar-toggler" type="button" data-bs-toggle="dropdown">
-                    <img src="{{ asset('img/menu.svg') }}" alt="menu">
-                    Menu
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <header>
+        <nav class="navbar  fixed-top navbar-light">
+            <a class="navbar-brand" href="#"><p id="brandName">fornisseur.v3r.net</p></a>
+            <div id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <div><img src="{{ asset('img/moon.svg') }}" alt="dark_mode_toggel" width="52px"></div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="sidebar">
+                            <button onclick="openMenu()" class="navbar-toggler" type="button">
+                                <img src="{{ asset('img/menu.svg') }}" alt="menuButton">
+                            </button>
+                            
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
     </header>
+
+    <div class="" style="display:none;right:0;" id="Menu">
+        <button onclick="closeMenu()">Fermer &times;</button>
+        <a href="#" class="">Link 1</a>
+        <a href="#" class="">Link 2</a>
+        <a href="#" class="">Link 3</a>
+    </div>
+
+
+
     @yield('content')
 </div>
 </body>
