@@ -53,7 +53,22 @@
                     <input type="text" class="form-control" id="ville" name="ville">
 
                     <label for="province">Province:</label>
-                    <input type="text" class="form-control" id="province" name="province">
+                    <input class="form-control" list="provinces" name="province" id="province">
+                    <datalist id="provinces">
+                        <option value="Alberta">
+                        <option value="Colombie-Britannique">
+                        <option value="Île-du-Prince-Édouard">
+                        <option value="Manitoba">
+                        <option value="Nouveau-Brunswick">
+                        <option value="Nouvelle-Écosse">
+                        <option value="Ontario">
+                        <option value="Québec">
+                        <option value="Saskatchewan">
+                        <option value="Terre-Neuve-et-Labrador">
+                        <option value="Territoires du Nord-Ouest">
+                        <option value="Nunavut">
+                        <option value="Yukon">
+                    </datalist>
 
                     <label for="code_postal">Code postal:</label>
                     <input type="text" class="form-control" id="code_postal" name="code_postal">
