@@ -8,8 +8,18 @@
     @endsection
     @section('content')
 
-    
-    
+    <h1>Votre Portail Fournisseur</h1>
+    <div>
+        <button type="submit" class="button" id="buttonLeftSS" onclick="buttonLeftSS()"><</button>
+        
+        <div>
+            <img src="{{ asset('img/user.svg') }}" alt="Utilisateur" style="">
+            <img src="{{ asset('img/moon.svg') }}" alt="Lune" style="display:none;">
+            <img src="{{ asset('img/sun.svg') }}" alt="Soleil" style="display:none;">
+        </div>
+
+        <button type="button" class="button" id="buttonRightSS" onclick="buttonRightSS()">></button>
+    </div>
 
 </div>
 
