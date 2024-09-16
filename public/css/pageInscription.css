@@ -11,7 +11,9 @@ form {
     margin-top: 10px;
     padding: 5px;
     background-color:rgb(11,35,65);
+    align-items: center;
 }
+
 
 .main-container{ 
     padding: 5px;
@@ -22,3 +24,22 @@ h1, label{
     color: rgb(120,198,224);
     text-align: left;
 }
+
+#bt-center{
+    display: flex;
+    justify-content: center;
+}
+
+.button
+{ 
+    border-style: solid;
+    border-color: rgb(0,118,213);
+    border-radius: 10px;
+    color: rgb(120,198,224);
+    background-color:rgb(11,35,65) ;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+

@@ -18,18 +18,18 @@
         @csrf
         <div class="container-xxl">
             <div class="container-xxl">
-            <h1>identification</h1>
-            <dic class="row">
-                <div class="col-lg-12">
-                    <label for="neq">Numéro d'entreprise du Québec:</label>
-                    <input type="text" class="form-control" id="neq" name="neq">
-                </div>
+                <h1>identification</h1>
+                <dic class="row">
+                    <div class="col-lg-12">
+                        <label for="neq">Numéro d'entreprise du Québec:</label>
+                        <input type="text" class="form-control" id="neq" name="neq">
+                    </div>
 
-                <div class="col-lg-12">
-                    <label for="nom_entreprise">Nom de l'entreprise:</label>
-                    <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                    <div class="col-lg-12">
+                        <label for="nom_entreprise">Nom de l'entreprise:</label>
+                        <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                    </div>
                 </div>
-            </div>
                 <div class="container-xxl">
                     <label for="email">Adresse courriel:</label>
                     <input type="text" class="form-control" id="email" name="email">
@@ -43,10 +43,10 @@
                 
             </div>
             <div class="container-xxl">
-            <h1>Coordonnées</h1>
+                <h1>Coordonnées</h1>
                 <div class="container-xxl">
                     <h1>Adresse</h1>
-                    <dic class="row">
+                    <div class="row">
 
                         <div class="col-sm-3">
                             <label for="no_rue">No. civique:</label>
@@ -93,9 +93,84 @@
                             <input type="text" class="form-control" id="code_postal" name="code_postal">
                         </div>
 
-                    </div>   
+                    </div> 
+                    <div class="container-xxl">
+                        <label for="site_internet">Site internet:</label>
+                        <input type="text" class="form-control" id="site_internet" name="site_internet">
+                    </div>  
+
+                    <div class="container-xxl">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="type_tel">type de Téléphones</label>
+                                <input type="text" class="form-control" id="type_tel" name="type_tel">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="no_tel">Téléphones:</label>
+                                <input type="text" class="form-control" id="no_tel" name="no_tel">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="poste_tel">Poste:</label>
+                                <input type="text" class="form-control" id="poste_tel" name="poste_tel">
+                            </div>
+                            
+                        </div> 
+                        <div id="bt-center">
+                            <button class="button">Ajouter un téléphone</button>
+                        </div>
+                        
+                    </div> 
+
                 </div> 
             </div>
+
+            <div class="container-xxl">
+                <h1>Contacts</h1>
+                <dic class="row">
+                    <div class="col-lg-12">
+                        <label for="neq">Prénom</label>
+                        <input type="text" class="form-control" id="neq" name="neq">
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label for="nom_entreprise">nom</label>
+                        <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label for="neq">Fonction:</label>
+                        <input type="text" class="form-control" id="neq" name="neq">
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label for="nom_entreprise">Adresse courriel</label>
+                        <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                    </div>
+                </div>
+                <div class="container-xxl">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="type_tel">type de Téléphones</label>
+                                <input type="text" class="form-control" id="type_tel" name="type_tel">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="no_tel">Téléphones:</label>
+                                <input type="text" class="form-control" id="no_tel" name="no_tel">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="poste_tel">Poste:</label>
+                                <input type="text" class="form-control" id="poste_tel" name="poste_tel">
+                            </div>
+                            
+                        </div> 
+                    </div>
+                
+            </div>
+
         </div>
         
     </form>

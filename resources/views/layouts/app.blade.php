@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <script src="{{ asset('js/navbarMenu.js') }}">
+    <script src="{{ asset('js/navbarMenu.js') }}"></script>
     @yield('css')
     @yield('js')
 </head>
@@ -16,7 +16,9 @@
 <div>
     <header>
         <nav class="navbar  fixed-top navbar-light">
-            <a class="navbar-brand" href="#"><p id="brandName">fornisseur.v3r.net</p></a>
+            <a class="navbar-brand" href="{{ route('Accueil') }}">
+                <p id="brandName">fornisseur.v3r.net</p>
+            </a>
             <div id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
