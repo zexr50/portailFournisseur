@@ -11,15 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('fournisseurs', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('NEQ')->nullable();
             $table->string('nom_entreprise', lenght: 64)->required();
             $table->string('email', lenght: 64);
-            $table->unsignedTinyInteger('attempts');
-            $table->unsignedInteger('reserved_at')->nullable();
-            $table->unsignedInteger('available_at');
-            $table->unsignedInteger('created_at');
+            $table->longText('mdp');
+            $table->string('no_rue', lenght: 8);
+            $table->string('rue', lenght: 64);
+            $table->string('no_bureau', lenght: 8);
+            $table->string('ville', lenght: 64);
+            $table->string('province', lenght: 64);
+            $table->string('code_postal', lenght: 6);
+            $table->string('region_admin', lenght: 64);
+            $table->string('site_internet', lenght: 64);
+            $table->mediumText('commentaire');
+            $table->timestamps();
         });
     }
 

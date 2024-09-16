@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('telephone', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->foreignId('id_fournisseurs');
+            $table->string('type_tel', lenght: 32);
+            $table->string('no_tel', lenght: 10);
+            $table->string('poste_tel', lenght: 6);
+            $table->timestamps();
+        });
     }
 
     /**
