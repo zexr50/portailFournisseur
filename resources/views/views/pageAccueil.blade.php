@@ -6,18 +6,17 @@
     
     
     @section('content')
-
     <h1>Votre Portail Fournisseur</h1>
     <div>
-        <button type="submit" class="button" id="buttonLeftSS" onclick="showPrevSlide()"><</button>
+        <button type="submit" class="button" id="buttonLeft" onclick="showPrevSlide()"><</button>
         
         <div id="slideShow">
-            <img src="{{ asset('img/user.svg') }}" alt="Utilisateur" id="slide1" style="">
-            <img src="{{ asset('img/moon.svg') }}" alt="Lune"        id="slide2" style="display:none;">
-            <img src="{{ asset('img/sun.svg') }}"  alt="Soleil"      id="slide3" style="display:none;">
+            <img src="{{ asset('img/stockImg1.jpg') }}" alt="img1" id="slide1" class="slide" style="opacity: 1;">
+            <img src="{{ asset('img/stockImg2.jpg') }}" alt="img2" id="slide2" class="slide" style="opacity: 0;">
+            <img src="{{ asset('img/stockImg3.jpg') }}" alt="img3" id="slide3" class="slide" style="opacity: 0;">
         </div>
 
-        <button type="button" class="button" id="buttonRightSS" onclick="showNextSlide()">></button>
+        <button type="button" class="button" id="buttonRight" onclick="showNextSlide()">></button>
     </div>
 
     
