@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('telephone', function (Blueprint $table) {
-            $table->id("id_telephone")->primary();
-            $table->foreignId('id_fournisseurs');
-            $table->string('type_tel', lenght: 32);
-            $table->string('no_tel', lenght: 10);
-            $table->string('poste_tel', lenght: 6);
+        Schema::create('code_unspsc', function (Blueprint $table) {
+            $table->id("id_code_unspsc")->primary();
+            $table->string('categorie', lenght: 250);
+            $table->string('code_unspsc', lenght: 8);
+            $table->string('description_code_unspsc', lenght: 500);
+            $table->string('nature_contrat', lenght: 64);
             $table->timestamps();
         });
     }
