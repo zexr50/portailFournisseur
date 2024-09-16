@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id_document()->primary();
+            $table->id('id_document')->primary();
             $table->foreignId('id_fournisseur')->constrained('fournisseurs');
             $table->string('nomDocument', 32);
             $table->string('extension_document', 10);
