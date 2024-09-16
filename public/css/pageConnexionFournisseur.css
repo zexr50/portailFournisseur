@@ -1,0 +1,36 @@
+form {
+    background-color:rgb(0,118,213); 
+    padding: 20px;
+}
+
+.container-xxl{ 
+    border-style: solid;
+    border-color: rgb(0,118,213);
+    border-radius: 15px;
+    margin: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    padding-bottom: 10px;
+    background-color:rgb(11,35,65);
+}
+
+.main-container{ 
+    padding: 50px;
+    background-color:rgb(0,118,213);
+}
+
+h1, label{ 
+    color: rgb(120,198,224);
+    text-align: left;
+    padding: 5px;
+    font-size: 30px;
+}
+
+.form-control {
+    padding-bottom: 5px;
+}
+
+.button {
+    background-color: aquamarine;
+}
+

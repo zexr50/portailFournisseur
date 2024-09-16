@@ -1,7 +1,7 @@
 @extends('layouts.app')
-    @section('title',"V3R Fournisseur Accueil")
+    @section('title',"V3R Fournisseur Page Connexion C")
     @section('css')
-        <link rel="stylesheet" href="{{ asset('css/pageAccueil.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/pageConnexionFournisseur.css') }}">
     @show
     @section('js')
         <script src=""></script>
@@ -11,15 +11,24 @@
     <form method="post" action="" enctype="multipart/form-data">
     @csrf
         <div class="main-container">
-            <label for="neq">NEQ:</label>
-            <input type="text" class="form-control" id="neq" name="neq" required>
+            <div class="container-xxl">
+                <label for="neq">NEQ (Numéro d'Entreprise du Québec):</label>
+                <input type="text" class="form-control" id="neq" name="neq" required>
 
-            <label for="password">Mot de passe:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            </div> 
+
+            <div class="container-xxl">    
+
+                <label for="password">Mot de passe:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+
+            </div> 
 
             </br>
 
-            <button type="submit" class="button">Se connecter</button>
+            <div style="text-align:center">
+                <button type="submit" class="button" id="btConnexion">Se connecter</button>
+            </div>
             
             </br>
 
@@ -27,7 +36,7 @@
         
     </form>
 
-    <button href="" class="button">Se connecter avec une adresse courriel</button>
+    <button href="" class="button" id="btCourrielPage">Se connecter avec une adresse courriel</button>
     
 </div>
 

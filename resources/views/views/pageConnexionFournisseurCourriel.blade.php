@@ -1,7 +1,7 @@
 @extends('layouts.app')
-    @section('title',"V3R Fournisseur Accueil")
+    @section('title',"V3R Fournisseur Page Connexion N")
     @section('css')
-        <link rel="stylesheet" href="{{ asset('css/pageAccueil.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/pageConnexionFournisseur.css') }}">
     @show
     @section('js')
         <script src=""></script>
@@ -10,16 +10,23 @@
 
     <form method="post" action="" enctype="multipart/form-data">
     @csrf
-        <div class="main-container">
-            <label for="email">Courriel:</label>
-            <input type="text" class="form-control" id="email" name="email" required>
+    <div class="main-container">
+            <div class="container-xxl">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" required>
 
-            <label for="password">Mot de passe:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            </div> 
+
+            <div class="container-xxl">    
+
+                <label for="password">Mot de passe:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+
+            </div> 
 
             </br>
 
-            <button type="submit" class="button">Se connecter</button>
+            <button type="submit" class="button" id="btConnexion">Se connecter</button>
             
             </br>
 
@@ -27,7 +34,7 @@
         
     </form>
 
-    <button href="" class="button">Se connecter avec un NEQ</button>
+    <button href="" class="button" id="btNEQPage">Se connecter avec un NEQ</button>
     
 </div>
 
