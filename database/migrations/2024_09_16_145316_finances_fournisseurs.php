@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('financesFournisseurs', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->timestamps();
+            $table->id_finance()->primary();
+            $table->foreignId('id_fournisseur')->constrained('fournisseurs');
+            $table->string('no_TPS');
+            $table->string('no_TVQ');
+            $table->string('condition_paiement', 255);
+            $table->string('devise', 25);
+            $table->string('mode_communication', 25);
         });
     }
 
