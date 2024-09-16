@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('telephone', function (Blueprint $table) {
-            $table->id()->primary();
+        Schema::create('personne_ressource', function (Blueprint $table) {
+            $table->id("id_personne_ressource")->primary();
             $table->foreignId('id_fournisseurs');
             $table->foreignId('id_telephone');
             $table->string('prenom_contact', lenght: 32);

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fournisseurs', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id("id_fournisseurs")->primary();
             $table->string('NEQ', lenght: 10)->nullable();
             $table->string('nom_entreprise', lenght: 64)->required();
             $table->string('email', lenght: 64);
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('code_postal', lenght: 6);
             $table->string('region_admin', lenght: 64);
             $table->string('site_internet', lenght: 64);
-            $table->mediumText('commentaire');
+            $table->string('commentaire', lenght: 500);
             $table->timestamps();
         });
     }

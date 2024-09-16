@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fournisseurs', function (Blueprint $table) {
-            $table->id()->primary();
+        Schema::create('licences_rbq', function (Blueprint $table) {
+            $table->id("id_licence_rbq")->primary();
             $table->foreignId('id_fournisseurs');
-            $table->string('region_admin', lenght: 64);
-            $table->string('site_internet', lenght: 64);
+            $table->string('categorie', lenght: 32);
+            $table->string('sous_categorie', lenght: 250);
             $table->timestamps();
         });
     }

@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('fournisseur_code_unspsc_liaison', function (Blueprint $table) {
+            $table->id("id_code_unspsc")->primary();
+            $table->foreignId('id_fournisseurs');
+            $table->foreignId('id_licence_rbq');
+            $table->timestamps();
+        });
     }
 
     /**
