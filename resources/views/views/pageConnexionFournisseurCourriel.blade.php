@@ -26,7 +26,9 @@
 
             </br>
 
-            <button type="submit" class="button" id="btConnexion">Se connecter</button>
+            <div style="text-align:center">
+                <button type="submit" class="button" id="btConnexion">Se connecter</button>
+            </div>
             
             </br>
 
@@ -34,8 +36,9 @@
         
     </form>
 
-    <button href="" class="button" id="btNEQPage">Se connecter avec un NEQ</button>
-    
+    <div style="text-align:center">
+        <a href="{{ route('ConnexionFournisseurNEQ') }}" class="button" id="btNEQPage">Se connecter avec un NEQ</a>
+    </div>
 </div>
 
 @endsection

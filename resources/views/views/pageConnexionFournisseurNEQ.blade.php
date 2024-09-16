@@ -35,9 +35,10 @@
         </div>
         
     </form>
+    <div style="text-align:center">
+        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="button" id="btCourrielPage">Se connecter avec une adresse courriel</a>
+    </div>
 
-    <button href="" class="button" id="btCourrielPage">Se connecter avec une adresse courriel</button>
-    
 </div>
 
 @endsection
