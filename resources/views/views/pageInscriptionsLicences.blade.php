@@ -16,7 +16,7 @@
         @csrf
         <div class="container-xxl">
             <div class="container-xxl">
-                <h1>identification</h1>
+                <h1>non</h1>
 
                 <label for="neq">Numéro d'entreprise du Québec:</label>
                 <input type="text" class="form-control" id="neq" name="neq">
@@ -206,8 +206,4 @@
         <button type="submit" class="button">envoyer le formulaire</button>
         </div>
     </form>
-
-    <div id="bt-center">
-        <a href="{{url('/pageInscriptionsLicences')}}"> <button type="button" class="button">Page des requêtes</button>
-    </div>
 @endsection
