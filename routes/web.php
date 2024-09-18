@@ -14,5 +14,5 @@ Route::get('/ConnexionFournisseurNEQ', function () {return view('views/pageConne
 Route::get('/inscription', function () {return view('views/pageInscription');})->name("Inscription");
 Route::get('/pageInscriptionsLicences', function () {return view('views/pageInscriptionsLicences');});
 Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
-
+Route::get('/AjoutFinance', function () {return view('views/pageAjoutFinancesFournisseur');})->name("AjoutFinances");
 
