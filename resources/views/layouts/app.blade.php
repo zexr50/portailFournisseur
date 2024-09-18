@@ -40,8 +40,8 @@
 
     <div class="" style="display:none;right:0;" id="Menu">
         <button onclick="closeMenu()">Fermer &times;</button>
-        <a href="#" class="">Link 1</a>
-        <a href="#" class="">Link 2</a>
+        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="">Se connecter</a>
+        <a href="{{ route('Inscription') }}" class="">Inscription</a>
         <a href="#" class="">Link 3</a>
     </div>
 

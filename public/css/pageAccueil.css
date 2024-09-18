@@ -22,7 +22,7 @@ h3
     position: absolute;
     color: white;
     left: 2%;
-    top: 20%;
+    top: 200px;
     transition: opacity 0.25s ease-in-out;
 }
 
