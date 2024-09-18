@@ -73,9 +73,13 @@ function addPhoneNumber() {
     phoneNumbersDiv.appendChild(newRow);
 }
 
+//-------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
+
 //ajout pour personne contact (copier de ce qu'il y a dessus et adapté)
 
-//en travail
+//fini, pour l'ajout de choses.
 
 let numberOfContacts = 1;
 
@@ -229,7 +233,8 @@ function addContactPerson() {
 
     // Append the new row to the phoneNumbers div
     contactDiv.appendChild(newRow1);
+    newContainer.appendChild(newRow2);
     contactDiv.appendChild(newContainer);
-    contactDiv.appendChild(newRow2);
+    
     
 }
