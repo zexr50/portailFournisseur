@@ -11,7 +11,7 @@ body
     z-index: 1;
     display: none;
     position:absolute;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
     opacity: 0;
 }
 
@@ -23,6 +23,7 @@ h3
     color: white;
     left: 2%;
     top: 20%;
+    transition: opacity 0.25s ease-in-out;
 }
 
 h1
@@ -33,8 +34,10 @@ h1
     color: white;
 }
 
-button
+#buttonLeft
 {
+    top: 50%;
+    left: 2%;
     z-index: 3;
     border: none;
     background: none;
@@ -42,14 +45,14 @@ button
     position: absolute;
     color:white;
 }
-
-#buttonLeft
-{
-    top: 50%;
-    left: 2%;
-}
 #buttonRight
 {
     top: 50%;
     right: 2%;
+    z-index: 3;
+    border: none;
+    background: none;
+    font-size: xx-large;
+    position: absolute;
+    color:white;
 }
