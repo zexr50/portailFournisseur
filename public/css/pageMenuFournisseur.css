@@ -4,21 +4,25 @@ body {
 
 .button
 { 
+    font-size: 20px;
     border-style: solid;
     border-color: rgb(0,118,213);
     border-radius: 10px;
     color: rgb(120,198,224);
     background-color:rgb(11,35,65) ;
     text-align: center;
-    padding: 50px;
+    height: 100px;
+    width: 500px;
+    margin: 10px;
 }
 
 #statusText {
-    font-size: 60px;
-    margin-top: 80px;
+    font-size: 72px;
+    margin-top: 60px;   
+    margin-bottom: 50px;
+    color: darkred;
 }
 
-#btDiv {
-    margin: 100px;
-    padding: 20px;
+#btSupprimerFiche {
+    background-color:rgb(128, 0, 0) ;
 }

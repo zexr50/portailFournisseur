@@ -12,20 +12,20 @@
         <h1 id="statusText">Status : Maidenless</h1>
     </div>
 
-    <div style="text-align:center" id="btDiv">
-        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="button" id="btMaFiche">Se connecter avec une adresse courriel</a>
+    <div style="text-align:center">
+        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
     </div>
 
-    <div style="text-align:center" id="btDiv">
-        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="button" id="btAjouterFinance">Se connecter avec une adresse courriel</a>
+    <div style="text-align:center">
+        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
     </div>
 
-    <div style="text-align:center" id="btDiv">
-        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="button" id="btModifierFiche">Se connecter avec une adresse courriel</a>
+    <div style="text-align:center">
+        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btModifierFiche">Modifier ma fiche</button>
     </div>
 
-    <div style="text-align:center" id="btDiv">
-        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="button" id="btSupprimerFiche">Se connecter avec une adresse courriel</a>
+    <div style="text-align:center">
+        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btSupprimerFiche">Supprimer ma fiche</button>
     </div>
 
 
