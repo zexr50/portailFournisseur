@@ -62,7 +62,7 @@
                             <input type="text" class="form-control" id="ville" name="ville">
                         </div>
 
-                        <div class="col-sm-9">
+                        <div class="col-md-5">
                             <label for="province">Province:</label>
                             <select id="no_tel" name="type_tels[]" class="form-select" required>
                                 <option value="Quebec">Québec</option>
@@ -79,12 +79,32 @@
                                 <option value="Nunavut">Nunavut</option>
                                 <option value="Yukon">Yukon</option>
                             </select>
-                            <datalist id="provinces">
-                                
-                            </datalist>
                         </div>
 
-                        <div class="col-sm-3">
+                        <div class="col-md-5">
+                            <label for="region_admin">Regions administratives:</label>
+                            <select id="region_admin" name="region_admins" class="form-select" required>
+                                <option value="01">01 - Bas-Saint-Laurent</option>
+                                <option value="02">02 - Saguenay-Lac-Saint-Jean</option>
+                                <option value="03">03 - Capitale-Nationale</option>
+                                <option value="04">04 - Mauricie</option>
+                                <option value="05">05 - Estrie</option>
+                                <option value="06">06 - Montréal</option>
+                                <option value="07">07 - Outaouais</option>
+                                <option value="08">08 - Abitibi-Témiscamingue</option>
+                                <option value="09">09 - Côte-Nord</option>
+                                <option value="10">10 - Nord-du-Québec</option>
+                                <option value="11">11 - Gaspésie-Îles-de-la-Madeleine</option>
+                                <option value="12">12 - Chaudière-Appalaches</option>
+                                <option value="13">13 - Laval</option>
+                                <option value="14">14 - Lanaudière</option>
+                                <option value="15">15 - Laurentides</option>
+                                <option value="16">16 - Montérégie</option>
+                                <option value="17">17 - Centre-du-Québec</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
                             <label for="code_postal">Code postal:</label>
                             <input type="text" class="form-control" id="code_postal" name="code_postal">
                         </div>

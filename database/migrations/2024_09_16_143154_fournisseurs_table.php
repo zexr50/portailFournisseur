@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('ville', lenght: 64);
             $table->string('province', lenght: 64);
             $table->string('code_postal', lenght: 6);
-            $table->string('region_admin', lenght: 64);
+            $table->string('region_admin_id', lenght: 16);
             $table->string('site_internet', lenght: 64);
             $table->string('commentaire', lenght: 500);
             $table->timestamps();
