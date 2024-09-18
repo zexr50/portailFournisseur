@@ -43,8 +43,7 @@ h1, label{
     text-align: center;
     padding: 10px;
     margin: 10px;
-    width: 400;
-    height: 200;
+    min-height: 50px;
 }
 
 

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('telephone', function (Blueprint $table) {
             $table->id("id_telephone")->primary();
             $table->foreignId('id_fournisseurs');
-            $table->string('type_tel', lenght: 32);
-            $table->string('no_tel', lenght: 10);
-            $table->string('poste_tel', lenght: 6);
+            $table->string('type_tel', length: 32);
+            $table->string('no_tel', length: 10);
+            $table->string('poste_tel', length: 6);
             $table->timestamps();
         });
     }

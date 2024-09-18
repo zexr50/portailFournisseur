@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('code_unspsc', function (Blueprint $table) {
             $table->id("id_code_unspsc")->primary();
-            $table->string('categorie', lenght: 250);
-            $table->string('code_unspsc', lenght: 8);
-            $table->string('description_code_unspsc', lenght: 500);
-            $table->string('nature_contrat', lenght: 64);
+            $table->string('categorie', length: 250);
+            $table->string('code_unspsc', length: 8);
+            $table->string('description_code_unspsc', length: 500);
+            $table->string('nature_contrat', length: 64);
             $table->timestamps();
         });
     }

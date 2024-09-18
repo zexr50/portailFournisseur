@@ -208,6 +208,6 @@
     </form>
 
     <div id="bt-center">
-        <a href="{{url('/pageInscriptionsLicences')}}"> <button type="button" class="button">Page des requêtes</button>
+        <a href="{{url('/PageInscriptionsLicences')}}"> <button type="button" class="button">Page des requêtes</button></a>
     </div>
 @endsection

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('demandesFournisseurs', function (Blueprint $table) {
             $table->id('id_demande')->primary();
-            $table->foreignId('id_fournisseur')->constrained('fournisseurs');
+            $table->foreignId('id_fournisseur');
             $table->string('etat_demande', 32);
             $table->string('raison_refus', 255);
             $table->string('commentaire', 255);

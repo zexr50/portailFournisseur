@@ -12,6 +12,9 @@
          https://tablericons.com/ for icons
     -->
 
+        <!-- lien pour moi-même : 
+            https://stackoverflow.com/questions/21891815/select-all-from-table-with-laravel-and-eloquent
+    -->
         <form method="post" action="" enctype="multipart/form-data">
         @csrf
         <div class="container-xxl">

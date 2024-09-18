@@ -16,3 +16,7 @@ Route::get('/pageInscriptionsLicences', function () {return view('views/pageInsc
 Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 Route::get('/AjoutFinance', function () {return view('views/pageAjoutFinancesFournisseur');})->name("AjoutFinances");
 
+Route::get('/ConnexionFournisseur', function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
+Route::get('/Inscription', function () {return view('views/pageInscription');})->name("Inscription");
+Route::get('/PageInscriptionsLicences', function () {return view('views/pageInscriptionsLicences');})->name("InscriptionLicences");
+Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
