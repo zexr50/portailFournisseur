@@ -16,6 +16,11 @@ Route::get('/inscription', function () {return view('views/pageInscription');})-
 
 =======
 Route::get('/inscription', function () {return view('views/pageInscription');});
+<<<<<<< Updated upstream
 Route::get('/pageInscriptionsLicences', function () {return view('views/pageInscriptionsLicences');});
+>>>>>>> Stashed changes
+=======
+Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
+
 >>>>>>> Stashed changes
 

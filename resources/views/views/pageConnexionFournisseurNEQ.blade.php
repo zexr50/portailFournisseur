@@ -39,6 +39,4 @@
         <a href="{{ route('ConnexionFournisseurCourriel') }}" class="button" id="btCourrielPage">Se connecter avec une adresse courriel</a>
     </div>
 
-</div>
-
 @endsection

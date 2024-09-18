@@ -39,6 +39,5 @@
     <div style="text-align:center">
         <a href="{{ route('ConnexionFournisseurNEQ') }}" class="button" id="btNEQPage">Se connecter avec un NEQ</a>
     </div>
-</div>
 
 @endsection
