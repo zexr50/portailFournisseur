@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id("id_personne_ressource")->primary();
             $table->foreignId('id_fournisseurs');
             $table->foreignId('id_telephone');
-            $table->string('prenom_contact', lenght: 32);
-            $table->string('nom_contact', lenght: 32);
-            $table->string('fonction', lenght: 32);
-            $table->string('email_contact', lenght: 64);
+            $table->string('prenom_contact', length: 32);
+            $table->string('nom_contact', length: 32);
+            $table->string('fonction', length: 32);
+            $table->string('email_contact', length: 64);
             $table->timestamps();
         });
     }

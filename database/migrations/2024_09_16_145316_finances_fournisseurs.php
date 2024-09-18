@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('financesFournisseurs', function (Blueprint $table) {
             $table->id('id_finance')->primary();
-            $table->foreignId('id_fournisseur')->constrained('fournisseurs');
+            $table->foreignId('id_fournisseur');
             $table->string('no_TPS');
             $table->string('no_TVQ');
             $table->string('condition_paiement', 255);
