@@ -22,10 +22,6 @@
             <div id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <div><img src="{{ asset('img/moon.svg') }}" alt="dark_mode_toggel" width="52px"></div>
-                    </li>
-
-                    <li class="nav-item">
                         <div class="sidebar">
                             <button onclick="openMenu()" class="navbar-toggler" type="button">
                                 <img src="{{ asset('img/menu.svg') }}" alt="menuButton">
@@ -40,7 +36,7 @@
 
     <div class="" style="display:none;right:0;" id="Menu">
         <button onclick="closeMenu()">Fermer &times;</button>
-        <a href="{{ route('ConnexionFournisseurCourriel') }}" class="">Se connecter</a>
+        <a href="{{ route('ConnexionFournisseur') }}" class="">Se connecter</a>
         <a href="{{ route('Inscription') }}" class="">Inscription</a>
         <a href="#" class="">Link 3</a>
     </div>

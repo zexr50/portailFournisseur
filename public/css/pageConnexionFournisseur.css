@@ -1,46 +1,136 @@
-form {
-    background-color:rgb(0,118,213); 
-    padding: 20px;
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: black;
+    box-sizing: border-box;
+    line-height: 1.6;
+    text-align: center;
+    position: relative;
 }
 
-.container-xxl{ 
-    border-style: solid;
-    border-color: rgb(0,118,213);
-    border-radius: 15px;
-    margin-top: 10px;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    background-color:rgb(11,35,65);
+.shape1, .shape2, .shape3 {
+    position: absolute;
+    opacity: 0.1; 
 }
 
-.main-container{ 
-    padding-top: 50px;
-    padding-left: 30px;
-    padding-right: 30px;
-
-    background-color:rgb(0,118,213);
+.shape1 {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 118, 213, 0.5);
+    border-radius: 50%; 
+    top: 10%;
+    left: 15%;
 }
 
-h1, label{ 
-    color: rgb(120,198,224);
-    text-align: left;
-    padding: 5px;
-    font-size: 30px;
+.shape2 {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 118, 213, 0.3);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    top: 60%;
+    right: 25%;
 }
 
-.form-control {
-    padding-bottom: 5px;
+.shape3 {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 118, 213, 0.4);
+    top: 30%;
+    left: 70%;
+}
+
+
+.main-container {
+    width: 500px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 50px 100px 150px 100px;
+    border-radius: 5px;
+    border: solid 1px;
+    box-shadow: 0 0 10px rgba(255, 254, 254, 0.1);
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: black;
+}
+
+input{
+    margin-bottom: 20px;
 }
 
 .button
-{ 
-    border-style: solid;
-    border-color: rgb(0,118,213);
-    border-radius: 10px;
-    color: rgb(120,198,224);
-    background-color:rgb(11,35,65) ;
+{
+    padding: 10px 20px 10px 20px;
+    margin: 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(0,118,213);
+    color: white;
     text-align: center;
-    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
+.button:hover {
+    background-color: rgb(0,118,213);
+    color: white;
+    padding: 20px 30px 20px 30px;
+}
 
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title h1 {
+    font-size: 56px;
+    color: rgb(0,118,213);
+}
+
+.left-rectangle,
+.right-rectangle {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15vw; 
+    background-color: rgb(0,118,213);
+}
+
+.left-rectangle {
+    left: 0;
+}
+
+.right-rectangle {
+    right: 0;
+}
+
+@media screen and (max-width: 900px) {
+    .left-rectangle,
+    .right-rectangle {
+        display: none;
+    }
+}
+
+select
+{
+    margin-bottom: 20px;
+}
+
+.select-subgroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.select{
+    width: 500px;
+}
