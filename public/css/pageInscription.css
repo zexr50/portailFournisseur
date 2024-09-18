@@ -1,7 +1,11 @@
-form {
+body {
     background-color:rgb(0,118,213); 
+}
+
+form{
     padding: 20px;
 }
+
 
 .container-fluid, .container, .container-xl, .container-lg, .container-xxl{ 
     border-style: solid;
@@ -39,6 +43,8 @@ h1, label{
     text-align: center;
     padding: 10px;
     margin: 10px;
+    width: 400;
+    height: 200;
 }
 
 
