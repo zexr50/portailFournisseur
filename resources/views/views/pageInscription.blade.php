@@ -202,10 +202,23 @@
             </div>
         </div>
         
+        <input type="text" id="search" placeholder="Search...">
+        <ul>
+            @foreach ($licences_rbqs as $licences_rbq)
+                <li>
+                    <input type="checkbox" value="{{ $licences_rbqs->id }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                </li>
+            @endforeach
+        </ul>
+        {{ $licences_rbqs->links() }}
+
+
         <div id="bt-center">
         <button type="submit" class="button">envoyer le formulaire</button>
         </div>
     </form>
+
+
 
     <div id="bt-center">
         <a href="{{url('/PageInscriptionsLicences')}}"> <button type="button" class="button">Page des requêtes</button></a>

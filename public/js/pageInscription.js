@@ -236,5 +236,19 @@ function addContactPerson() {
     newContainer.appendChild(newRow2);
     contactDiv.appendChild(newContainer);
     
+//-------------------------------------------------------------------------------------------
+        //Partie pour le rechercher avec AJAX
+//-------------------------------------------------------------------------------------------
+
+
+    $('#search').on('keyup', function() {
+        $.ajax({
+            url: '/licences_rbqs',
+            data: { search: $(this).val() },
+            success: function(data) {
+                // Update the list with filtered data
+            }
+        });
+    });
     
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InscriptionController;
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,9 @@ Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisse
 Route::get('/AjoutFinance', function () {return view('views/pageAjoutFinancesFournisseur');})->name("AjoutFinances");
 
 Route::get('/ConnexionFournisseur', function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
-Route::get('/Inscription', function () {return view('views/pageInscription');})->name("Inscription");
+
+Route::get('/Inscription',
+[InscriptionController::class, 'index'])->name('Inscription.index');
+
 Route::get('/PageInscriptionsLicences', function () {return view('views/pageInscriptionsLicences');})->name("InscriptionLicences");
 Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");

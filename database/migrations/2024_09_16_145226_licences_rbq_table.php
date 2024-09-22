@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('licences_rbq', function (Blueprint $table) {
             $table->id("id_licence_rbq")->primary();
-            $table->foreignId('id_fournisseurs');
             $table->string('categorie', length: 32);
             $table->string('sous_categorie', length: 250);
             $table->timestamps();
