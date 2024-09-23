@@ -202,6 +202,7 @@
             </div>
         </div>
         
+        <div class="container-xxl">
         <input type="text" id="search" placeholder="Search...">
         <ul>
             @foreach ($licences_rbqs as $licences_rbq)
@@ -211,6 +212,7 @@
             @endforeach
         </ul>
         {{ $licences_rbqs->links() }}
+        </div>
 
 
         <div id="bt-center">
