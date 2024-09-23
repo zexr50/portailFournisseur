@@ -10,6 +10,7 @@
     <title>@yield('title')</title>
     <script src="{{ asset('js/navbarMenu.js') }}"></script>
     @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     @yield('js')
 </head>

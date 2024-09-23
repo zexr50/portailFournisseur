@@ -1,8 +1,4 @@
 html, body {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
     color: black;
     box-sizing: border-box;
     line-height: 1.6;
@@ -48,9 +44,7 @@ html, body {
     background-color: white;
     padding: 50px 100px 150px 100px;
     border-radius: 5px;
-    border: solid 1px;
-    box-shadow: 0 0 10px rgba(255, 254, 254, 0.1);
-    
+    border: groove 2px gray;
 }
 
 label {
@@ -75,14 +69,12 @@ input{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    transition-duration: 0.4s;
-    cursor: pointer;
 }
 
 .button:hover {
     background-color: rgb(0,118,213);
     color: white;
-    padding: 20px 30px 20px 30px;
+    padding: 15px 25px 15px 25px;
 }
 
 .title {

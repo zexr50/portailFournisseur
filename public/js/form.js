@@ -14,6 +14,8 @@ function initialize() {
     whatForm.innerHTML = ''; 
 
     
+    current_bx = localStorage.getItem('current_bx') ? parseInt(localStorage.getItem('current_bx')) : 0;
+
     for (let i = 0; i < length_bxs; i++) {
         const img = document.createElement("img");
         img.src = points[0]; 
@@ -24,9 +26,7 @@ function initialize() {
         sub_bxs[i].style.display = "none"; 
     }
 
-    sub_bxs[0].style.display = "block"; 
-    current_bx = 0;
-
+    sub_bxs[current_bx].style.display = "block"; 
     updatePoints();
 }
 
@@ -36,6 +36,7 @@ function nextForm() {
         current_bx++;
         sub_bxs[current_bx].style.display = "block"; 
         updatePoints(); 
+        localStorage.setItem('current_bx', current_bx); 
     }
 }
 
@@ -45,9 +46,9 @@ function prevForm() {
         current_bx--;
         sub_bxs[current_bx].style.display = "block"; 
         updatePoints(); 
+        localStorage.setItem('current_bx', current_bx); 
     }
 }
-
 
 function updatePoints() {
     for (let i = 0; i < length_bxs; i++) {

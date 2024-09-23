@@ -14,8 +14,14 @@ form{
 }
 
 .container-fluid, .container, .container-xl, .container-lg, .container-xxl{ 
+<<<<<<< Updated upstream
     border-style: solid;
     border-radius: 15px;
+=======
+    
+    border-color: rgb(0,118,213);
+    border-radius: 10px;
+>>>>>>> Stashed changes
     margin-top: 10px;
     padding: 5px;
     background-color:rgb(11,35,65);
@@ -51,12 +57,12 @@ h1, label, li{
     min-height: 50px;
 }
 
-input.form-control:focus , .form-select:focus
+#buttonLeft
 {
-    -webkit-box-shadow:0px 0px 24px 0px rgba(45,255,196,0.5);
-    -moz-box-shadow: 0px 0px 24px 0px rgba(45,255,196,0.5);
-    box-shadow: 0px 0px 24px 0px rgba(45,255,196,0.5);
+    left:10px;
+    position: absolute;
 }
+<<<<<<< Updated upstream
 
 .pagination {
     display: flex; /* Use flexbox to manage layout */
@@ -83,3 +89,15 @@ input.form-control:focus , .form-select:focus
 }
 
 
+=======
+#buttonRight
+{
+    right:10px;
+    position: absolute;
+}
+#whatForm
+{
+    display: flex;
+    justify-content: center;
+}
+>>>>>>> Stashed changes
