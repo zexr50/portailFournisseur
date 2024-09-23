@@ -243,14 +243,14 @@ function addContactPerson() {
 
     $('#search').on('keyup', function() {
         $.ajax({
-            url: '/licences_rbqs', // Ensure this matches your route
+            url: '/Inscription', // Ensure this matches your route
             data: { search: $(this).val() },
             success: function(data) {
                 $('#licence-list').html(data);
                 console.log(data); // Log the returned data
             },
             error: function(xhr, status, error) {
-                console.error(xhr.responseText); // Log errors if any
+                console.log(xhr.responseText); // Log errors if any
             }
         });
     });

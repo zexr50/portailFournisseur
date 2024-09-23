@@ -5,6 +5,7 @@
     @show
     @section('js')
         <script src="{{ asset('js/pageInscription.js') }}"></script>
+        <script src="{{ asset('js/form.js') }}"></script>
     @endsection
     @section('content')
 
@@ -14,8 +15,8 @@
 
         <form method="GET" action="" enctype="multipart/form-data">
         @csrf
-        <div class="container-xxl">
-            <div class="container-xxl">
+        <div class="container-xxl main-bx">
+            <div class="container-xxl sub-bx">
                 <h1>identification</h1>
 
                 <label for="neq">Numéro d'entreprise du Québec:</label>
@@ -36,7 +37,7 @@
                 </div>  
                 
             </div>
-            <div class="container-xxl">
+            <div class="container-xxl sub-bx">
                 <h1>Coordonnées</h1>
                 <div class="container-xxl">
                     <h1>Adresse</h1>
@@ -147,7 +148,7 @@
 
             </div> 
             
-            <div class="container-xxl">
+            <div class="container-xxl sub-bx">
                 <h1>Contacts</h1>
                 <div id="contact">
                     <div class="row contact-group">
@@ -200,27 +201,31 @@
                 <button type="button" onclick="addContactPerson()" class="button" id="btAddContact">Ajouter une personne contact</button>
                 </div>
             </div>
-        </div>
         
-        <div class="container-xxl">
-        <input type="text" id="search" placeholder="Search...">
-        <ul>
-            @foreach ($licences_rbqs as $licences_rbq)
-                <li>
-                    <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
-                </li>
-            @endforeach
-        </ul>
-        {{ $licences_rbqs->links() }}
+        
+        <div class="container-xxl sub-bx">
+            <input type="text" id="search" placeholder="Search...">
+            <ul>
+                @foreach ($licences_rbqs as $licences_rbq)
+                    <li>
+                        <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                    </li>
+                @endforeach
+            </ul>
+            {{ $licences_rbqs->links() }}
         </div>
 
-
+</div>
         <div id="bt-center">
         <button type="submit" class="button">envoyer le formulaire</button>
         </div>
     </form>
 
-
+    <div>
+        <button type="button" class="button" onclick="prevForm()" id="buttonLeft">Prev</button>
+        <div id="whatForm"></div>
+        <button type="button" class="button" onclick="nextForm()" id="buttonRight">Next</button>
+    </div>
 
     <div id="bt-center">
         <a href="{{url('/PageInscriptionsLicences')}}"> <button type="button" class="button">Page des requêtes</button></a>
