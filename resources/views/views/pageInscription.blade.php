@@ -12,7 +12,7 @@
          https://tablericons.com/ for icons
     -->
 
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="GET" action="" enctype="multipart/form-data">
         @csrf
         <div class="container-xxl">
             <div class="container-xxl">
@@ -206,7 +206,7 @@
         <ul>
             @foreach ($licences_rbqs as $licences_rbq)
                 <li>
-                    <input type="checkbox" value="{{ $licences_rbqs->id }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                    <input type="checkbox" value="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
                 </li>
             @endforeach
         </ul>

@@ -16,7 +16,7 @@ class InscriptionController extends Controller
         }
     
         $licences_rbqs = $query->paginate(100);
-        return view('licences_rbq.index', compact('licences_rbqs'));
+        return view('views.pageInscription', compact('licences_rbqs'));
     }
 
 }
