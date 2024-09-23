@@ -48,6 +48,11 @@
                     <input type="radio" id="courrielReg" name="modeCom" value="courrielReg">
                     <label for="courrielReg">Courriel Régulier</label><br>
                 </div>
+
+                <div style="text-align:center">
+                    <button type="submit" class="button">Ajouter</button>
+                </div>
+
     </div>
 
     </div>

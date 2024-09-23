@@ -13,19 +13,19 @@
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
+        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
+        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btModifierFiche">Modifier ma fiche</button>
+        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btModifierFiche">Modifier ma fiche</button>
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseurCourriel')}}"> <button type="button" class="button" id="btSupprimerFiche">Supprimer ma fiche</button>
+        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btSupprimerFiche">Supprimer ma fiche</button>
     </div>
 
 

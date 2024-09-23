@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar  fixed-top navbar-light">
             <a class="navbar-brand" href="{{ route('Accueil') }}">
-                <p id="brandName">fornisseur.v3r.net</p>
+                <p id="brandName">fournisseur.v3r.net</p>
             </a>
             <div id="navbarNav">
                 <ul class="navbar-nav">
