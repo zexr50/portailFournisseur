@@ -5,6 +5,7 @@
     @show
     @section('js')
         <script src="{{ asset('js/pageInscription.js') }}"></script>
+        <script src="{{ asset('js/form.js') }}"></script>
     @endsection
     @section('content')
 
@@ -17,8 +18,8 @@
     -->
         <form method="post" action="" enctype="multipart/form-data">
         @csrf
-        <div class="container-xxl">
-            <div class="container-xxl">
+        <div class="container-xxl main-bx">
+            <div class="container-xxl sub-bx">
                 <h1>non</h1>
 
                 <label for="neq">Numéro d'entreprise du Québec:</label>
@@ -33,13 +34,14 @@
 
                     <label for="mdp">Choisir son mot de passe:</label>
                     <input type="password" class="form-control" id="mdp" name="mdp" required>
+                    
 
                     <label for="mdp2">Ressaisir son mot de passe:</label>
                     <input type="password" class="form-control" id="mdp2" name="mdp2">
                 </div>  
                 
             </div>
-            <div class="container-xxl">
+            <div class="container-xxl sub-bx">
                 <h1>Coordonnées</h1>
                 <div class="container-xxl">
                     <h1>Adresse</h1>
@@ -150,7 +152,7 @@
 
             </div> 
             
-            <div class="container-xxl">
+            <div class="container-xxl sub-bx">
                 <h1>Contacts</h1>
                 <div id="contact">
                     <div class="row contact-group">
@@ -209,4 +211,11 @@
         <button type="submit" class="button">envoyer le formulaire</button>
         </div>
     </form>
+    <div>
+        <button type="button" class="button" onclick="prevForm()" id="buttonLeft">Prev</button>
+        <div id="whatForm"></div>
+        <button type="button" class="button" onclick="nextForm()" id="buttonRight">Next</button>
+    </div>
+    
+
 @endsection
