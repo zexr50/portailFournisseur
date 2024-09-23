@@ -15,7 +15,12 @@ class InscriptionController extends Controller
             $query->where('sous_categorie', 'like', '%' . $request->search . '%');
         }
     
-        $licences_rbqs = $query->paginate(100);
+        $licences_rbqs = $query->paginate(5);
+
+        if ($request->ajax()) {
+            return view('views.partials.licenceList', compact('licences_rbqs'))->render();
+        }
+
         return view('views.pageInscription', compact('licences_rbqs'));
     }
 

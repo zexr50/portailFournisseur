@@ -26,7 +26,7 @@
 
                 <div class="container-xxl">
                     <label for="email">Adresse courriel:</label>
-                    <input type="text" class="form-control" id="email" name="email">
+                    <input type="text" class="form-control" id="email" name="email" autocomplete="on">
 
                     <label for="mdp">Choisir son mot de passe:</label>
                     <input type="password" class="form-control" id="mdp" name="mdp" required>
@@ -64,7 +64,7 @@
 
                         <div class="col-md-5">
                             <label for="province">Province:</label>
-                            <select id="no_tel" name="type_tels[]" class="form-select" required>
+                            <select id="province" name="province[]" class="form-select" required>
                                 <option value="Quebec">Québec</option>
                                 <option value="Alberta">Alberta</option>
                                 <option value="Colombie-Britannique">Colombie-Britannique</option>
@@ -120,7 +120,7 @@
                         <div class="row phone-number-group">
                             <div class="col-md-3">
                                 <label for="type_tel">type de Téléphones</label>
-                                <select id="no_tel" name="type_tels[]" class="form-select" required>
+                                <select id="type_tels" name="type_tels[]" class="form-select" required>
                                     <option value="bureau">Bureau</option>
                                     <option value="cellulaire">Célulaire</option>
                                     <option value="fax">Fax</option>
@@ -128,13 +128,13 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="no_tel">Téléphones:</label>
-                                <input type="text" class="form-control" id="no_tel" name="no_tel">
+                                <label for="no_tel1">Téléphones:</label>
+                                <input type="text" class="form-control" id="no_tel1" name="no_tel1">
                             </div>
 
                             <div class="col-md-3">
-                                <label for="poste_tel">Poste:</label>
-                                <input type="text" class="form-control" id="poste_tel" name="poste_tel">
+                                <label for="poste_tel1">Poste:</label>
+                                <input type="text" class="form-control" id="poste_tel1" name="poste_tel1">
                             </div>
                                 
                         </div> 
@@ -184,20 +184,20 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="no_tel">Téléphones:</label>
-                                <input type="text" class="form-control" id="no_tel" name="no_tel">
+                                <label for="no_tel_contact1">Téléphones:</label>
+                                <input type="text" class="form-control" id="no_tel_contact1" name="no_tel_contact1">
                             </div>
 
                             <div class="col-md-3">
-                                <label for="poste_tel">Poste:</label>
-                                <input type="text" class="form-control" id="poste_tel" name="poste_tel">
+                                <label for="poste_tel_contact1">Poste:</label>
+                                <input type="text" class="form-control" id="poste_tel_contact1" name="poste_tel_contact1">
                             </div>
                                 
                         </div> 
                     </div>
                 </div>
                 <div id="bt-center">
-                <button type="button" onclick="addContactPerson()" class="button" id="btAddTelephone">Ajouter une personne contact</button>
+                <button type="button" onclick="addContactPerson()" class="button" id="btAddContact">Ajouter une personne contact</button>
                 </div>
             </div>
         </div>
@@ -206,7 +206,7 @@
         <ul>
             @foreach ($licences_rbqs as $licences_rbq)
                 <li>
-                    <input type="checkbox" value="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                    <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
                 </li>
             @endforeach
         </ul>

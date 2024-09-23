@@ -177,12 +177,12 @@ function addContactPerson() {
     const phoneTypeCol = document.createElement('div');
     phoneTypeCol.className = 'col-md-3';
     const phoneTypeLabel = document.createElement('label');
-    phoneTypeLabel.setAttribute('for', `type_tel${numberOfPhones}`);
+    phoneTypeLabel.setAttribute('for', `type_tels_contact${numberOfPhones}`);
     phoneTypeLabel.className = 'form-label';
     phoneTypeLabel.textContent = `Type de téléphone: ${numberOfPhones}:`;//peut-être enlever la partie ${numberOfPhones} après avoir tester
     const phoneTypeSelect = document.createElement('select');
-    phoneTypeSelect.id = `type_tel${numberOfPhones}`;
-    phoneTypeSelect.name = 'type_tels[]';
+    phoneTypeSelect.id = `type_tels_contact${numberOfPhones}`;
+    phoneTypeSelect.name = 'type_tels_contacts[]';
     phoneTypeSelect.className = 'form-select';
     phoneTypeSelect.required = true;
     phoneTypeSelect.innerHTML = `
@@ -197,13 +197,13 @@ function addContactPerson() {
     const phoneCol = document.createElement('div');
     phoneCol.className = 'col-md-6';
     const phoneLabel = document.createElement('label');
-    phoneLabel.setAttribute('for', `no_tel${numberOfPhones}`);
+    phoneLabel.setAttribute('for', `no_tels_contact${numberOfPhones}`);
     phoneLabel.className = 'form-label';
     phoneLabel.textContent = `Téléphone: ${numberOfPhones}:`;
     const phoneInput = document.createElement('input');
     phoneInput.type = 'text';
-    phoneInput.id = `no_tel${numberOfPhones}`;
-    phoneInput.name = 'no_tels[]';
+    phoneInput.id = `no_tels_contact${numberOfPhones}`;
+    phoneInput.name = 'no_tels_contacts[]';
     phoneInput.className = 'form-control';
     phoneInput.required = true;
     phoneCol.appendChild(phoneLabel);
@@ -214,13 +214,13 @@ function addContactPerson() {
     const phonePurposeCol = document.createElement('div');
     phonePurposeCol.className = 'col-md-3';
     const phonePurposeLabel = document.createElement('label');
-    phonePurposeLabel.setAttribute('for', `poste_tel${numberOfPhones}`);
+    phonePurposeLabel.setAttribute('for', `poste_tel_contact${numberOfPhones}`);
     phonePurposeLabel.className = 'form-label';
     phonePurposeLabel.textContent = `Phone Purpose ${numberOfPhones}:`;
     const phonePurposeInput = document.createElement('input');
     phonePurposeInput.type = 'text';
-    phonePurposeInput.id = `poste_tel${numberOfPhones}`;
-    phonePurposeInput.name = 'poste_tels[]';
+    phonePurposeInput.id = `poste_tel_contact${numberOfPhones}`;
+    phonePurposeInput.name = 'poste_tel_contacts[]';
     phonePurposeInput.className = 'form-control';
     phonePurposeInput.required = false;
     phonePurposeCol.appendChild(phonePurposeLabel);
@@ -243,10 +243,14 @@ function addContactPerson() {
 
     $('#search').on('keyup', function() {
         $.ajax({
-            url: '/licences_rbqs',
+            url: '/licences_rbqs', // Ensure this matches your route
             data: { search: $(this).val() },
             success: function(data) {
-                // Update the list with filtered data
+                $('#licence-list').html(data);
+                console.log(data); // Log the returned data
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText); // Log errors if any
             }
         });
     });
