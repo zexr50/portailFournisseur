@@ -8,20 +8,19 @@ form{
 
 
 [role="navigation"] {
-    display: flex; /* Use flexbox to manage layout */
+    display: flex; 
     justify-content: center; /* Center the pagination */
     margin: 20px 0; /* Adjust margin */
 }
 
+.flex{ 
+    align-items: left;
+}
+
+
 .container-fluid, .container, .container-xl, .container-lg, .container-xxl{ 
-<<<<<<< Updated upstream
-    border-style: solid;
-    border-radius: 15px;
-=======
-    
     border-color: rgb(0,118,213);
     border-radius: 10px;
->>>>>>> Stashed changes
     margin-top: 10px;
     padding: 5px;
     background-color:rgb(11,35,65);
@@ -62,7 +61,6 @@ h1, label, li{
     left:10px;
     position: absolute;
 }
-<<<<<<< Updated upstream
 
 .pagination {
     display: flex; /* Use flexbox to manage layout */
@@ -89,7 +87,6 @@ h1, label, li{
 }
 
 
-=======
 #buttonRight
 {
     right:10px;
@@ -100,4 +97,3 @@ h1, label, li{
     display: flex;
     justify-content: center;
 }
->>>>>>> Stashed changes
