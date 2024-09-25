@@ -62,38 +62,33 @@ h1, label, li{
     position: absolute;
 }
 
-.pagination {
-    display: flex; /* Use flexbox to manage layout */
-    justify-content: center; /* Center the pagination */
-    margin: 20px 0; /* Adjust margin */
-}
-
-.pagination li {
-    margin: 0 5px; /* Space between pagination items */
-}
-
-.pagination li a, .pagination li span {
-    padding: 5px 10px; /* Adjust padding */
-    font-size: 14px; /* Change font size if needed */
-    border: 1px solid #007bff; /* Optional: Add border */
-    border-radius: 4px; /* Optional: Add border radius */
-    text-decoration: none; /* Remove underline */
-}
-
-.pagination li a:hover {
-    background-color: #007bff; /* Change background on hover */
-    color: white; /* Change text color on hover */
-
-}
-
-
 #buttonRight
 {
     right:10px;
     position: absolute;
 }
+
+#notFunctioningButton
+{
+    background-color:rgb(120,198,224) ;
+    color: rgb(11,35,65);
+}
+
 #whatForm
 {
     display: flex;
     justify-content: center;
+}
+
+#centerDiv
+{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#absoluteButton
+{
+    position: absolute;
+    
 }
