@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
-        <div class="flex justify-between flex-1 sm:hidden">
+        <!--<div class="flex justify-between flex-1 sm:hidden visibility:hidden">
             @if ($paginator->onFirstPage())
                 <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md dark:text-gray-600 dark:bg-gray-800 dark:border-gray-600">
                     {!! __('pagination.previous') !!}
@@ -20,8 +20,9 @@
                     {!! __('pagination.next') !!}
                 </span>
             @endif
-        </div>
+        </div>-->
 
+        <!-- monte x à y de z résultats -->
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700 leading-5 dark:text-gray-400">
@@ -39,10 +40,12 @@
                 </p>
             </div>
 
+
+            <!-- les fléches et les numéros de pages -->
             <div>
                 <span class="relative z-0 inline-flex rtl:flex-row-reverse shadow-sm rounded-md">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-sm-2">
                             {{-- Previous Page Link --}}
                             @if ($paginator->onFirstPage())
                                 <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
@@ -56,7 +59,7 @@
                                 </a>
                             @endif
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-sm-8">
                             {{-- Pagination Elements --}}
                             @foreach ($elements as $element)
                                 {{-- "Three Dots" Separator --}}
@@ -82,7 +85,7 @@
                                 @endif
                             @endforeach
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-2">
                             {{-- Next Page Link --}}
                             @if ($paginator->hasMorePages())
                                 <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 dark:bg-gray-800 dark:border-gray-600 dark:active:bg-gray-700 dark:focus:border-blue-800" aria-label="{{ __('pagination.next') }}">

@@ -17,7 +17,7 @@
             https://stackoverflow.com/questions/21891815/select-all-from-table-with-laravel-and-eloquent
     -->
         <form method="post" action="" enctype="multipart/form-data">
-        @csrf
+        @csrf  
         <div class="container-xxl main-bx">
             <div class="container-xxl sub-bx">
                 <h1>non</h1>

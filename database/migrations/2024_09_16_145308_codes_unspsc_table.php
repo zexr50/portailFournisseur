@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id("id_code_unspsc")->primary();
             $table->string('categorie', length: 250);
             $table->string('code_unspsc', length: 8);
-            $table->string('description_code_unspsc', length: 500);
+            $table->string('classe_categorie', length: 128);
+            $table->string('precision_categorie', length: 128);
             $table->string('nature_contrat', length: 64);
             $table->timestamps();
         });
