@@ -24,7 +24,7 @@
         </div>
     @endif
     
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="{{ route('Login') }}" enctype="multipart/form-data">
     @csrf
         <div class="main-container">
             <label id="emailLabel" for="email">Email:</label>
