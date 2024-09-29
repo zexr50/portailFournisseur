@@ -13,6 +13,10 @@
          https://tablericons.com/ for icons
     -->
 
+    <script>
+        const limit = 50; // Set your desired limit
+    </script>
+
         <form method="GET" action="" enctype="multipart/form-data">
         @csrf
         <div class="container-xxl main-bx">
@@ -203,19 +207,90 @@
             </div>
         
         
-        <div class="container-xxl sub-bx">
-            <input type="text" id="search" placeholder="Search...">
-            <ul>
-                @foreach ($licences_rbqs as $licences_rbq)
-                    <li>
-                        <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
-                    </li>
-                @endforeach
-            </ul>
-            {{ $licences_rbqs->links() }}
-        </div>
+            <div class="container-xxl sub-bx">
+                <input type="text" id="searchFieldRBQ" placeholder="recherche de catégorie de licences rbq">
+                <button type="button" class="button" id="searchButtonRBQ">Search</button>
+                <div id="listeRBQ">
+                    @foreach($categorie as $section => $licences_rbqs)
+                        <h3>{{ $section }}</h3> <!-- Display the section title -->
+                        <ul>
+                            @foreach($licences_rbqs as $licences_rbq)
+                                <li>
+                                    <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endforeach
+                </div>
 
-</div>
+                <script>
+                    $('#searchButtonRBQ').on('click', function() {
+                        console.log('button clicked');
+                        const searchField2 = $('#searchFieldRBQ').val();
+                        console.log('search value : ', searchField2);
+
+                        $.ajax({
+                            url: "{{ route('inscriptions.search_rbq') }}",
+                            method: 'GET',
+                            data: {
+                                search2: searchField2,
+                                limit: limit,
+                            },
+                            success: function(data) {
+                                //console.log(data);
+                                //console.log(searchField2);
+                                $('#listeRBQ').html(data);
+                            }
+                            
+                        });
+                    });
+                </script>
+            </div>
+
+            <div class="container-xxl sub-bx">
+                <input type="text" id="searchFieldCode" placeholder="recherche de catégorie de licences rbq">
+                <button type="button" class="button" id="searchButtonCode">Search</button>
+                <div id="listeCodes">
+                    @foreach($categorieCode as $section2 => $codeUnspscs)
+                        <h3>{{ $section2 }}</h3>
+                        <ul>
+                            @foreach($codeUnspscs as $codeUnspsc)
+                                <li>
+                                    <input type="checkbox" value="{{ $codeUnspsc->id_code_unspsc }}" id="{{ $codeUnspsc->code_unspsc }}" class="entry-select"> {{ $codeUnspsc->code_unspsc }} - {{ $codeUnspsc->categorie }} / {{ $codeUnspsc->classe_categorie }} / {{ $codeUnspsc->precision_categorie }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endforeach
+                </div>
+
+                <script>
+                    $('#searchButtonCode').on('click', function() {
+                        console.log('button clicked');
+                        const searchFieldCode = $('#searchFieldCode').val();
+                        console.log('search value : ', searchFieldCode);
+
+                        $.ajax({
+                            url: "{{ route('inscriptions.search_unspsc') }}",
+                            method: 'GET',
+                            data: {
+                                search2: searchFieldCode,
+                                limit: limit,
+                            },
+                            success: function(data) {
+                                //console.log(data);
+                                //console.log(searchField);
+                                $('#listeCodes').html(data);
+                            }
+                            
+                        });
+                    });
+                </script>
+            </div>
+
+            
+
+
+        </div>
         <div id="bt-center">
         <button type="submit" class="button">envoyer le formulaire</button>
         </div>

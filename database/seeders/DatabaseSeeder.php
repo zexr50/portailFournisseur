@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test2@example.com',
         ]);
         
+        $this->call(licencesRBQ::class);
     }
 }

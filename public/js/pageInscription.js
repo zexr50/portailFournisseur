@@ -235,7 +235,7 @@ function addContactPerson() {
     contactDiv.appendChild(newRow1);
     newContainer.appendChild(newRow2);
     contactDiv.appendChild(newContainer);
-    
+}    
 //-------------------------------------------------------------------------------------------
         //Partie pour le rechercher avec AJAX
 //-------------------------------------------------------------------------------------------
@@ -255,4 +255,3 @@ function addContactPerson() {
         });
     });
     
-}

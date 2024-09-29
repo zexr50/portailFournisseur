@@ -64,7 +64,7 @@ class LicencesRBQ extends Seeder
             ],
             [
                 'categorie' => 'entrepreneur général',
-                'sous_categorie' => '1.8 - Entrepreneur en installation d\'.quipements pétroliers',
+                'sous_categorie' => '1.8 - Entrepreneur en installation d\'équipements pétroliers',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -173,12 +173,6 @@ class LicencesRBQ extends Seeder
             [
                 'categorie' => 'entrepreneur spécialisé',
                 'sous_categorie' => '6.2 - Entrepreneur en travaux de bois et plastique',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'categorie' => 'entrepreneur spécialisé',
-                'sous_categorie' => '2.2 - Entrepreneur en ouvrage de captage d\'eaux souterraines',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
