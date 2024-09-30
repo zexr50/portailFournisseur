@@ -11,14 +11,16 @@ use App\Http\Controllers\GestionConnection;
 
 Route::get('/', function () {return view('views/index');}); //dump page
 Route::get('/Accueil', function () {return view('views/pageAccueil');})->name("Accueil");
-Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 Route::get('/AjoutFinances', function () {return view('views/pageAjoutFinancesFournisseur');})->name("AjoutFinances");
 Route::get('/PageInscriptionsLicences', function () {return view('views/pageInscriptionsLicences');})->name("InscriptionLicences");
-Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 Route::get('/ConnexionFournisseur', function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
 Route::post('/Login', [GestionConnection::class, 'Login'])->name('Login');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/Logout', [GestionConnection::class, 'Logout'])->name('Logout');
+    Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
+
+
 });
 
 // début section pour les routes inscriptions
