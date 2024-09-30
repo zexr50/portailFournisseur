@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::get('/Inscription',
 [InscriptionController::class, 'index'])->name('Inscription');
 
+Route::post('/Inscription',
+[InscriptionController::class, 'store'])->name('Inscription.store');
+
 Route::get('/Inscription/search',
 [InscriptionController::class, 'search'])->name('Inscription.search');
 

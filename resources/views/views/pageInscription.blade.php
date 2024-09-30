@@ -17,14 +17,14 @@
         const limit = 50; // Set your desired limit
     </script>
 
-        <form method="GET" action="" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('Inscription.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="container-xxl main-bx">
             <div class="container-xxl sub-bx">
                 <h1>identification</h1>
 
                 <label for="neq">Numéro d'entreprise du Québec:</label>
-                <input type="text" class="form-control" id="neq" name="neq">
+                <input type="text" class="form-control" id="NEQ" name="neq">
 
                 <label for="nom_entreprise">Nom de l'entreprise:</label>
                 <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>

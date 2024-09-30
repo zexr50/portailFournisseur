@@ -10,4 +10,10 @@ class LicencesRBQ extends Model
     use HasFactory;
 
     protected $table = 'licences_rbq';
+    public $timestamps = false;
+
+    public function fourniseur_licences_rbq_liaison(): HasMany
+    {
+        return $this->hasMany(Fourniseur_licences_rbq_liaison::class);
+    }
 }

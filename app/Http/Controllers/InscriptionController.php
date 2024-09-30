@@ -97,4 +97,45 @@ class InscriptionController extends Controller
         return view('products.partials.product_list_db1', compact('products'));
     }
 
+    public function store2(Request $request)
+    {
+        $request->validate([
+            'NEQ' => 'required|string|max:10',
+            'nom_entreprise' => 'required|string|max:64',
+            'email' => 'required|string|max:64',
+        ]);
+
+        // Save the post in the first database
+        $post = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        // Save the comment in the second database
+        Comment::create([
+            'post_id' => $post->id, // assuming you have a post_id in the comments table
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->back()->with('succées', 'Le formulaire à bien été créer');
+    }
+
+    public function store(StorePostRequest $request): JsonResponse
+    {
+        // Create a new post using the validated data
+        $postData = $request->input('post');
+        $post = Post::create($postData);
+
+        // Create a comment for the post
+        $commentData = $request->input('comment');
+        $commentData['post_id'] = $post->id; // Link comment to the post
+        $comment = Comment::create($commentData);
+
+        // Return a JSON response with the created post and comment
+        return response()->json([
+            'post' => $post,
+            'comment' => $comment,
+        ], 201);
+    }
+
 }
