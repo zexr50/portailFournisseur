@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call(licencesRBQ::class);
+        $this->call(RegionsAdministrativesSeeder::class);
     }
 }

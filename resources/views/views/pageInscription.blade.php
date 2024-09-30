@@ -124,8 +124,8 @@
                     <div id="telephone">
                         <div class="row phone-number-group">
                             <div class="col-md-3">
-                                <label for="type_tel">type de Téléphones</label>
-                                <select id="type_tels" name="type_tels[]" class="form-select" required>
+                                <label for="type_tels">type de Téléphones</label>
+                                <select id="type_tel" name="type_tels[]" class="form-select" required>
                                     <option value="bureau">Bureau</option>
                                     <option value="cellulaire">Célulaire</option>
                                     <option value="fax">Fax</option>
@@ -189,12 +189,12 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="no_tel_contact1">Téléphones:</label>
+                                <label for="no_tel1">Téléphones:</label>
                                 <input type="text" class="form-control" id="no_tel_contact1" name="no_tel_contact1">
                             </div>
 
                             <div class="col-md-3">
-                                <label for="poste_tel_contact1">Poste:</label>
+                                <label for="poste_tel1">Poste:</label>
                                 <input type="text" class="form-control" id="poste_tel_contact1" name="poste_tel_contact1">
                             </div>
                                 
