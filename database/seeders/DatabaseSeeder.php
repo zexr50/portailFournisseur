@@ -21,5 +21,10 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call(licencesRBQ::class);
+<<<<<<< Updated upstream
+        $this->call(RegionsAdministrativesSeeder::class);
+=======
+        $this->call(UserSeeder::class);
+>>>>>>> Stashed changes
     }
 }

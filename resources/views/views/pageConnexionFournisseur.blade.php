@@ -16,14 +16,6 @@
         <div class="shape3"></div>
     </div>
     
-
-
-    @if(session('erreur'))
-        <div class="alert alert-danger">
-            {{ session('erreur') }}
-        </div>
-    @endif
-    
     <form method="post" action="{{ route('Login') }}" enctype="multipart/form-data">
     @csrf
         <div class="main-container">

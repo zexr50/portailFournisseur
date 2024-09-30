@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class GestionConnection extends Controller
 {
     public function login(LoginUserRequest $request)
     {
+
         $credentials = $request->only('email', 'NEQ', 'password');
+        
+        Log::info('Login attempt', $request->all());
+        Log::info('NEQ:', [$credentials['NEQ']]);
+
         
         $user = null;
         if (!empty($credentials['email'])) {
@@ -25,11 +32,11 @@ class GestionConnection extends Controller
             
             Auth::login($user);
 
-            return redirect()->route('MenuFournisseur')->with('success', 'Login successful');
+            return redirect()->route('MenuFournisseur');
         }
 
+        return redirect()->route('ConnexionFournisseur')->with('erreur', 'Email/NEQ ou mot de passe incorrect.');
         
-        return back()->with('erreur', 'Email/NEQ ou mot de passe incorrect.');
     }
 
 

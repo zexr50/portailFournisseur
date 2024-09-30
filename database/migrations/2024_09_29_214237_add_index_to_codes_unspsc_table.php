@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('codes_unspsc', function (Blueprint $table) {
+        Schema::table('code_unspsc', function (Blueprint $table) {
             $table->index('code_unspsc');
             $table->index('categorie');
             $table->index('classe_categorie');
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('codes_unspsc', function (Blueprint $table) {
+        Schema::table('code_unspsc', function (Blueprint $table) {
             $table->dropIndex(['code_unspsc']);
             $table->dropIndex(['categorie']);
             $table->dropIndex(['classe_categorie']);

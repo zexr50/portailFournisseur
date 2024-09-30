@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>@yield('title')</title>
     <script src="{{ asset('js/navbarMenu.js') }}"></script>
+    <script src="{{ asset('js/sessionAlerts.js') }}"></script>
     @yield('css')
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
@@ -41,9 +42,19 @@
         <a href="{{ route('ConnexionFournisseur') }}" class="">Se connecter</a>
         <a href="{{ route('Inscription') }}" class="">Inscription</a>
         <a href="#" class="">Link 3</a>
+        @auth <a href="{{ route('Logout') }}">Fermer Session</a> @endauth     
     </div>
 
-
+    @if(session('erreur'))
+        <div class="alert alert-danger" id="erreur">
+            {{ session('erreur') }}
+        </div>
+    @endif
+    @if(session('success'))
+    <div class="alert alert-success" id="success">
+        {{ session('success') }}
+    </div>
+    @endif
 
     @yield('content')
 </div>

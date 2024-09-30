@@ -58,14 +58,16 @@ h1, h2, h3, h4, h5, h6, label, li{
 
 #buttonLeft
 {
+    bottom: 10px;
     left:10px;
-    position: absolute;
+    position: fixed;
 }
 
 #buttonRight
 {
+    bottom: 10px;
     right:10px;
-    position: absolute;
+    position: fixed;
 }
 
 #notFunctioningButton
