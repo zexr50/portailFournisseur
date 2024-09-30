@@ -19,6 +19,7 @@ class GestionConnection extends Controller
         
         Log::info('Login attempt', $request->all());
         Log::info('NEQ:', [$credentials['NEQ']]);
+        Log::info('NEQ:', [$credentials['email']]);
 
         
         $user = null;

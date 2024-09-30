@@ -9,6 +9,9 @@ class Fournisseur extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['NEQ', 'nom_entreprise', 'email', 'mdp', 'no_rue', 'rue', 'no_bureau', 'ville',
+     'province', 'region_admins', 'code_postal', 'site_internet'];
+
     protected $table = 'fournisseurs';
 
     public function fourniseur_code_unspsc_liaison(): HasMany

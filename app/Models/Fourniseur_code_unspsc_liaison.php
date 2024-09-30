@@ -10,6 +10,7 @@ class Fourniseur_code_unspsc_liaison extends Model
     use HasFactory;
 
 
+    protected $fillable = ['id_fournisseurs', 'id_code_unspsc'];
 
 
     public function CodesUNSPSCHas(): BelongsTo

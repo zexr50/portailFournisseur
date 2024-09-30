@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fournisseur_code_unspsc_liaison', function (Blueprint $table) {
             $table->id("id_code_unspsc");
             $table->foreignId('id_fournisseurs');
-            $table->foreignId('id_licence_rbq');
+            $table->foreignId('id_code_unspsc');
             $table->timestamps();
         });
     }

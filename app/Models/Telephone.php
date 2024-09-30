@@ -9,6 +9,7 @@ class Telephone extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['type_tel', 'no_tel', 'poste_tel', 'id_fournisseurs'];
 
     public function fournisseur(): BelongTo
     {

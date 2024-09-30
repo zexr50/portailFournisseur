@@ -9,7 +9,7 @@ class Fourniseur_licences_rbq_liaison extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = ['id_fournisseurs', 'id_licence_rbq'];
 
     public function licencesRBQHas(): BelongsTo
     {

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\LicencesRBQ;
 use App\Models\CodesUNSPSC;
+use App\Models\Fourniseur_code_unspsc_liaison;
+use App\Models\Fourniseur_licences_rbq_liaison;
+use App\Models\Personne_ressource;
+use App\Models\Telephone;
+use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -122,20 +127,57 @@ class InscriptionController extends Controller
 
     public function store(StorePostRequest $request): JsonResponse
     {
-        // Create a new post using the validated data
-        $postData = $request->input('post');
-        $post = Post::create($postData);
+        $fournisseurData = $request->input('fournisseur');
+        $fournisseur = Fournisseur::create($fournisseurData);
 
-        // Create a comment for the post
-        $commentData = $request->input('comment');
-        $commentData['post_id'] = $post->id; // Link comment to the post
-        $comment = Comment::create($commentData);
 
-        // Return a JSON response with the created post and comment
-        return response()->json([
-            'post' => $post,
-            'comment' => $comment,
-        ], 201);
+    
+        // section pour les numéro de téléphone des founisseurs
+        if ($request->has('no_tel.fournisseur')) {
+            foreach ($request->input('no_tel.fournisseur') as $index => $phoneNumber) {
+                Telephone::create([
+                    'no_tel' => $phoneNumber,
+                    'type_tel' => $request->input('type_tels.fournisseur.' . $index),
+                    'poste_tel' => $request->input('poste_tel.fournisseur.' . $index),
+                    'id_fournisseurs' => $fournisseur->id,
+                ]);
+            }
+        }
+    
+        // section pour ce qui est des contacts/personne ressource.
+        if ($request->has('no_tel.personne_ressource')) {
+            foreach ($request->input('no_tel.personne_ressource') as $index => $jobPhoneNumber) {
+                Personne_ressource::create([
+                    'id_fournisseurs' => $fournisseur->id,
+                    'prenom_contact' => $$request->input('prenom.personne_ressource.' . $index),
+                    'nom_contact' => $request->input('nom.personne_ressource.' . $index),
+                    'fonction' => $request->input('fonction.personne_ressource.' . $index),
+                    'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
+                ]);
+                Telephone::create([
+                    'no_tel' => $jobPhoneNumber,
+                    'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
+                    'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
+                    'id_fournisseurs' => $fournisseur->id,
+                ]);
+            }
+        }
+ 
+        //partie pour les licences rbq
+        $selectedLicences = $request->input('licences_rbq');
+
+        foreach ($selectedLicences as $licenceId) {
+            // Save or process each licence ID
+        }
+
+        //partie pour les code unspsc
+        $selectedCodes = $request->input('codeUnspsc');
+
+        foreach ($selectedCodes as $licenceId) {
+            // Save or process each licence ID
+        }
+   
+        return redirect()->route('persons.index')->with('success', 'Person created successfully!');
     }
 
 }

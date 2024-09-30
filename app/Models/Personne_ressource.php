@@ -9,7 +9,7 @@ class Personne_ressource extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = ['prenom', 'nom', 'fonction', 'email_contact', 'id_telephone', 'id_fournisseurs'];
 
     public function fournisseur(): BelongTo
     {
