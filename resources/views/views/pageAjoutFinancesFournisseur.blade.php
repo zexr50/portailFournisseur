@@ -8,7 +8,8 @@
     @endsection
     @section('content')
 
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="{{ route('Finance.store') }}" enctype="multipart/form-data">
+    @csrf
     <div class="container-xxl">
                 <h1>Finances</h1>
 

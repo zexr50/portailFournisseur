@@ -13,6 +13,7 @@ Route::get('/', function () {return view('views/index');}); //dump page
 Route::get('/Accueil', function () {return view('views/pageAccueil');})->name("Accueil");
 Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 Route::get('/AjoutFinances', function () {return view('views/pageAjoutFinancesFournisseur');})->name("AjoutFinances");
+Route::post('/AjoutFinances', [FinanceController::class, 'store'])->name('Finance.store');
 Route::get('/PageInscriptionsLicences', function () {return view('views/pageInscriptionsLicences');})->name("InscriptionLicences");
 Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 Route::get('/ConnexionFournisseur', function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
