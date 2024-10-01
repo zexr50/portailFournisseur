@@ -10,7 +10,7 @@ class Fournisseur extends Model
     use HasFactory;
 
     protected $fillable = ['NEQ', 'nom_entreprise', 'email', 'mdp', 'no_rue', 'rue', 'no_bureau', 'ville',
-     'province', 'region_admins', 'code_postal', 'site_internet'];
+     'province', 'no_region_admin', 'code_postal', 'site_internet'];
 
     protected $table = 'fournisseurs';
 

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\LicencesRBQ;
+use App\Http\Requests\StoreFormInscription;
 use App\Models\CodesUNSPSC;
 use App\Models\Fourniseur_code_unspsc_liaison;
 use App\Models\Fourniseur_licences_rbq_liaison;
 use App\Models\Personne_ressource;
 use App\Models\Telephone;
 use App\Models\Fournisseur;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -22,7 +24,15 @@ class InscriptionController extends Controller
         $code = CodesUNSPSC::limit(20)->get();
         $categorieCode = $code->groupBy('categorie');
 
-        Log::info('some info');
+        /*
+        Log::info('go to the view with ', [
+            'licences' => $licences,
+            'categorie' => $categorie,
+            'code' => $code,
+            'categorieCode' => $categorieCode,
+            
+        ]);
+        */
         return view('views.pageInscription', compact('categorie', 'categorieCode'));
     }
 
@@ -102,82 +112,122 @@ class InscriptionController extends Controller
         return view('products.partials.product_list_db1', compact('products'));
     }
 
-    public function store2(Request $request)
+    public function store(StoreFormInscription $request)
     {
-        $request->validate([
-            'NEQ' => 'required|string|max:10',
-            'nom_entreprise' => 'required|string|max:64',
-            'email' => 'required|string|max:64',
+        Log::info('Starting the store process for fournisseur', [
+            'request_data' => $request->all(),
+            'timestamp' => now()->toDateTimeString(),
         ]);
+        try {
+            \Log::info($request->all());
+            $fournisseurData = $request->input('fournisseur');
+            Log::info('Fournisseur data extracted', ['data' => $fournisseurData]);
+            $fournisseur = Fournisseur::create($fournisseurData);
+            Log::info('Fournisseur created successfully', ['fournisseur_id' => $fournisseur->id]);
 
-        // Save the post in the first database
-        $post = Post::create([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+            \Log::info('before creating user');
+            User::create([
+                'name' => $fournisseur->nom_entreprise,
+                'email' => $fournisseur->email,
+                'NEQ' => $fournisseur->NEQ,
+                'password' => $fournisseur->mdp,
+            ]);
+            Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise],
+             ['email' => $fournisseur->email], ['NEQ' => $fournisseur->NEQ],
+              ['password' => $fournisseur->mdp]);
 
-        // Save the comment in the second database
-        Comment::create([
-            'post_id' => $post->id, // assuming you have a post_id in the comments table
-            'comment' => $request->comment,
-        ]);
-
-        return redirect()->back()->with('succées', 'Le formulaire à bien été créer');
-    }
-
-    public function store(StorePostRequest $request): JsonResponse
-    {
-        $fournisseurData = $request->input('fournisseur');
-        $fournisseur = Fournisseur::create($fournisseurData);
-
-
-    
-        // section pour les numéro de téléphone des founisseurs
-        if ($request->has('no_tel.fournisseur')) {
-            foreach ($request->input('no_tel.fournisseur') as $index => $phoneNumber) {
-                Telephone::create([
-                    'no_tel' => $phoneNumber,
-                    'type_tel' => $request->input('type_tels.fournisseur.' . $index),
-                    'poste_tel' => $request->input('poste_tel.fournisseur.' . $index),
-                    'id_fournisseurs' => $fournisseur->id,
-                ]);
+              \Log::info('before the if for creating phone for the fournisseur');
+            // section pour les numéro de téléphone des founisseurs
+            if ($request->has('no_tel.fournisseur')) {
+                foreach ($request->input('no_tel.fournisseur') as $index => $phoneNumber) {
+                    \Log::info('before the Telephone  create for fournisseur');
+                    Telephone::create([
+                        'no_tel' => $phoneNumber,
+                        'type_tel' => $request->input('type_tels.fournisseur.' . $index),
+                        'poste_tel' => $request->input('poste_tel.fournisseur.' . $index),
+                        'id_fournisseurs' => $fournisseur->id,
+                    ]);
+                    Log::info('Telephone created successfully', ['no_tel' => $phoneNumber],
+                    ['type_tel' => $request->input('type_tels.fournisseur.' . $index)],
+                     ['poste_tel' => $request->input('poste_tel.fournisseur.' . $index)],
+                     ['id_fournisseurs' => $fournisseur->id]);
+                }
             }
-        }
-    
-        // section pour ce qui est des contacts/personne ressource.
-        if ($request->has('no_tel.personne_ressource')) {
-            foreach ($request->input('no_tel.personne_ressource') as $index => $jobPhoneNumber) {
-                Personne_ressource::create([
-                    'id_fournisseurs' => $fournisseur->id,
-                    'prenom_contact' => $$request->input('prenom.personne_ressource.' . $index),
-                    'nom_contact' => $request->input('nom.personne_ressource.' . $index),
-                    'fonction' => $request->input('fonction.personne_ressource.' . $index),
-                    'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
-                ]);
-                Telephone::create([
-                    'no_tel' => $jobPhoneNumber,
-                    'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
-                    'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
-                    'id_fournisseurs' => $fournisseur->id,
-                ]);
+        
+            \Log::info('before the if for creating contact and phone for the contacts');
+            // section pour ce qui est des contacts/personne ressource.
+            if ($request->has('no_tel.personne_ressource')) {
+                foreach ($request->input('no_tel.personne_ressource') as $index => $jobPhoneNumber) {
+                    \Log::info('before the Personne_ressource create');
+                    Personne_ressource::create([
+                        'id_fournisseurs' => $fournisseur->id,
+                        'prenom_contact' => $$request->input('prenom.personne_ressource.' . $index),
+                        'nom_contact' => $request->input('nom.personne_ressource.' . $index),
+                        'fonction' => $request->input('fonction.personne_ressource.' . $index),
+                        'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
+                    ]);
+                    Log::info('Personne_ressource created successfully', 
+                    ['id_fournisseurs' => $fournisseur->id],
+                    ['prenom_contact' => $$request->input('prenom.personne_ressource.' . $index)],
+                    ['nom_contact' => $request->input('nom.personne_ressource.' . $index)],
+                    ['fonction' => $request->input('fonction.personne_ressource.' . $index)],
+                    ['email_contact' => $request->input('email_contact.personne_ressource.' . $index)]);
+                    \Log::info('before the Telephone create for the contacts');
+                    Telephone::create([
+                        'no_tel' => $jobPhoneNumber,
+                        'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
+                        'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
+                        'id_fournisseurs' => $fournisseur->id,
+                    ]);
+                    Log::info('Telephone created successfully', 
+                    ['no_tel' => $jobPhoneNumber],
+                    ['type_tel' => $request->input('type_tels.personne_ressource.' . $index)],
+                    ['poste_tel' => $request->input('poste_tel.personne_ressource.' . $index)],
+                    ['id_fournisseurs' => $fournisseur->id]);
+                }
             }
+    
+           
+            \Log::info('before the extraction of selectedLicences');
+            //partie pour les licences rbq
+            $selectedLicences = $request->input('licences_rbq');
+            Log::info('selectedLicences data extracted', ['data' => $selectedLicences]);
+            
+            \Log::info('before the creation of licenceId');
+            foreach ($selectedLicences as $licenceId) {
+                Fourniseur_licences_rbq_liaison::create([
+                    'id_fournisseurs' => $fournisseur->id,
+                    'id_licence_rbq' => $licenceId,
+                ]);
+                Log::info('Telephone created successfully', 
+                    ['id_fournisseurs' => $fournisseur->id],
+                    ['id_licence_rbq' => $licenceId]);
+            }
+
+            \Log::info('before the extraction of selectedCodes');
+            //partie pour les code unspsc
+            $selectedCodes = $request->input('codeUnspsc');
+            Log::info('selectedCodes data extracted', ['data' => $selectedCodes]);
+
+            \Log::info('before the creation of code_unspsc');
+            foreach ($selectedCodes as $code_unspsc) {
+                Fourniseur_code_unspsc_liaison::create([
+                    'id_fournisseurs' => $fournisseur->id,
+                    'id_code_unspsc' => $code_unspsc,
+                ]);
+                Log::info('Telephone created successfully', 
+                    ['id_fournisseurs' => $fournisseur->id],
+                    ['id_code_unspsc' => $code_unspsc]);
+            }
+
+        } 
+        catch (\Exception $e) {
+            Log::error('Erreur dans le create: ' . $e->getMessage());
+            Log::error('Stack trace: ' . $e->getTraceAsString()); // Log the stack trace
+            return response()->json(['error' => 'Erreur dans le create.'], 500);
         }
  
-        //partie pour les licences rbq
-        $selectedLicences = $request->input('licences_rbq');
-
-        foreach ($selectedLicences as $licenceId) {
-            // Save or process each licence ID
-        }
-
-        //partie pour les code unspsc
-        $selectedCodes = $request->input('codeUnspsc');
-
-        foreach ($selectedCodes as $licenceId) {
-            // Save or process each licence ID
-        }
-   
-        return redirect()->route('persons.index')->with('success', 'Person created successfully!');
+        return redirect()->route('Inscription')->with('success', 'Person created successfully!');
     }
 
 }

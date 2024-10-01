@@ -11,6 +11,8 @@ class Telephone extends Model
 
     protected $fillable = ['type_tel', 'no_tel', 'poste_tel', 'id_fournisseurs'];
 
+    protected $table = 'telephone';
+
     public function fournisseur(): BelongTo
     {
         return $this->BelongTo(Fournisseur::class);

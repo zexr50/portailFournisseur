@@ -17,7 +17,7 @@
         const limit = 50; // Set your desired limit
     </script>
 
-        <form method="POST" action="{{ route('Inscription.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('Inscription.store') }}" enctype="multipart/form-data" onsubmit="logToConsole()">
         @csrf
         <div class="container-xxl main-bx">
             <div class="container-xxl sub-bx">
@@ -88,7 +88,7 @@
 
                         <div class="col-md-5">
                             <label for="region_admin">Regions administratives:</label>
-                            <select id="region_admin" name="fournisseur[region_admins]" class="form-select" required>
+                            <select id="region_admin" name="fournisseur[no_region_admin]" class="form-select" required>
                                 <option value="01">01 - Bas-Saint-Laurent</option>
                                 <option value="02">02 - Saguenay-Lac-Saint-Jean</option>
                                 <option value="03">03 - Capitale-Nationale</option>
@@ -216,7 +216,7 @@
                         <ul>
                             @foreach($licences_rbqs as $licences_rbq)
                                 <li>
-                                    <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" name="licences_rbq[{{ $licences_rbq->sous_categorie }}]" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                                    <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" name="licences_rbq[{{ $licences_rbq->id_licence_rbq }}]" class="entry-select"> {{ $licences_rbq->sous_categorie }}
                                 </li>
                             @endforeach
                         </ul>
@@ -256,7 +256,7 @@
                         <ul>
                             @foreach($codeUnspscs as $codeUnspsc)
                                 <li>
-                                    <input type="checkbox" value="{{ $codeUnspsc->id_code_unspsc }}" id="{{ $codeUnspsc->code_unspsc }}" name="codeUnspsc[{{ $codeUnspsc->code_unspsc }}]" class="entry-select"> {{ $codeUnspsc->code_unspsc }} - {{ $codeUnspsc->categorie }} / {{ $codeUnspsc->classe_categorie }} / {{ $codeUnspsc->precision_categorie }}
+                                    <input type="checkbox" value="{{ $codeUnspsc->id_code_unspsc }}" id="{{ $codeUnspsc->code_unspsc }}" name="codeUnspsc[{{ $codeUnspsc->id_code_unspsc }}]" class="entry-select"> {{ $codeUnspsc->code_unspsc }} - {{ $codeUnspsc->categorie }} / {{ $codeUnspsc->classe_categorie }} / {{ $codeUnspsc->precision_categorie }}
                                 </li>
                             @endforeach
                         </ul>
@@ -292,9 +292,15 @@
 
         </div>
         <div id="bt-center">
-        <button type="submit" class="button">envoyer le formulaire</button>
+            <button type="submit" class="button">envoyer le formulaire</button>
         </div>
     </form>
+
+    <script>
+    function logToConsole() {
+        console.log('Form submitted');
+    }
+</script>
 
     <div>
         <button type="button" class="button" onclick="prevForm()" id="buttonLeft">Prev</button>
@@ -302,7 +308,4 @@
         <button type="button" class="button" onclick="nextForm()" id="buttonRight">Next</button>
     </div>
 
-    <div id="bt-center">
-        <a href="{{url('/PageInscriptionsLicences')}}"> <button type="button" class="button">Page des requêtes</button></a>
-    </div>
 @endsection
