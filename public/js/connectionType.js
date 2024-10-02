@@ -10,8 +10,8 @@ function initialize() {
 
 function NeqOrEmail() {
     if (field1.id === 'email') {
-        field1.id = 'neq';
-        field1.name = 'neq';
+        field1.id = 'NEQ';
+        field1.name = 'NEQ';
         label.innerText = 'NEQ:'; 
         neqButton.innerText = 'Se connecter avec un Email';
         console.log("Changed to NEQ:", field1.value);

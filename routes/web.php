@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 });
 
+
+
 // début section pour les routes inscriptions
 
 Route::get('/Inscription',
