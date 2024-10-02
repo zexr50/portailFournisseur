@@ -18,22 +18,7 @@ class InscriptionController extends Controller
 {
     public function index(Request $request)
     {
-        $licences = LicencesRBQ::limit(20)->get();
-        $categorie = $licences->groupBy('categorie');
-
-        $code = CodesUNSPSC::limit(20)->get();
-        $categorieCode = $code->groupBy('categorie');
-
-        /*
-        Log::info('go to the view with ', [
-            'licences' => $licences,
-            'categorie' => $categorie,
-            'code' => $code,
-            'categorieCode' => $categorieCode,
-            
-        ]);
-        */
-        return view('views.pageInscription', compact('categorie', 'categorieCode'));
+        return view('views.pageInscription');
     }
 
     public function index2(Request $request)
@@ -94,9 +79,11 @@ class InscriptionController extends Controller
             Log::info($unspsc);
             $categorieCode = $unspsc->groupBy('categorie');
             Log::info($categorieCode);
+            $classCategorie = $unspsc->groupBy('classe_categorie');
+            Log::info($classCategorie);
 
             Log::info('juste avant le retour à la vue partiel');
-            return view('partials.codeUnspscListe', compact('categorieCode'));
+            return view('partials.codeUnspscListe', compact('categorieCode', 'classCategorie'));
 
         } catch (\Exception $e) {
             Log::error('Search error: ' . $e->getMessage());
@@ -166,7 +153,7 @@ class InscriptionController extends Controller
                         'fonction' => $request->input('fonction.personne_ressource.' . $index),
                         'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
                     ]);
-                    Log::info('Personne_ressource created successfully', 
+                    \Log::info('Personne_ressource created successfully', 
                     ['id_fournisseurs' => $fournisseur->id],
                     ['prenom_contact' => $$request->input('prenom.personne_ressource.' . $index)],
                     ['nom_contact' => $request->input('nom.personne_ressource.' . $index)],

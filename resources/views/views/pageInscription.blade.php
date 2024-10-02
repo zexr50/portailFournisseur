@@ -207,20 +207,21 @@
             </div>
         
         
-            <div class="container-xxl sub-bx">
-                <input type="text" id="searchFieldRBQ" placeholder="recherche de catégorie de licences rbq">
-                <button type="button" class="button" id="searchButtonRBQ">Search</button>
-                <div id="listeRBQ">
-                    @foreach($categorie as $section => $licences_rbqs)
-                        <h3>{{ $section }}</h3> <!-- Display the section title -->
-                        <ul>
-                            @foreach($licences_rbqs as $licences_rbq)
-                                <li>
-                                    <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" name="licences_rbq[{{ $licences_rbq->id_licence_rbq }}]" class="entry-select"> {{ $licences_rbq->sous_categorie }}
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endforeach
+            <div class="sub-bx">
+                <div class="row">
+                    <div class="container-xxl  col-md-9">
+                               
+                        <input type="text" id="searchFieldRBQ" placeholder="recherche de catégorie de licences rbq">
+                        <button type="button" class="button" id="searchButtonRBQ">Rechercher</button>
+                        <div id="listeRBQ">
+
+                        </div>
+                    </div>
+                        
+                    <div class="col-md-3">
+                              <p> test </p> 
+                        
+                    </div>
                 </div>
 
                 <script>
@@ -247,20 +248,20 @@
                 </script>
             </div>
 
-            <div class="container-xxl sub-bx">
-                <input type="text" id="searchFieldCode" placeholder="recherche de catégorie de licences rbq">
-                <button type="button" class="button" id="searchButtonCode">Search</button>
-                <div id="listeCodes">
-                    @foreach($categorieCode as $section2 => $codeUnspscs)
-                        <h3>{{ $section2 }}</h3>
-                        <ul>
-                            @foreach($codeUnspscs as $codeUnspsc)
-                                <li>
-                                    <input type="checkbox" value="{{ $codeUnspsc->id_code_unspsc }}" id="{{ $codeUnspsc->code_unspsc }}" name="codeUnspsc[{{ $codeUnspsc->id_code_unspsc }}]" class="entry-select"> {{ $codeUnspsc->code_unspsc }} - {{ $codeUnspsc->categorie }} / {{ $codeUnspsc->classe_categorie }} / {{ $codeUnspsc->precision_categorie }}
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endforeach
+            <div class="sub-bx">
+                <div class="row">
+                    <div class=" col-md-9">    
+                        <input type="text" id="searchFieldCode" placeholder="recherche de catégorie de licences rbq">
+                        <button type="button" class="button" id="searchButtonCode">Rechercher</button>
+                        <div id="listeCodes">
+
+                        </div>
+                    </div>
+                        
+                    <div class="col-md-3">
+                        
+                        
+                    </div>
                 </div>
 
                 <script>

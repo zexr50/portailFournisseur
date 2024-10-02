@@ -22,7 +22,7 @@ form{
     border-color: rgb(0,118,213);
     border-radius: 10px;
     margin-top: 10px;
-    padding: 5px;
+    padding: 10px;
     background-color:rgb(11,35,65);
     align-items: center;
 }
@@ -38,6 +38,11 @@ h1, h2, h3, h4, h5, h6, label, li{
     text-align: left;
 }
 
+h3{ 
+    color: white;
+    text-align: left;
+}
+
 #bt-center{
     display: flex;
     justify-content: center;
@@ -46,7 +51,6 @@ h1, h2, h3, h4, h5, h6, label, li{
 .button
 { 
     border-style: solid;
-    border-color: rgb(0,118,213);
     border-radius: 10px;
     color: rgb(120,198,224);
     background-color:rgb(11,35,65) ;
@@ -54,6 +58,12 @@ h1, h2, h3, h4, h5, h6, label, li{
     padding: 10px;
     margin: 10px;
     min-height: 50px;
+}
+
+#btAddTelephone, #btAddContact, #searchButtonRBQ, #searchButtonCode
+{
+    color: rgb(0,0,0);
+    background-color:rgb(120,198,224) ;
 }
 
 #buttonLeft
