@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Finance;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class FinanceController extends Controller
@@ -15,28 +16,30 @@ class FinanceController extends Controller
     
     public function store(Request $request)
     {
-        Log::info('entre dans le store de FincanceController');
+        Log::info('Entre dans le store de FinanceController');
+
+        $id_fournisseur = Auth::user()->id;
 
         try {
             $request->validate([
-                'id_fournisseur' => 'required|int',
                 'no_TPS' => 'required|string',
                 'no_TVQ' => 'required|string',
                 'condition_paiement' => 'required|string',
                 'devise' => 'required|string',
                 'mode_communication' => 'required|string',
             ]);
-            Log::info('après validation');
-    
-            FormData::create($request->only(['id_fournisseur', 'no_TPS', 'no_TVQ', 'condition_paiement', 'devise', 'mode_communication']));
-            Log::info('après form data');
-    
-            Log::info('juste avant le return');
+            Log::info('Après validation');
+
+            
+            Finance::create(array_merge($request->only(['no_TPS', 'no_TVQ', 'condition_paiement', 'devise', 'mode_communication']), ['id_fournisseur' => $id_fournisseur]));
+            Log::info('Après form data');
+
+            Log::info('Juste avant le return');
             return redirect()->back()->with('success', 'Data saved successfully!');
 
         } catch (\Exception $e) {
             Log::error('Search error: ' . $e->getMessage());
-            return response()->json(['error' => 'An error occurred while searching.'], 500);
+            return response()->json(['error' => 'An error occurred while saving.'], 500);
         }
     }
 }

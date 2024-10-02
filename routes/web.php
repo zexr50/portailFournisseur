@@ -16,12 +16,6 @@ Route::get('/',
 Route::get('/Accueil',
  function () {return view('views/pageAccueil');})->name("Accueil");
 
-Route::get('/AjoutFinances',
- [FinanceController::class, 'index'])->name("AjoutFinances");
-
-Route::post('/AjoutFinances',
-[FinanceController::class, 'store'])->name('Finance.store');
-
 Route::get('/PageInscriptionsLicences',
  function () {return view('views/pageInscriptionsLicences');})->name("InscriptionLicences");
 
@@ -33,7 +27,13 @@ Route::post('/Login',
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/Logout', [GestionConnection::class, 'Logout'])->name('Logout');
+    
     Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
+
+    Route::get('/AjoutFinances',
+    [FinanceController::class, 'index'])->name("AjoutFinances");
+    Route::post('/AjoutFinances',
+    [FinanceController::class, 'store'])->name('Finance.store');
 
 
 });

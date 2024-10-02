@@ -17,7 +17,7 @@
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
+        <a href="{{url('/AjoutFinances')}}"> <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
     </div>
 
     <div style="text-align:center">
