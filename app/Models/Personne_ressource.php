@@ -9,7 +9,9 @@ class Personne_ressource extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['prenom', 'nom', 'fonction', 'email_contact', 'id_telephone', 'id_fournisseurs'];
+    protected $fillable = ['prenom_contact', 'nom_contact', 'fonction', 'email_contact', 'id_telephone', 'id_fournisseurs'];
+
+    protected $table = 'personne_ressource';
 
     public function fournisseur(): BelongTo
     {

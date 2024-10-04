@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class StoreFormInscription extends FormRequest
 {
@@ -67,12 +70,24 @@ class StoreFormInscription extends FormRequest
             'poste_tel.personne_ressource.*' => 'nullable|string|max:10',
 
 
-            'licences_rbq' => 'required|array', // Ensure the array is present
-            'licences_rbq.*' => 'required|integer', // Validate each checkbox as an integer
+            'licences_rbq' => 'nullable|array', // Ensure the array is present
+            'licences_rbq.*' => 'nullable|integer', // Validate each checkbox as an integer
 
 
-            'codeUnspsc' => 'required|array', // Ensure the array is present
-            'codeUnspsc.*' => 'required|integer', // Validate each checkbox as an integer
+            'codeUnspsc' => 'nullable|array', // Ensure the array is present
+            'codeUnspsc.*' => 'nullable|integer', // Validate each checkbox as an integer
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        // Log the request data
+        Log::error('Validation failed', [
+            'errors' => $validator->errors(),
+            'request_data' => $this->all(),
+        ]);
+
+        // Throw the validation exception
+        throw new ValidationException($validator);
     }
 }

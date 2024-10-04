@@ -18,7 +18,10 @@ class InscriptionController extends Controller
 {
     public function index(Request $request)
     {
-        return view('views.pageInscription');
+        $licences = LicencesRBQ::limit(100)->get();
+        $categorie = $licences->groupBy('categorie');
+
+        return view('views.pageInscription', compact('categorie'));
     }
 
     public function index2(Request $request)
@@ -119,9 +122,8 @@ class InscriptionController extends Controller
                 'NEQ' => $fournisseur->NEQ,
                 'password' => $fournisseur->mdp,
             ]);
-            Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise],
-             ['email' => $fournisseur->email], ['NEQ' => $fournisseur->NEQ],
-              ['password' => $fournisseur->mdp]);
+            Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
+             'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp]);
 
               \Log::info('before the if for creating phone for the fournisseur');
             // section pour les numéro de téléphone des founisseurs
@@ -145,32 +147,34 @@ class InscriptionController extends Controller
             // section pour ce qui est des contacts/personne ressource.
             if ($request->has('no_tel.personne_ressource')) {
                 foreach ($request->input('no_tel.personne_ressource') as $index => $jobPhoneNumber) {
-                    \Log::info('before the Personne_ressource create');
-                    Personne_ressource::create([
-                        'id_fournisseurs' => $fournisseur->id,
-                        'prenom_contact' => $$request->input('prenom.personne_ressource.' . $index),
-                        'nom_contact' => $request->input('nom.personne_ressource.' . $index),
-                        'fonction' => $request->input('fonction.personne_ressource.' . $index),
-                        'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
-                    ]);
-                    \Log::info('Personne_ressource created successfully', 
-                    ['id_fournisseurs' => $fournisseur->id],
-                    ['prenom_contact' => $$request->input('prenom.personne_ressource.' . $index)],
-                    ['nom_contact' => $request->input('nom.personne_ressource.' . $index)],
-                    ['fonction' => $request->input('fonction.personne_ressource.' . $index)],
-                    ['email_contact' => $request->input('email_contact.personne_ressource.' . $index)]);
                     \Log::info('before the Telephone create for the contacts');
-                    Telephone::create([
+                    $telephone=Telephone::create([
                         'no_tel' => $jobPhoneNumber,
                         'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
                         'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
                         'id_fournisseurs' => $fournisseur->id,
                     ]);
                     Log::info('Telephone created successfully', 
-                    ['no_tel' => $jobPhoneNumber],
-                    ['type_tel' => $request->input('type_tels.personne_ressource.' . $index)],
-                    ['poste_tel' => $request->input('poste_tel.personne_ressource.' . $index)],
-                    ['id_fournisseurs' => $fournisseur->id]);
+                    ['no_tel' => $jobPhoneNumber,
+                    'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
+                    'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
+                    'id_fournisseurs' => $fournisseur->id]);
+                    \Log::info('before the Personne_ressource create');
+                    Personne_ressource::create([
+                        'id_fournisseurs' => $fournisseur->id,
+                        'id_telephone' => $telephone->id,
+                        'prenom_contact' => $request->input('prenom.personne_ressource.' . $index),
+                        'nom_contact' => $request->input('nom.personne_ressource.' . $index),
+                        //'nom_contact' => $request->input('nom.personne_ressource.' . $index), //c\'est ici qu\'il y a l\'érreur
+                        'fonction' => $request->input('fonction.personne_ressource.' . $index),
+                        'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
+                    ]);
+                    \Log::info('Personne_ressource created successfully', 
+                    ['id_fournisseurs' => $fournisseur->id,
+                    'prenom_contact' => $$request->input('prenom.personne_ressource.' . $index),
+                    'nom_contact' => $request->input('nom.personne_ressource.' . $index),
+                    'fonction' => $request->input('fonction.personne_ressource.' . $index),
+                    'email_contact' => $request->input('email_contact.personne_ressource.' . $index)]); 
                 }
             }
     
