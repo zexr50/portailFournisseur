@@ -37,7 +37,7 @@
                         <input type="password" class="form-control" id="mdp" name="fournisseur[mdp]" required>
 
                         <label for="mdp2">Ressaisir son mot de passe:</label>
-                        <input type="password" class="form-control" id="mdp2" name="fournisseur[mdp2]">
+                        <input type="password" class="form-control" id="mdp_confirmation" name="fournisseur[mdp2]">
                     </div>  
                     
                 </div>
