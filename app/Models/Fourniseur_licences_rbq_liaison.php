@@ -11,6 +11,8 @@ class Fourniseur_licences_rbq_liaison extends Model
 
     protected $fillable = ['id_fournisseurs', 'id_licence_rbq'];
 
+    protected $table = 'fournisseur_licence_rbq_liaison';
+
     public function licencesRBQHas(): BelongsTo
     {
         return $this->belongsTo(LicencesRBQ::class);

@@ -10,6 +10,7 @@ use App\Models\Personne_ressource;
 use App\Models\Telephone;
 use App\Models\Fournisseur;
 use App\Models\User;
+use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -125,6 +126,7 @@ class InscriptionController extends Controller
             Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
              'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp]);
 
+
               \Log::info('before the if for creating phone for the fournisseur');
             // section pour les numéro de téléphone des founisseurs
             if ($request->has('no_tel.fournisseur')) {
@@ -143,6 +145,7 @@ class InscriptionController extends Controller
                 }
             }
         
+
             \Log::info('before the if for creating contact and phone for the contacts');
             // section pour ce qui est des contacts/personne ressource.
             if ($request->has('no_tel.personne_ressource')) {
@@ -169,56 +172,62 @@ class InscriptionController extends Controller
                         'fonction' => $request->input('fonction.personne_ressource.' . $index),
                         'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
                     ]);
-                    \Log::info('Personne_ressource created successfully', 
-                    ['id_fournisseurs' => $fournisseur->id,
-                    'prenom_contact' => $$request->input('prenom.personne_ressource.' . $index),
-                    'nom_contact' => $request->input('nom.personne_ressource.' . $index),
-                    'fonction' => $request->input('fonction.personne_ressource.' . $index),
-                    'email_contact' => $request->input('email_contact.personne_ressource.' . $index)]); 
                 }
             }
     
-           
-            \Log::info('before the extraction of selectedLicences');
-            //partie pour les licences rbq
-            $selectedLicences = $request->input('licences_rbq');
-            Log::info('selectedLicences data extracted', ['data' => $selectedLicences]);
+
+            if ($request->has('licences_rbq')) {
+                $selectedLicences = $request->input('licences_rbq');
+                Log::info('selectedLicences data extracted', ['data' => $selectedLicences]);
             
-            \Log::info('before the creation of licenceId');
-            foreach ($selectedLicences as $licenceId) {
-                Fourniseur_licences_rbq_liaison::create([
-                    'id_fournisseurs' => $fournisseur->id,
-                    'id_licence_rbq' => $licenceId,
-                ]);
-                Log::info('Telephone created successfully', 
-                    ['id_fournisseurs' => $fournisseur->id],
-                    ['id_licence_rbq' => $licenceId]);
+                \Log::info('before the creation of licenceId');
+                foreach ($selectedLicences as $licenceId) {
+                    Fourniseur_licences_rbq_liaison::create([
+                        'id_fournisseurs' => $fournisseur->id,
+                        'id_licence_rbq' => $licenceId,
+                    ]);
+                    Log::info('Telephone created successfully', 
+                        ['id_fournisseurs' => $fournisseur->id],
+                        ['id_licence_rbq' => $licenceId]);
+                }
             }
 
-            \Log::info('before the extraction of selectedCodes');
-            //partie pour les code unspsc
-            $selectedCodes = $request->input('codeUnspsc');
-            Log::info('selectedCodes data extracted', ['data' => $selectedCodes]);
 
-            \Log::info('before the creation of code_unspsc');
-            foreach ($selectedCodes as $code_unspsc) {
-                Fourniseur_code_unspsc_liaison::create([
-                    'id_fournisseurs' => $fournisseur->id,
-                    'id_code_unspsc' => $code_unspsc,
-                ]);
-                Log::info('Telephone created successfully', 
-                    ['id_fournisseurs' => $fournisseur->id],
-                    ['id_code_unspsc' => $code_unspsc]);
+            if ($request->has('codeUnspsc')) {
+                $selectedCodes = $request->input('codeUnspsc');
+                Log::info('selectedLicences data extracted', ['data' => $selectedCodes]);
+            
+                \Log::info('before the creation of licenceId');
+                foreach ($selectedCodes as $code_unspsc) {
+                    Fourniseur_licences_rbq_liaison::create([
+                        'id_fournisseurs' => $fournisseur->id,
+                        'id_licence_rbq' => $code_unspsc,
+                    ]);
+                    Log::info('Telephone created successfully', 
+                        ['id_fournisseurs' => $fournisseur->id],
+                        ['id_licence_rbq' => $code_unspsc]);
+                }
             }
+
+            \Log::info('before creating user');
+            Demande::create([
+                'id_fournisseur' => $fournisseur->id,
+                'etat_demande' => 'en attente',
+            ]);
+
+            Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
+             'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp]);
+
+
 
         } 
         catch (\Exception $e) {
-            Log::error('Erreur dans le create: ' . $e->getMessage());
-            Log::error('Stack trace: ' . $e->getTraceAsString()); // Log the stack trace
+            Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
+            //Log::error('Stack trace: ' . $e->getTraceAsString()); // Log the stack trace
             return response()->json(['error' => 'Erreur dans le create.'], 500);
         }
  
-        return redirect()->route('Inscription')->with('success', 'Person created successfully!');
+        return redirect()->route('Accueil')->with('success', 'Inscription faite!');
     }
 
 }

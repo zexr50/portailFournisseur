@@ -12,6 +12,8 @@ class Fourniseur_code_unspsc_liaison extends Model
 
     protected $fillable = ['id_fournisseurs', 'id_code_unspsc'];
 
+    protected $table = 'fournisseur_code_unspsc_liaison';
+
 
     public function CodesUNSPSCHas(): BelongsTo
     {
