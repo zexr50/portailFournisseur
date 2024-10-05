@@ -70,12 +70,13 @@ class StoreFormInscription extends FormRequest
             'poste_tel.personne_ressource.*' => 'nullable|string|max:10',
 
 
-            'licences_rbq' => 'nullable|array', // Ensure the array is present
-            'licences_rbq.*' => 'nullable|integer', // Validate each checkbox as an integer
+            'licences_rbq' => 'nullable|json',
+            //'licences_rbq' => 'nullable|array', // Ensure the array is present
+            //'licences_rbq.*' => 'nullable|integer', // Validate each checkbox as an integer
 
-
-            'codeUnspsc' => 'nullable|array', // Ensure the array is present
-            'codeUnspsc.*' => 'nullable|integer', // Validate each checkbox as an integer
+            'codeUnspsc' => 'nullable|json',
+            //'codeUnspsc' => 'nullable|array', // Ensure the array is present
+            //'codeUnspsc.*' => 'nullable|integer', // Validate each checkbox as an integer
         ];
     }
 

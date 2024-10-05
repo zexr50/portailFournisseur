@@ -217,8 +217,8 @@
                                     <h3>{{ $section }}</h3> <!-- Display the section title -->
                                     <ul>
                                         @foreach($licences_rbqs as $licences_rbq)
-                                            <li>
-                                                <input type="checkbox" value="{{ $licences_rbq->id_licence_rbq }}" id="{{ $licences_rbq->sous_categorie }}" name="licences_rbq[{{ $licences_rbq->id_licence_rbq }}]" class="entry-select"> {{ $licences_rbq->sous_categorie }}
+                                            <li class="licence-item" data-id="{{ $licences_rbq->id_licence_rbq }}">
+                                                {{ $licences_rbq->sous_categorie }}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -227,7 +227,8 @@
                         </div>
                             
                         <div class="col-md-3">
-                                <p> test </p> 
+                              <h3> liste des licences prises </h3>
+                              <ul id="selectedLicencesList"> </ul>
                         </div>
                     </div>
 
@@ -252,6 +253,35 @@
                                 
                             });
                         });
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const selectedLicencesList = document.getElementById('selectedLicencesList');
+
+                            // Event delegation for adding/removing licences
+                            document.getElementById('listeRBQ').addEventListener('click', function (e) {
+                                if (e.target.classList.contains('licence-item')) {
+                                    const licenceId = e.target.getAttribute('data-id');
+
+                                    // Check if the item is already selected
+                                    const alreadySelected = Array.from(selectedLicencesList.children)
+                                        .some(item => item.getAttribute('data-id') === licenceId);
+
+                                    if (alreadySelected) {
+                                        // Remove from selected list
+                                        const itemToRemove = [...selectedLicencesList.children].find(item => item.getAttribute('data-id') === licenceId);
+                                        selectedLicencesList.removeChild(itemToRemove);
+                                    } else {
+                                        // Add to selected list
+                                        const newItem = document.createElement('li');
+                                        newItem.setAttribute('data-id', licenceId);
+                                        newItem.textContent = e.target.textContent;
+                                        newItem.classList.add('selected-item');
+                                        selectedLicencesList.appendChild(newItem);
+                                    }
+                                }
+                            });
+                        });
+
                     </script>
                 </div>
 
@@ -266,7 +296,8 @@
                         </div>
                             
                         <div class="col-md-3">
-                            
+                            <h3> liste des catégorie UNSPSC sélectionner </h3>
+                            <ul id="selectedCodeList"> </ul>
                             
                         </div>
                     </div>
@@ -292,13 +323,59 @@
                                 
                             });
                         });
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const selectedCodeList = document.getElementById('selectedCodeList');
+
+                            // Event delegation for adding/removing licences
+                            document.getElementById('listeCodes').addEventListener('click', function (e) {
+                                if (e.target.classList.contains('licence-item')) {
+                                    const Codes = e.target.getAttribute('data-id');
+
+                                    // Check if the item is already selected
+                                    const alreadySelected = Array.from(selectedCodeList.children)
+                                        .some(item => item.getAttribute('data-id') === Codes);
+
+                                    if (alreadySelected) {
+                                        // Remove from selected list
+                                        const itemToRemove = [...selectedCodeList.children].find(item => item.getAttribute('data-id') === Codes);
+                                        selectedCodeList.removeChild(itemToRemove);
+                                    } else {
+                                        // Add to selected list
+                                        const newItem = document.createElement('li');
+                                        newItem.setAttribute('data-id', Codes);
+                                        newItem.textContent = e.target.textContent;
+                                        newItem.classList.add('selected-item');
+                                        selectedCodeList.appendChild(newItem);
+                                    }
+                                }
+                            });
+                        });
                     </script>
                 </div>
         </div>
+
+        <input type="hidden" name="licences_rbq" id="licences_rbq_input">
+        <input type="hidden" name="codeUnspsc" id="code_input">
+
+
             <div id="bt-center">
                 <button type="submit" class="button">envoyer le formulaire</button>
             </div>
     </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function () {
+            const selectedIdsLicences = Array.from(document.querySelectorAll('#selectedLicencesList li'))
+                .map(item => item.getAttribute('data-id'));
+            document.getElementById('licences_rbq_input').value = JSON.stringify(selectedIdsLicences);
+
+            const selectedIdsCode = Array.from(document.querySelectorAll('#selectedCodeList li'))
+                .map(item => item.getAttribute('data-id'));
+            document.getElementById('code_input').value = JSON.stringify(selectedIdsCode);
+        });
+    </script>
+
 
     <script>
         function logToConsole() {

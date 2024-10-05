@@ -81,13 +81,19 @@ class InscriptionController extends Controller
             ->limit($limit)
             ->get();
             Log::info($unspsc);
+
             $categorieCode = $unspsc->groupBy('categorie');
             Log::info($categorieCode);
-            $classCategorie = $unspsc->groupBy('classe_categorie');
-            Log::info($classCategorie);
+
+            // For each category, group by classe_categorie
+            foreach ($categorieCode as $categorie => $items) {
+                $categorieCode[$categorie] = $items->groupBy('classe_categorie');
+            }
+
+            Log::info($categorieCode);
 
             Log::info('juste avant le retour à la vue partiel');
-            return view('partials.codeUnspscListe', compact('categorieCode', 'classCategorie'));
+            return view('partials.codeUnspscListe', compact('categorieCode'));
 
         } catch (\Exception $e) {
             Log::error('Search error: ' . $e->getMessage());
@@ -177,7 +183,7 @@ class InscriptionController extends Controller
     
 
             if ($request->has('licences_rbq')) {
-                $selectedLicences = $request->input('licences_rbq');
+                $selectedLicences = json_decode($request->input('licences_rbq'), true);
                 Log::info('selectedLicences data extracted', ['data' => $selectedLicences]);
             
                 \Log::info('before the creation of licenceId');
@@ -186,30 +192,30 @@ class InscriptionController extends Controller
                         'id_fournisseurs' => $fournisseur->id,
                         'id_licence_rbq' => $licenceId,
                     ]);
-                    Log::info('Telephone created successfully', 
-                        ['id_fournisseurs' => $fournisseur->id],
-                        ['id_licence_rbq' => $licenceId]);
+                    Log::info('Licences created successfully', 
+                        ['id_fournisseurs' => $fournisseur->id,
+                        'id_licence_rbq' => $licenceId]);
                 }
             }
 
 
             if ($request->has('codeUnspsc')) {
-                $selectedCodes = $request->input('codeUnspsc');
-                Log::info('selectedLicences data extracted', ['data' => $selectedCodes]);
+                $selectedCodes = json_decode($request->input('codeUnspsc'), true);
+                Log::info('selectedCodes data extracted', ['data' => $selectedCodes]);
             
                 \Log::info('before the creation of licenceId');
                 foreach ($selectedCodes as $code_unspsc) {
-                    Fourniseur_licences_rbq_liaison::create([
+                    Fourniseur_code_unspsc_liaison::create([
                         'id_fournisseurs' => $fournisseur->id,
-                        'id_licence_rbq' => $code_unspsc,
+                        'id_code_unspsc' => $code_unspsc,
                     ]);
-                    Log::info('Telephone created successfully', 
-                        ['id_fournisseurs' => $fournisseur->id],
-                        ['id_licence_rbq' => $code_unspsc]);
+                    Log::info('code UNSPSC created successfully', 
+                        ['id_fournisseurs' => $fournisseur->id,
+                        'id_code_unspsc' => $code_unspsc]);
                 }
             }
 
-            \Log::info('before creating user');
+            \Log::info('before creating demande');
             Demande::create([
                 'id_fournisseur' => $fournisseur->id,
                 'etat_demande' => 'en attente',
