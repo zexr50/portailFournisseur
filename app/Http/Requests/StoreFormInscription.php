@@ -42,32 +42,32 @@ class StoreFormInscription extends FormRequest
             'type_tels.fournisseur.*' => 'required|string|in:bureau,cellulaire,fax',
             
             'no_tel.fournisseur' => 'nullable|array',
-            'no_tel.fournisseur.*' => 'required|string|max:15',
+            'no_tel.fournisseur.*' => 'required|string|max:15|regex:/^[0-9]+$/',
             
             'poste_tel.fournisseur' => 'nullable|array',
-            'poste_tel.fournisseur.*' => 'nullable|string|max:10',
+            'poste_tel.fournisseur.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
 
             'prenom.personne_ressource' => 'nullable|array',
-            'prenom.personne_ressource.*' => 'required|string|max:32',
+            'prenom.personne_ressource.*' => 'required|string|max:32|regex:/^[a-zA-Z0-9]{,32}$/',
 
             'nom.personne_ressource' => 'nullable|array',
-            'nom.personne_ressource.*' => 'required|string|max:32',
+            'nom.personne_ressource.*' => 'required|string|max:32|regex:/^[a-zA-Z0-9]{,32}$/',
 
             'fonction.personne_ressource' => 'nullable|array',
-            'fonction.personne_ressource.*' => 'required|string|max:32',
+            'fonction.personne_ressource.*' => 'required|string|max:32|regex:/^[a-zA-Z0-9]{,32}$/',
 
             'email_contact.personne_ressource' => 'nullable|array',
-            'email_contact.personne_ressource.*' => 'required|string|max:32',
+            'email_contact.personne_ressource.*' => 'required|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
 
             'type_tels.personne_ressource' => 'nullable|array',
             'type_tels.personne_ressource.*' => 'required|string|in:bureau,cellulaire,fax',
             
             'no_tel.personne_ressource' => 'nullable|array',
-            'no_tel.personne_ressource.*' => 'required|string|max:15',
+            'no_tel.personne_ressource.*' => 'required|string|max:15|regex:/^[0-9]+$/',
             
             'poste_tel.personne_ressource' => 'nullable|array',
-            'poste_tel.personne_ressource.*' => 'nullable|string|max:10',
+            'poste_tel.personne_ressource.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
 
             'licences_rbq' => 'nullable|json',
@@ -91,4 +91,14 @@ class StoreFormInscription extends FormRequest
         // Throw the validation exception
         throw new ValidationException($validator);
     }
+
+    public function messages()
+{
+    return [
+        //a faire un peu plus, mais cela va prendre du temps.
+        'fournisseur.nom_entreprise.required' => 'Vous devez fournir un nom d\'entreprise.',
+        'fournisseur.nom_entreprise.regex' => 'Le nom d\'entreprise doit seuleument contenir des lettres et des chiffres.',
+        
+    ];
+}
 }

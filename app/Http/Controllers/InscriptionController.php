@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\LicencesRBQ;
 use App\Http\Requests\StoreFormInscription;
+use App\Models\LicencesRBQ;
 use App\Models\CodesUNSPSC;
 use App\Models\Fourniseur_code_unspsc_liaison;
 use App\Models\Fourniseur_licences_rbq_liaison;
@@ -138,8 +138,9 @@ class InscriptionController extends Controller
             if ($request->has('no_tel.fournisseur')) {
                 foreach ($request->input('no_tel.fournisseur') as $index => $phoneNumber) {
                     \Log::info('before the Telephone  create for fournisseur');
+                    $cleanPhone = preg_replace('/\D/', '', $phoneNumber);
                     Telephone::create([
-                        'no_tel' => $phoneNumber,
+                        'no_tel' => $cleanPhone,
                         'type_tel' => $request->input('type_tels.fournisseur.' . $index),
                         'poste_tel' => $request->input('poste_tel.fournisseur.' . $index),
                         'id_fournisseurs' => $fournisseur->id,
@@ -157,14 +158,15 @@ class InscriptionController extends Controller
             if ($request->has('no_tel.personne_ressource')) {
                 foreach ($request->input('no_tel.personne_ressource') as $index => $jobPhoneNumber) {
                     \Log::info('before the Telephone create for the contacts');
+                    $cleanPhone = preg_replace('/\D/', '', $jobPhoneNumber);
                     $telephone=Telephone::create([
-                        'no_tel' => $jobPhoneNumber,
+                        'no_tel' => $cleanPhone,
                         'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
                         'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
                         'id_fournisseurs' => $fournisseur->id,
                     ]);
                     Log::info('Telephone created successfully', 
-                    ['no_tel' => $jobPhoneNumber,
+                    ['no_tel' => $cleanPhone,
                     'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
                     'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
                     'id_fournisseurs' => $fournisseur->id]);
