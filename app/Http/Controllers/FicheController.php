@@ -14,6 +14,7 @@ use App\Models\Telephone;
 use App\Models\Fournisseur;
 use App\Models\User;
 use App\Models\Demande;
+use App\Models\Region_administrative;
 
 class FicheController extends Controller
 {
@@ -22,7 +23,9 @@ class FicheController extends Controller
      */
     public function index()
     {
-        
+        $id = 10;
+
+        return view('views.pageVoirFiche', ['id' => $id]);
     }
 
     /**
@@ -30,7 +33,24 @@ class FicheController extends Controller
      */
     public function show(string $id)
     {
-        $id_fournisseur = Auth::user()->id;
+        //$id_fournisseur = Auth::user()->id;
+
+        /*
+        $fournisseur = Fournisseur::where('id_fournisseurs', $id)->first();
+        Log::info($fournisseur);
+
+        if (!$fournisseur) {
+            abort(404); // Handle the case when the supplier is not found
+        }*/
+
+        $fournisseur = Fournisseur::with('region')->where('id_fournisseurs', $id)->first();
+        Log::info($fournisseur);
+
+        if (!$fournisseur) {
+            abort(404); // Handle the case when the supplier is not found
+        }
+
+        return view('views.pageVoirFiche', compact('fournisseur'));
         
     }
 

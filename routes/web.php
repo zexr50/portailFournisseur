@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\GestionConnection;
+use App\Http\Controllers\FicheController;
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,12 @@ Route::get('/PageInscriptionsLicences',
 Route::get('/ConnexionFournisseur',
  function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
 
+ Route::get('/VoirFiche',
+[FicheController::class, 'index'])->name("VoirFiche");
+
+ Route::get('/VoirFiche/{id}',
+[FicheController::class, 'show'])->name("VoirFiche");
+
 Route::post('/Login',
  [GestionConnection::class, 'Login'])->name('Login');
 
@@ -35,9 +42,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/AjoutFinances',
     [FinanceController::class, 'store'])->name('Finance.store');
 
+    
 
 });
-
 
 
 // début section pour les routes inscriptions

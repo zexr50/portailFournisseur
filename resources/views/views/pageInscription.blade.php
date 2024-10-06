@@ -37,7 +37,7 @@
                         <input type="password" class="form-control" id="mdp" name="fournisseur[mdp]" required>
 
                         <label for="mdp2">Ressaisir son mot de passe:</label>
-                        <input type="password" class="form-control" id="mdp_confirmation" name="fournisseur[mdp2]">
+                        <input type="password" class="form-control" id="mdp_confirmation" name="fournisseur[mdp_confirmation]" required>
                     </div>  
                     
                 </div>
@@ -89,6 +89,7 @@
                             <div class="col-md-5">
                                 <label for="region_admin">Regions administratives:</label>
                                 <select id="region_admin" name="fournisseur[no_region_admin]" class="form-select" required>
+                                    <option value="00">extérieur du Québec</option>
                                     <option value="01">01 - Bas-Saint-Laurent</option>
                                     <option value="02">02 - Saguenay-Lac-Saint-Jean</option>
                                     <option value="03">03 - Capitale-Nationale</option>

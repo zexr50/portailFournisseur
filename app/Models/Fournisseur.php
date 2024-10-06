@@ -29,9 +29,9 @@ class Fournisseur extends Model
         return $this->hasMany(Personne_ressource::class);
     }
 
-    public function region_administrative(): BelongTo
+    public function region()
     {
-        return $this->belongTo(Region_administrative::class);
+        return $this->belongsTo(Region_administrative::class, 'no_region_admin', 'no_region');
     }
 
     public function telephone(): HasOne

@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 
 class InscriptionController extends Controller
@@ -119,11 +120,17 @@ class InscriptionController extends Controller
             \Log::info($request->all());
             $fournisseurData = $request->input('fournisseur');
             Log::info('Fournisseur data extracted', ['data' => $fournisseurData]);
+
+            if (isset($fournisseurData['mdp'])) {
+                $fournisseurData['mdp'] = Hash::make($fournisseurData['mdp']);
+            }
+
             $fournisseur = Fournisseur::create($fournisseurData);
             Log::info('Fournisseur created successfully', ['fournisseur_id' => $fournisseur->id]);
 
             \Log::info('before creating user');
             User::create([
+                'id_fournisseurs' => $fournisseur->id,
                 'name' => $fournisseur->nom_entreprise,
                 'email' => $fournisseur->email,
                 'NEQ' => $fournisseur->NEQ,

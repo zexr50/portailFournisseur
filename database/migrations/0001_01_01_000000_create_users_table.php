@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_fournisseurs');
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('NEQ')->unique()->nullable();
