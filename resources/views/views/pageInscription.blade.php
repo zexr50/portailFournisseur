@@ -354,11 +354,20 @@
                         });
                     </script>
                 </div>
+                
+                <input type="hidden" name="licences_rbq" id="licences_rbq_input">
+                <input type="hidden" name="codeUnspsc" id="code_input">
+
+
+                <div class="container-xxl sub-bx">
+                    <h1>commentaires</h1>
+
+                    <label for="commentaire">commentaires et informations importantes :</label><br>
+                    <textarea id="commentaire" name="fournisseur[commentaire]" rows="5" cols="100" placeholder="Write your comment here..." style="resize: vertical;"></textarea><br>
+                </div>
         </div>
 
-        <input type="hidden" name="licences_rbq" id="licences_rbq_input">
-        <input type="hidden" name="codeUnspsc" id="code_input">
-
+        
 
             <div id="bt-center">
                 <button type="submit" class="button">envoyer le formulaire</button>

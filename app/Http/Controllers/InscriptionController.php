@@ -136,7 +136,7 @@ class InscriptionController extends Controller
                 'NEQ' => $fournisseur->NEQ,
                 'password' => $fournisseur->mdp,
             ]);
-            Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
+            Log::info('User created successfully', ['id_fournisseurs' => $fournisseur->id,'name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
              'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp]);
 
 

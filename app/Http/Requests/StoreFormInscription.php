@@ -37,12 +37,13 @@ class StoreFormInscription extends FormRequest
             'fournisseur.no_region_admin' => 'required|string|in:00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17',
             'fournisseur.code_postal' => 'required|string|max:8|regex:/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/',
             'fournisseur.site_internet' => 'nullable|string|max:64|regex:/^[a-zA-Z0-9]+$/',
+            'fournisseur.commentaire' => "nullable|string|max:500|regex:/^[a-zA-ZÀ-ÿ0-9\s'’-]+(?:\s[a-zA-ZÀ-ÿ0-9\s'’-]+)*$/",
 
             'type_tels.fournisseur' => 'nullable|array',
-            'type_tels.fournisseur.*' => 'required|string|in:bureau,cellulaire,fax',
+            'type_tels.fournisseur.*' => 'nullable|string|in:bureau,cellulaire,fax',
             
             'no_tel.fournisseur' => 'nullable|array',
-            'no_tel.fournisseur.*' => 'required|string|max:15|regex:/^[0-9]+$/',
+            'no_tel.fournisseur.*' => 'nullable|string|max:15|regex:/^(\d{1,3}\s?)?(\(\d{3}\)|\d{3})([-.\s]?)(\d{3})([-.\s]?)(\d{4})$/',
             
             'poste_tel.fournisseur' => 'nullable|array',
             'poste_tel.fournisseur.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
@@ -64,7 +65,7 @@ class StoreFormInscription extends FormRequest
             'type_tels.personne_ressource.*' => 'nullable|string|in:bureau,cellulaire,fax',
             
             'no_tel.personne_ressource' => 'nullable|array',
-            'no_tel.personne_ressource.*' => 'nullable|string|max:15|regex:/^[0-9]+$/',
+            'no_tel.personne_ressource.*' => 'nullable|string|max:15|regex:/^(\d{1,3}\s?)?(\(\d{3}\)|\d{3})([-.\s]?)(\d{3})([-.\s]?)(\d{4})$/',
             
             'poste_tel.personne_ressource' => 'nullable|array',
             'poste_tel.personne_ressource.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
