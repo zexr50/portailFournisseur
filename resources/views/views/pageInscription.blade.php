@@ -21,7 +21,7 @@
         @csrf
             <div class="container-xxl main-bx">
                 <div class="container-xxl sub-bx">
-                    <h1>identification</h1>
+                    <h1>Identification</h1>
 
                     <label for="NEQ">Numéro d'entreprise du Québec:</label>
                     <input type="text" class="form-control" id="NEQ" name="fournisseur[NEQ]">
@@ -89,7 +89,7 @@
                             <div class="col-md-5">
                                 <label for="region_admin">Regions administratives:</label>
                                 <select id="region_admin" name="fournisseur[no_region_admin]" class="form-select" required>
-                                    <option value="00">extérieur du Québec</option>
+                                    <option value="00">Extérieur du Québec</option>
                                     <option value="01">01 - Bas-Saint-Laurent</option>
                                     <option value="02">02 - Saguenay-Lac-Saint-Jean</option>
                                     <option value="03">03 - Capitale-Nationale</option>
@@ -125,7 +125,7 @@
                         <div id="telephone">
                             <div class="row phone-number-group">
                                 <div class="col-md-3">
-                                    <label for="type_tel1">type de Téléphones</label>
+                                    <label for="type_tel1">Type de Téléphones</label>
                                     <select id="type_tel1" name="type_tels[fournisseur][]" class="form-select" required>
                                         <option value="bureau">Bureau</option>
                                         <option value="cellulaire">Célulaire</option>
@@ -181,7 +181,7 @@
                         <div class="container-xxl">
                             <div class="row contact-group-tel">
                                 <div class="col-md-3">
-                                    <label for="type_tel2">type de Téléphones</label>
+                                    <label for="type_tel2">Type de Téléphones</label>
                                     <select id="type_tel2" name="type_tels[personne_ressource][]" class="form-select" required>
                                         <option value="bureau">Bureau</option>
                                         <option value="cellulaire">Célulaire</option>
@@ -228,7 +228,7 @@
                         </div>
                             
                         <div class="col-md-3">
-                              <h3> liste des licences prises </h3>
+                              <h3> Liste des licences prises </h3>
                               <ul id="selectedLicencesList"> </ul>
                         </div>
                     </div>
@@ -361,7 +361,7 @@
 
 
             <div id="bt-center">
-                <button type="submit" class="button">envoyer le formulaire</button>
+                <button type="submit" class="button">Envoyer le formulaire</button>
             </div>
     </form>
 
