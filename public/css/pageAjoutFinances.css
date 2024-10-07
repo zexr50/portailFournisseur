@@ -35,6 +35,11 @@ body {
     display: inline-block;
 }
 
+.form-control {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 label {
     margin: 5px;
 }
