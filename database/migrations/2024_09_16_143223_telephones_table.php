@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id("id_telephone");
             $table->foreignId('id_fournisseurs');
             $table->string('type_tel', length: 32);
-            $table->string('no_tel', length: 10);
-            $table->string('poste_tel', length: 6);
+            $table->string('no_tel', length: 16);
+            $table->string('poste_tel', length: 6)->nullable();
             $table->timestamps();
         });
     }

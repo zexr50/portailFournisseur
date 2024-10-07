@@ -25,7 +25,7 @@ class StoreFormInscription extends FormRequest
     public function rules(): array
     {
         return [
-            'fournisseur.NEQ' => 'nullable|string|max:255|regex:/^[1238]\1[456789]\d{7}$/',
+            'fournisseur.NEQ' => 'nullable|string|max:255|regex:/^([1238])\1[456789]\d{7}$/',
             'fournisseur.nom_entreprise' => 'required|string|max:64|regex:/^[a-zA-Z0-9]+$/',
             'fournisseur.email' => 'nullable|string|max:64|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
             'fournisseur.mdp' => 'required|string|max:2048|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
@@ -35,15 +35,16 @@ class StoreFormInscription extends FormRequest
             'fournisseur.ville' => 'required|string|max:64|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-]+)*$/',
             'fournisseur.province' => 'required|string|in:Quebec,Alberta,Colombie-Britannique,Ile-du-Prince-Édouard,Manitoba,Nouveau-Brunswick,Nouvelle-Ecosse,Ontario,Saskatchewan,Terre-Neuve-et-Labrador,Territoires du Nord-Ouest,Nunavut,Yukon', 
             'fournisseur.no_region_admin' => 'required|string|in:00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17',
-            'fournisseur.code_postal' => 'required|string|max:8|regex:/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/',
+            'fournisseur.code_postal' => 'required|string|max:8|regex:/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i',
             'fournisseur.site_internet' => 'nullable|string|max:64|regex:/^[a-zA-Z0-9]+$/',
             'fournisseur.commentaire' => 'nullable|string|max:500|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-]+)*$/',
 
-            'type_tels.fournisseur' => 'nullable|array',
-            'type_tels.fournisseur.*' => 'nullable|string|in:bureau,cellulaire,fax',
+            'type_tel.fournisseur' => 'nullable|array',
+            'type_tel.fournisseur.*' => 'nullable|string|in:bureau,cellulaire,fax',
             
+            //ne fonctionne pas
             'no_tel.fournisseur' => 'nullable|array',
-            'no_tel.fournisseur.*' => 'nullable|string|max:15|regex:/^(\d{1,3}\s?)?(\(\d{3}\)|\d{3})([-.\s]?)(\d{3})([-.\s]?)(\d{4})$/',
+            'no_tel.fournisseur.*' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
             
             'poste_tel.fournisseur' => 'nullable|array',
             'poste_tel.fournisseur.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
@@ -61,11 +62,12 @@ class StoreFormInscription extends FormRequest
             'email_contact.personne_ressource' => 'nullable|array',
             'email_contact.personne_ressource.*' => 'nullable|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
 
-            'type_tels.personne_ressource' => 'nullable|array',
-            'type_tels.personne_ressource.*' => 'nullable|string|in:bureau,cellulaire,fax',
+            'type_tel.personne_ressource' => 'nullable|array',
+            'type_tel.personne_ressource.*' => 'nullable|string|in:bureau,cellulaire,fax',
             
+            //ne fonctionne pas
             'no_tel.personne_ressource' => 'nullable|array',
-            'no_tel.personne_ressource.*' => 'nullable|string|max:15|regex:/^(\d{1,3}\s?)?(\(\d{3}\)|\d{3})([-.\s]?)(\d{3})([-.\s]?)(\d{4})$/',
+            'no_tel.personne_ressource.*' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
             
             'poste_tel.personne_ressource' => 'nullable|array',
             'poste_tel.personne_ressource.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
@@ -79,6 +81,14 @@ class StoreFormInscription extends FormRequest
             //'codeUnspsc' => 'nullable|array', // Ensure the array is present
             //'codeUnspsc.*' => 'nullable|integer', // Validate each checkbox as an integer
         ];
+
+        foreach ($rules as $field => $rule) {
+            if (preg_match('/regex:(\/.*?\/)/', $rule, $matches)) {
+                \Log::info("Field: $field, Regex: " . $matches[1]);
+            }
+        }
+
+        return $rules;
     }
 
     protected function failedValidation(Validator $validator)

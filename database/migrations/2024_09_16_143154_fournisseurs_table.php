@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('province', length: 64)->required();
             $table->string('code_postal', length: 8)->required();
             $table->string('no_region_admin', length: 16)->required();
-            $table->string('site_internet', length: 64)->nullable();;
+            $table->string('site_internet', length: 64)->nullable();
             $table->string('commentaire', length: 500)->nullable();
             $table->timestamps();
         });
