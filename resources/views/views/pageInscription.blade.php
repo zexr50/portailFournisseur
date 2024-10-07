@@ -24,7 +24,8 @@
                     <h1>identification</h1>
 
                     <label for="NEQ">Numéro d'entreprise du Québec:</label>
-                    <input type="text" class="form-control" id="NEQ" name="fournisseur[NEQ]">
+                    <input type="text" class="form-control success" id="NEQ" name="fournisseur[NEQ]">
+                    
 
                     <label for="nom_entreprise">Nom de l'entreprise:</label>
                     <input type="text" class="form-control" id="nom_entreprise" name="fournisseur[nom_entreprise]" required>
