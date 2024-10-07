@@ -25,7 +25,7 @@ class StoreFormInscription extends FormRequest
     public function rules(): array
     {
         return [
-            'fournisseur.NEQ' => 'nullable|string|max:255|regex:/^([1238])\1[456789]\d{7}$/',
+            'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1[456789]\d{7}$/',
             'fournisseur.nom_entreprise' => 'required|string|max:64|regex:/^[a-zA-Z0-9]+$/',
             'fournisseur.email' => 'nullable|string|max:64|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
             'fournisseur.mdp' => 'required|string|max:2048|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
@@ -44,7 +44,7 @@ class StoreFormInscription extends FormRequest
             
             //ne fonctionne pas
             'no_tel.fournisseur' => 'nullable|array',
-            'no_tel.fournisseur.*' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
+            'no_tel.fournisseur.*' => 'nullable|string|max:20|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
             
             'poste_tel.fournisseur' => 'nullable|array',
             'poste_tel.fournisseur.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',

@@ -14,6 +14,8 @@ use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 
 class InscriptionController extends Controller
@@ -24,23 +26,6 @@ class InscriptionController extends Controller
         $categorie = $licences->groupBy('categorie');
 
         return view('views.pageInscription', compact('categorie'));
-    }
-
-    public function index2(Request $request)
-    {
-        $query = LicencesRBQ::query();
-    
-        if ($request->has('search')) {
-            $query->where('sous_categorie', 'like', '%' . $request->search . '%');
-        }
-    
-        $licences_rbqs = $query->paginate(50);
-
-        if ($request->ajax()) {
-            return view('views.partials.pageInscription', compact('licences_rbqs'))->render();
-        }
-
-        return view('views.pageInscription', compact('licences_rbqs'));
     }
 
     public function searchRBQ(Request $request)
@@ -135,6 +120,7 @@ class InscriptionController extends Controller
                 'email' => $fournisseur->email,
                 'NEQ' => $fournisseur->NEQ,
                 'password' => $fournisseur->mdp,
+                'remember_token' => Str::random(10)
             ]);
             Log::info('User created successfully', ['id_fournisseurs' => $fournisseur->id,'name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
              'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp]);
@@ -243,6 +229,41 @@ class InscriptionController extends Controller
         }
  
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
+    }
+
+    public function show(string $id)
+    {
+        $fournisseur = Fournisseur::with(['region', 'telephones', 'personne_ressources.telephones'])->where('id_fournisseurs', $id)->first();
+        Log::info($fournisseur);
+
+
+
+        if (!$fournisseur) {
+            abort(404); // Handle the case when the supplier is not found
+        }
+
+        Log::info('Loaded Fournisseur:', $fournisseur->toArray());
+        Log::info('Phones:', $fournisseur->telephones->toArray());
+        Log::info('Contacts:', $fournisseur->personne_ressources->toArray());
+
+        return view('views.pageVoirFiche', compact('fournisseur'));
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
     }
 
 }

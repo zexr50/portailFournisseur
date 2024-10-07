@@ -13,13 +13,15 @@ class Personne_ressource extends Model
 
     protected $table = 'personne_ressource';
 
-    public function fournisseur(): BelongTo
+
+    public function telephones()
     {
-        return $this->BelongTo(Fournisseur::class);
+        return $this->hasMany(Telephone::class, 'id_telephone');
     }
 
-    public function telephone(): BelongTo
+
+    public function fournisseur()
     {
-        return $this->BelongTo(Telephone::class);
+        return $this->belongsTo(Fournisseur::class, 'id_fournisseurs');
     }
 }

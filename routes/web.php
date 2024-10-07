@@ -24,10 +24,10 @@ Route::get('/ConnexionFournisseur',
  function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
 
  Route::get('/VoirFiche',
-[FicheController::class, 'index'])->name("VoirFiche");
+[InscriptionController::class, 'index'])->name("VoirFiche");
 
  Route::get('/VoirFiche/{id}',
-[FicheController::class, 'show'])->name("VoirFiche");
+[InscriptionController::class, 'show'])->name("VoirFiche");
 
 Route::post('/Login',
  [GestionConnection::class, 'Login'])->name('Login');
