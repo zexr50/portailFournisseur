@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
+                'id_fournisseurs' => 0,
                 'name' => 'John',
                 'email' => 'John@Johnmail.john',
                 'NEQ' => null,
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ],
             [
+                'id_fournisseurs' => 0,
                 'name' => 'Bob',
                 'email' => null,
                 'NEQ' => '1234567891',
