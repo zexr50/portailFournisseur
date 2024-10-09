@@ -13,7 +13,7 @@
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
+        <a href="{{url('/VoirFiche')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
     </div>
 
     <div style="text-align:center">

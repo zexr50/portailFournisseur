@@ -23,15 +23,17 @@ Route::get('/PageInscriptionsLicences',
 Route::get('/ConnexionFournisseur',
  function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
 
- Route::get('/VoirFiche',
-[InscriptionController::class, 'show'])->name("VoirFiche");
+
 
 Route::post('/Login',
  [GestionConnection::class, 'Login'])->name('Login');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/Logout', [GestionConnection::class, 'Logout'])->name('Logout');
-    
+
+     Route::get('/VoirFiche',
+    [InscriptionController::class, 'show'])->name("VoirFiche");
+
     Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 
     Route::get('/AjoutFinances',
