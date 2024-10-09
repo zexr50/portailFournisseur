@@ -26,9 +26,10 @@ class StoreFormInscription extends FormRequest
     {
         return [
             'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1[456789]\d{7}$/',
-            'fournisseur.nom_entreprise' => 'required|string|max:64|regex:/^[a-zA-Z0-9]+$/',
-            'fournisseur.email' => 'nullable|string|max:64|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
-            'fournisseur.mdp' => 'required|string|max:2048|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
+            'fournisseur.nom_entreprise' => 'required|string|max:64|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-.]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-.]+)*$/',
+            'fournisseur.email' => 'nullable|string|max:64|regex:/\b(?:https?:\/\/)?[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([\/?#][^\s]*)?/',
+            'fournisseur.mdp' => 'required|string|max:15|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
+            'fournisseur.mdp_confirmation' => 'required|string|max:15|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
             'fournisseur.no_rue' => 'required|string|max:8|regex:/^[0-9]{1,8}$/',
             'fournisseur.rue' => 'required|string|max:64|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-]+)*$/',
             'fournisseur.no_bureau' => 'nullable|string|max:16|regex:/^[0-9]{1,16}$/',
@@ -108,7 +109,7 @@ class StoreFormInscription extends FormRequest
     return [
         //a faire un peu plus, mais cela va prendre du temps.
         'fournisseur.nom_entreprise.required' => 'Vous devez fournir un nom d\'entreprise.',
-        'fournisseur.nom_entreprise.regex' => 'Le nom d\'entreprise doit seuleument contenir des lettres et des chiffres.',
+        'fournisseur.nom_entreprise.regex' => 'Le nom d\'entreprise doit seuleument contenir des lettres, des chiffres ainsi que c\'est caractére-ci : "’‘-.".',
         'fournisseur.email.regex' => 'L\'adresse email doit être valide de format email@email.com.',
         'fournisseur.mdp.required' => 'Vous devez entrer un mot de passe.',
         'fournisseur.mdp.regex' => 'Le mot de passe doit être de 7-12 de long, avoir une majuscule, une minuscule, au moins 1 chiffre ainsi qu\'un symbol spécial.',

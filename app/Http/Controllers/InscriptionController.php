@@ -231,8 +231,9 @@ class InscriptionController extends Controller
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
     }
 
-    public function show(string $id)
+    public function show()
     {
+        $id_fournisseur = Auth::user()->id_fournisseurs;
         $fournisseur = Fournisseur::with([
             'region',
             'telephones',

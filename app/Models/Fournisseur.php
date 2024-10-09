@@ -24,11 +24,6 @@ class Fournisseur extends Model
         return $this->hasMany(Fourniseur_licences_rbq_liaison::class);
     }
 
-    public function personne_ressource(): HasMany
-    {
-        return $this->hasMany(Personne_ressource::class);
-    }
-
     public function region()
     {
         return $this->belongsTo(Region_administrative::class, 'no_region_admin', 'no_region');

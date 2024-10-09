@@ -24,9 +24,6 @@ Route::get('/ConnexionFournisseur',
  function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
 
  Route::get('/VoirFiche',
-[InscriptionController::class, 'index'])->name("VoirFiche");
-
- Route::get('/VoirFiche/{id}',
 [InscriptionController::class, 'show'])->name("VoirFiche");
 
 Route::post('/Login',
