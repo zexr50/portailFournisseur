@@ -5,6 +5,8 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\GestionConnection;
 use App\Http\Controllers\FicheController;
+use App\Http\Controllers\MenuFournisseurController;
+
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -34,7 +36,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::get('/VoirFiche',
     [InscriptionController::class, 'show'])->name("VoirFiche");
 
-    Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
+    //Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
+
+    Route::get('/MenuFournisseur',
+    [MenuFournisseurController::class, 'index'])->name("MenuFournisseur");
 
     Route::get('/AjoutFinances',
     [FinanceController::class, 'index'])->name("AjoutFinances");
