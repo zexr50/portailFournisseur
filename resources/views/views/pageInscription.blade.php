@@ -24,21 +24,21 @@
                     <h1>Identification</h1>
 
                     <label for="NEQ">Numéro d'entreprise du Québec:</label>
-                    <input type="text" class="form-control" id="NEQ" name="fournisseur[NEQ]">
+                    <input type="text" class="form-control {{ $errors->has('fournisseur.NEQ') ? 'failure' : (old('fournisseur.NEQ') ? 'success' : '') }}" id="NEQ" name="fournisseur[NEQ]">
                     
 
                     <label for="nom_entreprise">Nom de l'entreprise:</label>
-                    <input type="text" class="form-control" id="nom_entreprise" name="fournisseur[nom_entreprise]" required>
+                    <input type="text" class="form-control {{ $errors->has('fournisseur.nom_entreprise') ? 'failure' : (old('fournisseur.nom_entreprise') ? 'success' : '') }}" id="nom_entreprise" name="fournisseur[nom_entreprise]" required>
 
                     <div class="container-xxl">
                         <label for="email">Adresse courriel:</label>
-                        <input type="text" class="form-control" id="email" name="fournisseur[email]" autocomplete="on">
+                        <input type="text" class="form-control {{ $errors->has('fournisseur.email') ? 'failure' : (old('fournisseur.email') ? 'success' : '') }}" id="email" name="fournisseur[email]" autocomplete="on">
 
                         <label for="mdp">Choisir son mot de passe:</label>
-                        <input type="password" class="form-control" id="mdp" name="fournisseur[mdp]" required>
+                        <input type="password" class="form-control {{ $errors->has('fournisseur.mdp') ? 'failure' : (old('fournisseur.mdp') ? 'success' : '') }}" id="mdp" name="fournisseur[mdp]" required>
 
                         <label for="mdp2">Ressaisir son mot de passe:</label>
-                        <input type="password" class="form-control" id="mdp_confirmation" name="fournisseur[mdp_confirmation]" required>
+                        <input type="password" class="form-control {{ $errors->has('fournisseur.mdp_confirmation') ? 'failure' : (old('fournisseur.mdp_confirmation') ? 'success' : '') }}" id="mdp_confirmation" name="fournisseur[mdp_confirmation]" required>
                     </div>  
                     
                 </div>
@@ -50,27 +50,27 @@
 
                             <div class="col-sm-3">
                                 <label for="no_rue">No. civique:</label>
-                                <input type="text" class="form-control" id="no_rue" name="fournisseur[no_rue]">
+                                <input type="text" class="form-control {{ $errors->has('fournisseur.no_rue') ? 'failure' : (old('fournisseur.no_rue') ? 'success' : '') }}" id="no_rue" name="fournisseur[no_rue]">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="rue">Rue:</label>
-                                <input type="text" class="form-control" id="rue" name="fournisseur[rue]">
+                                <input type="text" class="form-control {{ $errors->has('fournisseur.rue') ? 'failure' : (old('fournisseur.rue') ? 'success' : '') }}" id="rue" name="fournisseur[rue]">
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="no_bureau">Bureau:</label>
-                                <input type="text" class="form-control" id="no_bureau" name="fournisseur[no_bureau]">
+                                <input type="text" class="form-control {{ $errors->has('fournisseur.no_bureau') ? 'failure' : (old('fournisseur.no_bureau') ? 'success' : '') }}" id="no_bureau" name="fournisseur[no_bureau]">
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="ville">Ville:</label>
-                                <input type="text" class="form-control" id="ville" name="fournisseur[ville]">
+                                <input type="text" class="form-control {{ $errors->has('fournisseur.ville') ? 'failure' : (old('fournisseur.ville') ? 'success' : '') }}" id="ville" name="fournisseur[ville]">
                             </div>
 
                             <div class="col-md-5">
                                 <label for="province">Province:</label>
-                                <select id="province" name="fournisseur[province]" class="form-select" required>
+                                <select id="province" name="fournisseur[province]" class="form-select {{ $errors->has('fournisseur.province') ? 'failure' : (old('fournisseur.province') ? 'success' : '') }}" required>
                                     <option value="Quebec">Québec</option>
                                     <option value="Alberta">Alberta</option>
                                     <option value="Colombie-Britannique">Colombie-Britannique</option>
@@ -89,7 +89,7 @@
 
                             <div class="col-md-5">
                                 <label for="region_admin">Regions administratives:</label>
-                                <select id="region_admin" name="fournisseur[no_region_admin]" class="form-select" required>
+                                <select id="region_admin" name="fournisseur[no_region_admin]" class="form-select {{ $errors->has('fournisseur.no_region_admin') ? 'failure' : (old('fournisseur.no_region_admin') ? 'success' : '') }}" required>
                                     <option value="00">Extérieur du Québec</option>
                                     <option value="01">01 - Bas-Saint-Laurent</option>
                                     <option value="02">02 - Saguenay-Lac-Saint-Jean</option>
@@ -113,13 +113,13 @@
 
                             <div class="col-md-2">
                                 <label for="code_postal">Code postal:</label>
-                                <input type="text" class="form-control" id="code_postal" name="fournisseur[code_postal]">
+                                <input type="text" class="form-control {{ $errors->has('fournisseur.code_postal') ? 'failure' : (old('fournisseur.code_postal') ? 'success' : '') }}" id="code_postal" name="fournisseur[code_postal]">
                             </div>
                         </div>
                     </div> 
                     <div class="container-xxl">
                         <label for="site_internet">Site internet:</label>
-                        <input type="text" class="form-control" id="site_internet" name="fournisseur[site_internet]">
+                        <input type="text" class="form-control {{ $errors->has('fournisseur.site_internet') ? 'failure' : (old('fournisseur.site_internet') ? 'success' : '') }}" id="site_internet" name="fournisseur[site_internet]">
                     </div>  
 
                     <div class="container-xxl">
@@ -127,7 +127,7 @@
                             <div class="row phone-number-group">
                                 <div class="col-md-3">
                                     <label for="type_tel1">Type de Téléphones</label>
-                                    <select id="type_tel1" name="type_tels[fournisseur][]" class="form-select" required>
+                                    <select id="type_tel1" name="type_tels[fournisseur][]" class="form-select {{ $errors->has('type_tels.fournisseur') ? 'failure' : (old('type_tels.fournisseur') ? 'success' : '') }}" required>
                                         <option value="bureau">Bureau</option>
                                         <option value="cellulaire">Célulaire</option>
                                         <option value="fax">Fax</option>
@@ -136,12 +136,12 @@
 
                                 <div class="col-md-6">
                                     <label for="no_tel1">Téléphones:</label>
-                                    <input type="text" class="form-control" id="no_tel1" name="no_tel[fournisseur][]">
+                                    <input type="text" class="form-control {{ $errors->has('no_tel.fournisseur') ? 'failure' : (old('no_tel.fournisseur') ? 'success' : '') }}" id="no_tel1" name="no_tel[fournisseur][]">
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="poste_tel1">Poste:</label>
-                                    <input type="text" class="form-control" id="poste_tel1" name="poste_tel[fournisseur][]">
+                                    <input type="text" class="form-control {{ $errors->has('poste_tel.fournisseur') ? 'failure' : (old('poste_tel.fournisseur') ? 'success' : '') }}" id="poste_tel1" name="poste_tel[fournisseur][]">
                                 </div>
                                     
                             </div> 
@@ -160,22 +160,22 @@
                         <div class="row contact-group">
                             <div class="col-lg-12">
                                 <label for="prenom_contact">Prénom</label>
-                                <input type="text" class="form-control" id="prenom_contact" name="prenom[personne_ressource][]">
+                                <input type="text" class="form-control {{ $errors->has('prenom.personne_ressource') ? 'failure' : (old('prenom.personne_ressource') ? 'success' : '') }}" id="prenom_contact" name="prenom[personne_ressource][]">
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="nom_contact">Nom:</label>
-                                <input type="text" class="form-control" id="nom_contact" name="nom[personne_ressource][]">
+                                <input type="text" class="form-control {{ $errors->has('nom.personne_ressource') ? 'failure' : (old('nom.personne_ressource') ? 'success' : '') }}" id="nom_contact" name="nom[personne_ressource][]">
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="fonction">Fonction:</label>
-                                <input type="text" class="form-control" id="fonction" name="fonction[personne_ressource][]">
+                                <input type="text" class="form-control {{ $errors->has('fonction.personne_ressource') ? 'failure' : (old('fonction.personne_ressource') ? 'success' : '') }}" id="fonction" name="fonction[personne_ressource][]">
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="email_contact">Adresse courriel:</label>
-                                <input type="text" class="form-control" id="email_contact" name="email_contact[personne_ressource][]">
+                                <input type="text" class="form-control {{ $errors->has('email_contact.personne_ressource') ? 'failure' : (old('email_contact.personne_ressource') ? 'success' : '') }}" id="email_contact" name="email_contact[personne_ressource][]">
                             </div>
                         </div>
                     
@@ -183,7 +183,7 @@
                             <div class="row contact-group-tel">
                                 <div class="col-md-3">
                                     <label for="type_tel2">Type de Téléphones</label>
-                                    <select id="type_tel2" name="type_tels[personne_ressource][]" class="form-select" required>
+                                    <select id="type_tel2" name="type_tels[personne_ressource][]" class="form-select {{ $errors->has('type_tels.personne_ressource') ? 'failure' : (old('type_tels.personne_ressource') ? 'success' : '') }}" required>
                                         <option value="bureau">Bureau</option>
                                         <option value="cellulaire">Célulaire</option>
                                         <option value="fax">Fax</option>
@@ -192,12 +192,12 @@
 
                                 <div class="col-md-6">
                                     <label for="no_tel1">Téléphones:</label>
-                                    <input type="text" class="form-control" id="no_tel_contact1" name="no_tel[personne_ressource][]">
+                                    <input type="text" class="form-control {{ $errors->has('no_tel.personne_ressource') ? 'failure' : (old('no_tel.personne_ressource') ? 'success' : '') }}" id="no_tel_contact1" name="no_tel[personne_ressource][]">
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="poste_tel1">Poste:</label>
-                                    <input type="text" class="form-control" id="poste_tel_contact1" name="poste_tel[personne_ressource][]">
+                                    <input type="text" class="form-control {{ $errors->has('poste_tel.personne_ressource') ? 'failure' : (old('poste_tel.personne_ressource') ? 'success' : '') }}" id="poste_tel_contact1" name="poste_tel[personne_ressource][]">
                                 </div>
                                     
                             </div> 
