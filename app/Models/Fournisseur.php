@@ -36,12 +36,12 @@ class Fournisseur extends Model
 
     public function telephones()
     {
-        return $this->hasMany(Telephone::class, 'id_fournisseurs',);
+        return $this->hasMany(Telephone::class, 'id_fournisseurs', 'id_fournisseurs');
     }
 
     public function personne_ressources()
     {
-        return $this->hasMany(Personne_ressource::class, 'id_fournisseurs');
+        return $this->hasMany(Personne_ressource::class, 'id_fournisseurs', 'id_fournisseurs');
     }
 
 

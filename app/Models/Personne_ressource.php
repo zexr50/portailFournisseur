@@ -16,12 +16,12 @@ class Personne_ressource extends Model
 
     public function telephones()
     {
-        return $this->hasMany(Telephone::class, 'id_telephone');
+        return $this->hasMany(Telephone::class, 'id_telephone', 'id_telephone');
     }
 
 
     public function fournisseur()
     {
-        return $this->belongsTo(Fournisseur::class, 'id_fournisseurs');
+        return $this->belongsTo(Fournisseur::class, 'id_fournisseurs', 'id_fournisseurs');
     }
 }

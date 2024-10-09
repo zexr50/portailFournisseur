@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('mdp')->required();
             $table->string('no_rue', length: 8)->required();
             $table->string('rue', length: 64)->required();
-            $table->string('no_bureau', length: 8)->required();
+            $table->string('no_bureau', length: 8)->nullable();
             $table->string('ville', length: 64)->required();
             $table->string('province', length: 64)->required();
             $table->string('code_postal', length: 8)->required();

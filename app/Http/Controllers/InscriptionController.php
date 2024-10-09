@@ -233,10 +233,35 @@ class InscriptionController extends Controller
 
     public function show(string $id)
     {
-        $fournisseur = Fournisseur::with(['region', 'telephones', 'personne_ressources.telephones'])->where('id_fournisseurs', $id)->first();
-        Log::info($fournisseur);
+        $fournisseur = Fournisseur::with([
+            'region',
+            'telephones',
+            'personne_ressources.telephones'
+        ])->where('id_fournisseurs', $id)
+        ->first();
 
 
+
+        // Log the main fournisseur data
+        Log::info('Fournisseur: ', $fournisseur->toArray());
+
+        // Log the count of telephones
+        Log::info('Telephones count: ' . $fournisseur->telephones->count());
+
+        // Log the count of personne ressources
+        Log::info('Personne Ressources count: ' . $fournisseur->personne_ressources->count());
+
+        foreach ($fournisseur->personne_ressources as $personne) {
+            Log::info('Personne Ressource ID: ' . $personne->id);
+            Log::info('Personne Ressource Telephones count: ' . $personne->telephones->count());
+        }
+
+        foreach ($fournisseur->personne_ressources as $personne) {
+            Log::info('Personne Resource: ', $personne->toArray());
+            if ($personne->telephone) {
+                Log::info('Personne Resource Telephone: ', $personne->telephone->toArray());
+            }
+        }
 
         if (!$fournisseur) {
             abort(404); // Handle the case when the supplier is not found

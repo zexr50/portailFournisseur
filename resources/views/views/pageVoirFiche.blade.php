@@ -40,8 +40,8 @@
                     <p class="col-md-5">Province: {{ $fournisseur->province }} </p>
 
                     <p class="col-md-5">Regions administratives: 
-                        {{ $fournisseur->region ? $fournisseur->region->no_region : 'N/A' }} - 
-                        {{ $fournisseur->region ? $fournisseur->region->nom_region : 'N/A' }} </p>
+                        {{ $fournisseur->region ? $fournisseur->region->no_region : 'aucune region administrative' }} - 
+                        {{ $fournisseur->region ? $fournisseur->region->nom_region : '' }} </p>
                         
                     <p class="col-md-2">Code postal: {{ $fournisseur->code_postal }} </p>
                 </div>
@@ -61,21 +61,20 @@
         
 
         <div class="container-xxl">
-            <h2>Contact Persons</h2>
+            <h2>Personne ressource</h2>
             <div class="container-xxl" id="containerWithBorder">
                 <div class="contact-info">
                     @foreach($fournisseur->personne_ressources as $contact)
-                        <div class="contact">
-                            <p><strong>Contact Name:</strong> {{ $contact->nom }}</p>
+                        <div class="contact row">
+                            <p class="col-md-4">Prenom du contact: {{ $contact->prenom_contact }}</p>
+                            <p class="col-md-4">Nom du contact: {{ $contact->nom_contact }}</p>
+                            <p class="col-md-4">Fonction du contact: {{ $contact->fonction }}</p>
 
-                            <p><strong>Phone Numbers:</strong></p>
-                            <ul>
-                                @foreach($contact->telephones as $phone)
-                                    <li>{{ $phone->no_tel }}</li>
-                                @endforeach
-                            </ul>
+                            @foreach($contact->telephones as $phone)
+                                <p class="col-md-6">Numéro de téléphone: {{ $phone->no_tel }}</p>
+                            @endforeach
 
-                            <p><strong>Email:</strong> {{ $contact->email }}</p>
+                             <p class="col-md-6">Adresse courriel: {{ $contact->email_contact }}</p>
                         </div>
                     @endforeach
                 </div>

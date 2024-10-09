@@ -15,11 +15,11 @@ class Telephone extends Model
 
     public function fournisseur()
     {
-        return $this->belongsTo(Fournisseur::class, 'id_fournisseurs');
+        return $this->belongsTo(Fournisseur::class, 'id_fournisseurs', 'id_fournisseurs');
     }
 
     public function personne_ressources()
     {
-        return $this->hasMany(Personne_ressource::class, 'id_telephone');
+        return $this->hasMany(Personne_ressource::class, 'id_telephone', 'id_telephone');
     }
 }
