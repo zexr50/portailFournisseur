@@ -9,11 +9,11 @@
     @section('content')
 
     <div style="text-align:center" id="statusDiv">
-        <h1 id="statusText">Status : Maidenless</h1>
+        <h1 id="statusText">Status : {{ $demandefournisseur->etat_demande }}</h1>
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
+        <a href="{{url('/VoirFiche')}}"> <button type="button" class="button" id="btMaFiche">Ma fiche</button>
     </div>
 
     <div style="text-align:center">
@@ -22,6 +22,14 @@
 
     <div style="text-align:center">
         <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btModifierFiche">Modifier ma fiche</button>
+    </div>
+
+    <div style="text-align:center">
+        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btAjouterTelephone">Ajouter un telephone</button>
+    </div>
+
+    <div style="text-align:center">
+        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btAjouterContact">Ajouter un contact</button>
     </div>
 
     <div style="text-align:center">

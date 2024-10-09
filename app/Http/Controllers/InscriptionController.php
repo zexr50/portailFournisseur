@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class InscriptionController extends Controller
@@ -238,7 +239,7 @@ class InscriptionController extends Controller
             'region',
             'telephones',
             'personne_ressources.telephones'
-        ])->where('id_fournisseurs', $id)
+        ])->where('id_fournisseurs', $id_fournisseur)
         ->first();
 
 
