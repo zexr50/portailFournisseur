@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StoreFormInscription;
+use App\Http\Requests\PhoneFormRequest;
+use App\Http\Requests\PersonFormRequest;
 use App\Models\LicencesRBQ;
 use App\Models\CodesUNSPSC;
 use App\Models\Fourniseur_code_unspsc_liaison;
@@ -225,11 +227,76 @@ class InscriptionController extends Controller
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
-            //Log::error('Stack trace: ' . $e->getTraceAsString()); // Log the stack trace
             return response()->json(['error' => 'Erreur dans le create.'], 500);
         }
  
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
+    }
+
+    public function addPhone(PhoneFormRequest $request)
+    {
+        $id_fournisseur = Auth::user()->id_fournisseurs;
+        \Log::info('before the Telephone  create for fournisseur');
+        $phone = $request->input('no_tel.fournisseur');
+        $cleanPhone = preg_replace('/\D/', '', $phone);
+        Telephone::create([
+            'no_tel' => $cleanPhone,
+            'type_tel' => $request->input('type_tels.fournisseur'),
+            'poste_tel' => $request->input('poste_tel.fournisseur'),
+            'id_fournisseurs' => $id_fournisseur,
+        ]);
+        Log::info('Telephone created successfully', ['no_tel' => $cleanPhone,
+        'type_tel' => $request->input('type_tels.fournisseur'),
+        'poste_tel' => $request->input('poste_tel.fournisseur'),
+        'id_fournisseurs' => $id_fournisseur]);
+
+
+        return redirect()->route('MenuFournisseur')->with('success', 'Ajout du numéro de téléphone réussite!');
+    }
+
+    public function addPerson(PersonFormRequest $request)
+    {
+        $id_fournisseur = Auth::user()->id_fournisseurs;
+
+        \Log::info('before the Telephone create for cantacte');
+        $phone = $request->input('no_tel.personne_ressource');
+        $cleanPhone = preg_replace('/\D/', '', $phone);
+        $telephone=Telephone::create([
+            'no_tel' => $cleanPhone,
+            'type_tel' => $request->input('type_tels.personne_ressource'),
+            'poste_tel' => $request->input('poste_tel.personne_ressource'),
+            'id_fournisseurs' => $id_fournisseur,
+        ]);
+        Log::info('Telephone created successfully', ['no_tel' => $cleanPhone,
+        'type_tel' => $request->input('type_tels.personne_ressource'),
+        'poste_tel' => $request->input('poste_tel.personne_ressource'),
+        'id_fournisseurs' => $id_fournisseur]);
+
+        \Log::info('before the if for creating contact and phone for the contacts');
+        Personne_ressource::create([
+            'id_fournisseurs' => $id_fournisseur,
+            'id_telephone' => $telephone->id,
+            'prenom_contact' => $request->input('prenom.personne_ressource'),
+            'nom_contact' => $request->input('nom.personne_ressource'),
+            'fonction' => $request->input('fonction.personne_ressource'),
+            'email_contact' => $request->input('email_contact.personne_ressource'), 
+        ]);
+
+
+
+
+        return redirect()->route('MenuFournisseur')->with('success', 'Ajout de la personne contacte réussite!');
+    }
+
+    public function formAddPhone(Request $request)
+    {
+        return view('views.pageInscriptionAjoutTelephone');
+    }
+
+    public function formAddPerson(Request $request)
+    {
+
+        return view('views.pageInscriptionAjoutContacte');
     }
 
     public function show()
@@ -238,10 +305,14 @@ class InscriptionController extends Controller
         $fournisseur = Fournisseur::with([
             'region',
             'telephones',
-            'personne_ressources.telephones'
+            'personne_ressources.telephones',
+            'licences_rbq',
+            'code_unspsc'
         ])->where('id_fournisseurs', $id_fournisseur)
         ->first();
 
+        // Collect phones without an associated contact
+        $phonesWithoutContact = Telephone::whereNotIn('id_telephone', $fournisseur->personne_ressources->pluck('id_telephone'))->get();
 
 
         // Log the main fournisseur data
@@ -254,7 +325,7 @@ class InscriptionController extends Controller
         Log::info('Personne Ressources count: ' . $fournisseur->personne_ressources->count());
 
         foreach ($fournisseur->personne_ressources as $personne) {
-            Log::info('Personne Ressource ID: ' . $personne->id);
+            Log::info('Personne Ressource ID: ' . $personne->id_personne_ressource);
             Log::info('Personne Ressource Telephones count: ' . $personne->telephones->count());
         }
 
@@ -273,7 +344,7 @@ class InscriptionController extends Controller
         Log::info('Phones:', $fournisseur->telephones->toArray());
         Log::info('Contacts:', $fournisseur->personne_ressources->toArray());
 
-        return view('views.pageVoirFiche', compact('fournisseur'));
+        return view('views.pageVoirFiche', compact('fournisseur', 'phonesWithoutContact'));
         
     }
 

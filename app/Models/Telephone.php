@@ -22,4 +22,9 @@ class Telephone extends Model
     {
         return $this->hasMany(Personne_ressource::class, 'id_telephone', 'id_telephone');
     }
+
+    public function telephoneSansContacte($query)
+    {
+        return $query->whereNull('');
+    }
 }

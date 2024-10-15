@@ -50,7 +50,7 @@
                 
                 <h2>téléphone</h2>
                 <div class="row">
-                    @foreach($fournisseur->telephones as $phone)
+                    @foreach($phonesWithoutContact  as $phone)
                         <p class="col-md-3">Type de Téléphones: {{ $phone->type_tel }}</p> 
                         <p class="col-md-6">Téléphones: {{ $phone->no_tel }}</p>
                         <p class="col-md-3">Poste: {{ $phone->poste_tel }}</p>
@@ -71,7 +71,9 @@
                             <p class="col-md-4">Fonction du contact: {{ $contact->fonction }}</p>
 
                             @foreach($contact->telephones as $phone)
-                                <p class="col-md-6">Numéro de téléphone: {{ $phone->no_tel }}</p>
+                                <p class="col-md-4">Type de téléphone: {{ $phone->type_tel }}</p>
+                                <p class="col-md-4">Numéro de téléphone: {{ $phone->no_tel }}</p>
+                                <p class="col-md-4">poste du téléphone: {{ $phone->poste_tel }}</p>
                             @endforeach
 
                              <p class="col-md-6">Adresse courriel: {{ $contact->email_contact }}</p>
@@ -81,41 +83,20 @@
             </div>
         </div>
 
-        <div class="">
-            <div class="row">
-                <div class=" col-md-9">  
-                    <input type="text" id="searchFieldRBQ" placeholder="recherche de catégorie de licences rbq">
-                    <button type="button" class="button" id="searchButtonRBQ">Rechercher</button>
-                    <div id="listeRBQ">
-                       
-                    </div>
-                </div>
-                    
-                <div class="col-md-3">
-                      <h3> liste des licences prises </h3>
-                      <ul id="selectedLicencesList"> </ul>
-                </div>
-            </div>
+        <div>
+            <h2>Licences RBQ</h2>
+            <ul>
+                @foreach($fournisseur->licences_rbq as $licence)
+                    <li>{{ $licence->sous_categorie }}</li>
+                @endforeach
+            </ul>
 
-        </div>
-
-        <div class="">
-            <div class="row">
-                <div class=" col-md-9">    
-                    <input type="text" id="searchFieldCode" placeholder="recherche de catégorie de licences rbq">
-                    <button type="button" class="button" id="searchButtonCode">Rechercher</button>
-                    <div id="listeCodes">
-
-                    </div>
-                </div>
-                    
-                <div class="col-md-3">
-                    <h3> liste des catégorie UNSPSC sélectionner </h3>
-                    <ul id="selectedCodeList"> </ul>
-                    
-                </div>
-            </div>
-
+            <h2>Code UNSPSC</h2>
+            <ul>
+                @foreach($fournisseur->code_unspsc as $code)
+                    <li>{{ $code->precision_categorie }}</li>
+                @endforeach
+            </ul>
         </div>
     </div>
 

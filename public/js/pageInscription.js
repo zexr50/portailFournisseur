@@ -16,11 +16,10 @@ function addPhoneNumber() {
     phoneTypeCol.className = 'col-md-3';
     const phoneTypeLabel = document.createElement('label');
     phoneTypeLabel.setAttribute('for', `type_tel${numberOfPhones}`);
-    phoneTypeLabel.className = 'form-label';
     phoneTypeLabel.textContent = `Type de téléphone: ${numberOfPhones}:`;//peut-être enlever la partie ${numberOfPhones} après avoir tester
     const phoneTypeSelect = document.createElement('select');
     phoneTypeSelect.id = `type_tel${numberOfPhones}`;
-    phoneTypeSelect.name = 'type_tels[]';
+    phoneTypeSelect.name = 'type_tels[fournisseur][]';
     phoneTypeSelect.className = 'form-select';
     phoneTypeSelect.required = true;
     phoneTypeSelect.innerHTML = `
@@ -41,7 +40,7 @@ function addPhoneNumber() {
     const phoneInput = document.createElement('input');
     phoneInput.type = 'text';
     phoneInput.id = `no_tel${numberOfPhones}`;
-    phoneInput.name = 'no_tels[]';
+    phoneInput.name = 'no_tel[fournisseur][]';
     phoneInput.className = 'form-control';
     phoneInput.required = true;
     phoneCol.appendChild(phoneLabel);
@@ -58,7 +57,7 @@ function addPhoneNumber() {
     const phonePurposeInput = document.createElement('input');
     phonePurposeInput.type = 'text';
     phonePurposeInput.id = `poste_tel${numberOfPhones}`;
-    phonePurposeInput.name = 'poste_tels[]';
+    phonePurposeInput.name = 'poste_tel[fournisseur][]';
     phonePurposeInput.className = 'form-control';
     phonePurposeInput.required = false;
     phonePurposeCol.appendChild(phonePurposeLabel);
@@ -104,12 +103,11 @@ function addContactPerson() {
     prenomCol.className = 'col-lg-12';
     const prenomLabel = document.createElement('label');
     prenomLabel.setAttribute('for', `prenom_contact${numberOfContacts}`);
-    prenomLabel.className = 'form-label';
-    prenomLabel.textContent = `Prénom: ${numberOfContacts}:`;
+    prenomLabel.textContent = `Prénom :`;
     const PrenomInput = document.createElement('input');
     PrenomInput.type = 'text';
     PrenomInput.id = `prenom_contact${numberOfContacts}`;
-    PrenomInput.name = 'prenom_contacts[]';
+    PrenomInput.name = 'prenom[personne_ressource][]';
     PrenomInput.className = 'form-control';
     PrenomInput.required = true;
     prenomCol.appendChild(prenomLabel);
@@ -121,11 +119,11 @@ function addContactPerson() {
     const nomLabel = document.createElement('label');
     nomLabel.setAttribute('for', `nom_contact${numberOfContacts}`);
     nomLabel.className = 'form-label';
-    nomLabel.textContent = `Nom: ${numberOfContacts}:`;
+    nomLabel.textContent = `Nom :`;
     const nomInput = document.createElement('input');
     nomInput.type = 'text';
     nomInput.id = `nom_contact${numberOfContacts}`;
-    nomInput.name = 'nom_contacts[]';
+    nomInput.name = 'nom[personne_ressource][]';
     nomInput.className = 'form-control';
     nomInput.required = true;
     nomCol.appendChild(nomLabel);
@@ -137,11 +135,11 @@ function addContactPerson() {
     const fonctionLabel = document.createElement('label');
     fonctionLabel.setAttribute('for', `fonction${numberOfContacts}`);
     fonctionLabel.className = 'form-label';
-    fonctionLabel.textContent = `Fonction: ${numberOfContacts}:`;
+    fonctionLabel.textContent = `Fonction :`;
     const fonctionInput = document.createElement('input');
     fonctionInput.type = 'text';
     fonctionInput.id = `fonction${numberOfContacts}`;
-    fonctionInput.name = 'fonctions[]';
+    fonctionInput.name = 'fonction[personne_ressource][]';
     fonctionInput.className = 'form-control';
     fonctionInput.required = true;
     fonctionCol.appendChild(fonctionLabel);
@@ -154,11 +152,11 @@ function addContactPerson() {
     const emailContactLabel = document.createElement('label');
     emailContactLabel.setAttribute('for', `email_contact${numberOfContacts}`);
     emailContactLabel.className = 'form-label';
-    emailContactLabel.textContent = `Adresse courriel: ${numberOfContacts}:`;
+    emailContactLabel.textContent = `Adresse courriel :`;
     const emailContactInput = document.createElement('input');
     emailContactInput.type = 'text';
     emailContactInput.id = `email_contact${numberOfContacts}`;
-    emailContactInput.name = 'email_contacts[]';
+    emailContactInput.name = 'email_contact[personne_ressource][]';
     emailContactInput.className = 'form-control';
     emailContactInput.required = true;
     emailContactCol.appendChild(emailContactLabel);
@@ -179,10 +177,10 @@ function addContactPerson() {
     const phoneTypeLabel = document.createElement('label');
     phoneTypeLabel.setAttribute('for', `type_tels_contact${numberOfPhones}`);
     phoneTypeLabel.className = 'form-label';
-    phoneTypeLabel.textContent = `Type de téléphone: ${numberOfPhones}:`;//peut-être enlever la partie ${numberOfPhones} après avoir tester
+    phoneTypeLabel.textContent = `Type de téléphone :`;//peut-être enlever la partie ${numberOfPhones} après avoir tester
     const phoneTypeSelect = document.createElement('select');
     phoneTypeSelect.id = `type_tels_contact${numberOfPhones}`;
-    phoneTypeSelect.name = 'type_tels_contacts[]';
+    phoneTypeSelect.name = 'type_tels[personne_ressource][]';
     phoneTypeSelect.className = 'form-select';
     phoneTypeSelect.required = true;
     phoneTypeSelect.innerHTML = `
@@ -199,11 +197,11 @@ function addContactPerson() {
     const phoneLabel = document.createElement('label');
     phoneLabel.setAttribute('for', `no_tels_contact${numberOfPhones}`);
     phoneLabel.className = 'form-label';
-    phoneLabel.textContent = `Téléphone: ${numberOfPhones}:`;
+    phoneLabel.textContent = `Téléphone :`;
     const phoneInput = document.createElement('input');
     phoneInput.type = 'text';
     phoneInput.id = `no_tels_contact${numberOfPhones}`;
-    phoneInput.name = 'no_tels_contacts[]';
+    phoneInput.name = 'no_tel[personne_ressource][]';
     phoneInput.className = 'form-control';
     phoneInput.required = true;
     phoneCol.appendChild(phoneLabel);
@@ -216,11 +214,11 @@ function addContactPerson() {
     const phonePurposeLabel = document.createElement('label');
     phonePurposeLabel.setAttribute('for', `poste_tel_contact${numberOfPhones}`);
     phonePurposeLabel.className = 'form-label';
-    phonePurposeLabel.textContent = `Phone Purpose ${numberOfPhones}:`;
+    phonePurposeLabel.textContent = `Poste :`;
     const phonePurposeInput = document.createElement('input');
     phonePurposeInput.type = 'text';
     phonePurposeInput.id = `poste_tel_contact${numberOfPhones}`;
-    phonePurposeInput.name = 'poste_tel_contacts[]';
+    phonePurposeInput.name = 'poste_tel[personne_ressource][]';
     phonePurposeInput.className = 'form-control';
     phonePurposeInput.required = false;
     phonePurposeCol.appendChild(phonePurposeLabel);

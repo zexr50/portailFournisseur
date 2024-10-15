@@ -36,6 +36,20 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::get('/VoirFiche',
     [InscriptionController::class, 'show'])->name("VoirFiche");
 
+    Route::get('/AjouterTelephoneForm',
+    [InscriptionController::class, 'formAddPhone'])->name("AjouterTelephoneForm");
+    Route::post('/AjouterTelephone',
+    [InscriptionController::class, 'addPhone'])->name("AjouterTelephone");
+
+    Route::get('/AjouterContacteForm',
+    [InscriptionController::class, 'formAddPerson'])->name("AjouterContacteForm");
+    Route::post('/AjouterContacte',
+    [InscriptionController::class, 'addPerson'])->name("AjouterContacte");
+
+    
+
+    
+
     //Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 
     Route::get('/MenuFournisseur',

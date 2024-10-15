@@ -268,11 +268,7 @@
                                     const alreadySelected = Array.from(selectedLicencesList.children)
                                         .some(item => item.getAttribute('data-id') === licenceId);
 
-                                    if (alreadySelected) {
-                                        // Remove from selected list
-                                        const itemToRemove = [...selectedLicencesList.children].find(item => item.getAttribute('data-id') === licenceId);
-                                        selectedLicencesList.removeChild(itemToRemove);
-                                    } else {
+                                    if (!alreadySelected) {
                                         // Add to selected list
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', licenceId);
@@ -280,6 +276,12 @@
                                         newItem.classList.add('selected-item');
                                         selectedLicencesList.appendChild(newItem);
                                     }
+                                }
+                            });
+                            selectedLicencesList.addEventListener('click', function (e) {
+                                if (e.target.classList.contains('selected-item')) {
+                                    // Remove the clicked item from the selected list
+                                    selectedLicencesList.removeChild(e.target);
                                 }
                             });
                         });
@@ -338,18 +340,20 @@
                                     const alreadySelected = Array.from(selectedCodeList.children)
                                         .some(item => item.getAttribute('data-id') === Codes);
 
-                                    if (alreadySelected) {
-                                        // Remove from selected list
-                                        const itemToRemove = [...selectedCodeList.children].find(item => item.getAttribute('data-id') === Codes);
-                                        selectedCodeList.removeChild(itemToRemove);
-                                    } else {
+                                    if (!alreadySelected) {
                                         // Add to selected list
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', Codes);
                                         newItem.textContent = e.target.textContent;
                                         newItem.classList.add('selected-item');
                                         selectedCodeList.appendChild(newItem);
-                                    }
+                                    } 
+                                }
+                            });
+                            selectedCodeList.addEventListener('click', function (e) {
+                                if (e.target.classList.contains('selected-item')) {
+                                    // Remove the clicked item from the selected list
+                                    selectedCodeList.removeChild(e.target);
                                 }
                             });
                         });

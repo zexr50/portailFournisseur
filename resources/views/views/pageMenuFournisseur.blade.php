@@ -25,11 +25,11 @@
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btAjouterTelephone">Ajouter un telephone</button>
+        <a href="{{url('/AjouterTelephoneForm')}}"> <button type="button" class="button" id="btAjouterTelephone">Ajouter un telephone</button>
     </div>
 
     <div style="text-align:center">
-        <a href="{{url('/ConnexionFournisseur')}}"> <button type="button" class="button" id="btAjouterContact">Ajouter un contact</button>
+        <a href="{{url('/AjouterContacteForm')}}"> <button type="button" class="button" id="btAjouterContact">Ajouter une personne contacte</button>
     </div>
 
     <div style="text-align:center">
