@@ -9,11 +9,7 @@ class Demande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_fournisseur', 'etat_demande', 'raison_refus', 'commentaire'];
+    protected $fillable = ['id_fournisseurs', 'etat_demande', 'raison_refus', 'commentaire'];
 
    protected $table = 'demandesFournisseurs';
-
-
-
-
 }

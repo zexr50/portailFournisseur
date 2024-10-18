@@ -146,9 +146,11 @@
                                     
                             </div> 
                         </div>
+                        <!--
                         <div id="bt-center">
                             <button type="button" onclick="addPhoneNumber()" class="button" id="btAddTelephone">Ajouter un téléphone</button>
                         </div>
+                        -->
                             
                     </div> 
 
@@ -203,9 +205,13 @@
                             </div> 
                         </div>
                     </div>
+
+                    <!--
                     <div id="bt-center">
                     <button type="button" onclick="addContactPerson()" class="button" id="btAddContact">Ajouter une personne contact</button>
                     </div>
+                    -->
+                    
                 </div>
             
             
@@ -227,12 +233,14 @@
                                 @endforeach
                             </div>
                         </div>
-                            
+                           
+                        
                         <div class="col-md-3">
                               <h3> Liste des licences prises </h3>
                               <ul id="selectedLicencesList"> </ul>
                         </div>
                     </div>
+                    
 
                     <script>
                         $('#searchButtonRBQ').on('click', function() {

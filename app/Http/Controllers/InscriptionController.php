@@ -215,14 +215,10 @@ class InscriptionController extends Controller
 
             \Log::info('before creating demande');
             Demande::create([
-                'id_fournisseur' => $fournisseur->id,
+                'id_fournisseurs' => $fournisseur->id,
                 'etat_demande' => 'en attente',
             ]);
-
-            Log::info('User created successfully', ['name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
-             'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp]);
-
-
+            
 
         } 
         catch (\Exception $e) {
