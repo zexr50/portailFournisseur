@@ -50,7 +50,7 @@ class InscriptionController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Search error: ' . $e->getMessage());
-            return response()->json(['error' => 'An error occurred while searching.'], 500);
+            return redirect()->route('Inscription')->with('error', 'Il y a eu une erreur lors de la recherche');
         }
     }
 
@@ -86,7 +86,7 @@ class InscriptionController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Search error: ' . $e->getMessage());
-            return response()->json(['error' => 'An error occurred while searching.'], 500);
+            return redirect()->route('Inscription')->with('error', 'Il y a eu une erreur lors de la recherche');
         }
     }
 
@@ -223,7 +223,7 @@ class InscriptionController extends Controller
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
-            return response()->json(['error' => 'Erreur dans le create.'], 500);
+            return redirect()->route('Inscription')->with('error', 'erreur lors de la création ');
         }
  
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
@@ -291,7 +291,6 @@ class InscriptionController extends Controller
 
     public function formAddPerson(Request $request)
     {
-
         return view('views.pageInscriptionAjoutContacte');
     }
 
