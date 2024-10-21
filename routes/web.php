@@ -13,10 +13,10 @@ use App\Http\Controllers\MenuFournisseurController;
 });
 */
 
-Route::get('/',
- function () {return view('views/index');}); //dump page
+Route::get('/dmp',
+ function () {return view('views/dmp');})->name("dmp"); //dump page
 
-Route::get('/Accueil',
+Route::get('/',
  function () {return view('views/pageAccueil');})->name("Accueil");
 
 Route::get('/PageInscriptionsLicences',
