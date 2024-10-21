@@ -17,7 +17,9 @@
 </head>
 <body>
 <div>
+    
     <header>
+        @if (!isset($showNavbar) || $showNavbar)
         <nav class="navbar  fixed-top navbar-light">
             <a class="navbar-brand" href="{{ route('Accueil') }}">
                 <p id="brandName">fournisseur.v3r.net</p>
@@ -41,7 +43,6 @@
         <button onclick="closeMenu()">Fermer &times;</button>
         <a href="{{ route('ConnexionFournisseur') }}" class="">Se connecter</a>
         <a href="{{ route('Inscription') }}" class="">Inscription</a>
-        <a href="#" class="">Link 3</a>
         @auth <a href="{{ route('Logout') }}">Fermer Session</a> @endauth     
     </div>
 
