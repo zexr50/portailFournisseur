@@ -16,7 +16,7 @@ class MenuFournisseurController extends Controller
     {
         $id_fournisseur = Auth::user()->id_fournisseurs;
 
-        $demandefournisseur = DB::table('demandesfournisseurs')->where('id_fournisseur', $id_fournisseur)->first();
+        $demandefournisseur = DB::table('demandesfournisseurs')->where('id_fournisseurs', $id_fournisseur)->first();
 
         return view('views.pageMenuFournisseur', compact('demandefournisseur'));
         

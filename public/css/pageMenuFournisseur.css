@@ -1,5 +1,5 @@
 body {
-    background-color:rgb(0,118,213); 
+    background-color:rgb(115, 172, 219); 
 }
 
 .button
@@ -25,4 +25,5 @@ body {
 
 #btSupprimerFiche {
     background-color:rgb(128, 0, 0) ;
+    text-shadow: 5px;
 }
