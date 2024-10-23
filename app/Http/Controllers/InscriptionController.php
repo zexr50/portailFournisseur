@@ -223,7 +223,6 @@ class InscriptionController extends Controller
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
-            return redirect()->route('Inscription')->with('error', 'erreur lors de la création ');
         }
  
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
