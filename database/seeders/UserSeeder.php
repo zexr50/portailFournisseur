@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
                 'email' => 'John@Johnmail.john',
                 'NEQ' => null,
                 'password' => Hash::make('JohnIsAwsome'),
+                'role' => Hash::make('fournisseur'),
                 'created_at' => now(),
                 'updated_at' => now(),
                 'remember_token' => Str::random(10),
@@ -32,6 +33,7 @@ class UserSeeder extends Seeder
                 'email' => null,
                 'NEQ' => '1234567891',
                 'password' => Hash::make('BobIsBald'),
+                'role' => Hash::make('commis'),
                 'created_at' => now(),
                 'updated_at' => now(),
                 'remember_token' => Str::random(10),
@@ -40,3 +42,9 @@ class UserSeeder extends Seeder
         ]);
     }
 }
+
+//Need to chose how each role will be written
+//admin
+//responsable
+//commis 
+//fournisseur
