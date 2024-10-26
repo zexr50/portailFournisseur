@@ -14,12 +14,12 @@ class Fournisseur extends Model
 
     protected $table = 'fournisseurs';
 
-    public function code_unspsc()
+    public function code_unspscs()
     {
         return $this->belongsToMany(CodesUNSPSC::class, 'fournisseur_code_unspsc_liaison', 'id_fournisseurs', 'id_code_unspsc');
     }
 
-    public function licences_rbq()
+    public function licences_rbqs()
     {
         return $this->belongsToMany(LicencesRBQ::class, 'fournisseur_licence_rbq_liaison', 'id_fournisseurs', 'id_licence_rbq');
     }

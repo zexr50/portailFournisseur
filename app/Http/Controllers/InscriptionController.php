@@ -223,6 +223,7 @@ class InscriptionController extends Controller
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
+            return redirect()->route('Inscription')->with('Erreur dans de formulaire');
         }
  
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
@@ -294,30 +295,21 @@ class InscriptionController extends Controller
     }
 
     public function show()
-    {
+    { //will change that to be sql queries instead, to see if that work.
         $id_fournisseur = Auth::user()->id_fournisseurs;
+        \DB::enableQueryLog();
         $fournisseur = Fournisseur::with([
             'region',
             'telephones',
             'personne_ressources.telephones',
-            'licences_rbq',
-            'code_unspsc'
+            'licences_rbqs',
+            'code_unspscs'
         ])->where('id_fournisseurs', $id_fournisseur)
         ->first();
+        \Log::info(\DB::getQueryLog());
 
-        // Collect phones without an associated contact
         $phonesWithoutContact = Telephone::whereNotIn('id_telephone', $fournisseur->personne_ressources->pluck('id_telephone'))->get();
-
-
-        // Log the main fournisseur data
-        Log::info('Fournisseur: ', $fournisseur->toArray());
-
-        // Log the count of telephones
-        Log::info('Telephones count: ' . $fournisseur->telephones->count());
-
-        // Log the count of personne ressources
-        Log::info('Personne Ressources count: ' . $fournisseur->personne_ressources->count());
-
+        /*
         foreach ($fournisseur->personne_ressources as $personne) {
             Log::info('Personne Ressource ID: ' . $personne->id_personne_ressource);
             Log::info('Personne Ressource Telephones count: ' . $personne->telephones->count());
@@ -329,22 +321,73 @@ class InscriptionController extends Controller
                 Log::info('Personne Resource Telephone: ', $personne->telephone->toArray());
             }
         }
+        */
 
         if (!$fournisseur) {
             abort(404); // Handle the case when the supplier is not found
         }
 
         Log::info('Loaded Fournisseur:', $fournisseur->toArray());
-        Log::info('Phones:', $fournisseur->telephones->toArray());
-        Log::info('Contacts:', $fournisseur->personne_ressources->toArray());
+        \Log::info($fournisseur);
+        //Log::info('Phones:', $fournisseur->telephones->toArray());
+        //Log::info('Contacts:', $fournisseur->personne_ressources->toArray());
+        Log::info('licences:', $fournisseur->licences_rbqs->toArray());
+        Log::info('code:', $fournisseur->code_unspscs->toArray());
 
-        return view('views.pageVoirFiche', compact('fournisseur', 'phonesWithoutContact'));
-        
+        return view('views.pageVoirFiche', compact('fournisseur', 'phonesWithoutContact')); 
+    }
+
+    public function showOg()
+    {
+        $id_fournisseur = Auth::user()->id_fournisseurs;
+        \DB::enableQueryLog();
+        $fournisseur = Fournisseur::with([
+            'region',
+            'telephones',
+            'personne_ressources.telephones',
+            'licences_rbqs',
+            'code_unspscs'
+        ])->where('id_fournisseurs', $id_fournisseur)
+        ->first();
+        \Log::info(\DB::getQueryLog());
+
+        $phonesWithoutContact = Telephone::whereNotIn('id_telephone', $fournisseur->personne_ressources->pluck('id_telephone'))->get();
+        /*
+        foreach ($fournisseur->personne_ressources as $personne) {
+            Log::info('Personne Ressource ID: ' . $personne->id_personne_ressource);
+            Log::info('Personne Ressource Telephones count: ' . $personne->telephones->count());
+        }
+
+        foreach ($fournisseur->personne_ressources as $personne) {
+            Log::info('Personne Resource: ', $personne->toArray());
+            if ($personne->telephone) {
+                Log::info('Personne Resource Telephone: ', $personne->telephone->toArray());
+            }
+        }
+        */
+
+        if (!$fournisseur) {
+            abort(404); // Handle the case when the supplier is not found
+        }
+
+        Log::info('Loaded Fournisseur:', $fournisseur->toArray());
+        \Log::info($fournisseur);
+        //Log::info('Phones:', $fournisseur->telephones->toArray());
+        //Log::info('Contacts:', $fournisseur->personne_ressources->toArray());
+        Log::info('licences:', $fournisseur->licences_rbqs->toArray());
+        Log::info('code:', $fournisseur->code_unspscs->toArray());
+
+        return view('views.pageVoirFiche', compact('fournisseur', 'phonesWithoutContact')); 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+    public function test()
+    {
+        //
+    }
+
     public function edit(string $id)
     {
         //

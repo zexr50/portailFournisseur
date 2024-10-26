@@ -84,19 +84,23 @@
         </div>
 
         <div>
+        @if($fournisseur->licences_rbqs->isNotEmpty())
             <h2>Licences RBQ</h2>
             <ul>
-                @foreach($fournisseur->licences_rbq as $licence)
+                @foreach($fournisseur->licences_rbqs as $licence)
                     <li>{{ $licence->sous_categorie }}</li>
                 @endforeach
             </ul>
+        @endif
 
+        @if($fournisseur->code_unspscs->isNotEmpty())
             <h2>Code UNSPSC</h2>
             <ul>
-                @foreach($fournisseur->code_unspsc as $code)
+                @foreach($fournisseur->code_unspscs as $code)
                     <li>{{ $code->precision_categorie }}</li>
                 @endforeach
             </ul>
+        @endif
         </div>
     </div>
 

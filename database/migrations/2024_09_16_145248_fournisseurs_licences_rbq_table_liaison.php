@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('fournisseur_licence_rbq_liaison', function (Blueprint $table) {
             $table->id("id_fournisseur_licence_rbq_liaison");
-            $table->foreignId('id_fournisseurs');
-            $table->foreignId('id_licence_rbq');
+            $table->foreignId('id_fournisseurs')
+                ->constrained('fournisseurs', 'id_fournisseurs') // Custom foreign key
+                ->onDelete('cascade');
+            $table->foreignId('id_licence_rbq')
+                ->constrained('licences_rbq', 'id_licence_rbq') // Custom foreign key
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
