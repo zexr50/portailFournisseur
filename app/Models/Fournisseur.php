@@ -19,7 +19,7 @@ class Fournisseur extends Model
         return $this->belongsToMany(CodesUNSPSC::class, 'fournisseur_code_unspsc_liaison', 'id_fournisseurs', 'id_code_unspsc');
     }
 
-    public function licences_rbqs()
+    public function licencesRbqs()
     {
         return $this->belongsToMany(LicencesRBQ::class, 'fournisseur_licence_rbq_liaison', 'id_fournisseurs', 'id_licence_rbq');
     }

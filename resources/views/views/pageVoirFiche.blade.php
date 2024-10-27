@@ -17,9 +17,7 @@
             <h1>Information</h1>
 
             <p>Numéro d'entreprise du Québec: {{ $fournisseur->NEQ }} </p>
-            
             <p>Nom de l'entreprise: {{ $fournisseur->nom_entreprise }} </p>
-            
             <p>Adresse courriel: {{ $fournisseur->email }} </p>
       
         </div>
@@ -30,13 +28,11 @@
                 <h1>Adresse</h1>
                 <div class="row">
                     <p class="col-sm-3">No. civique: {{ $fournisseur->no_rue }} </p>
-
                     <p class="col-sm-6">Rue: {{ $fournisseur->rue }} </p>
-
                     <p class="col-sm-3">Bureau:{{ $fournisseur->no_bureau }} </p>
-                        
+
                     <p class="col-lg-12">Ville: {{ $fournisseur->ville }} </p>
-                        
+                    
                     <p class="col-md-5">Province: {{ $fournisseur->province }} </p>
 
                     <p class="col-md-5">Regions administratives: 
@@ -59,7 +55,6 @@
             </div> 
         </div> 
         
-
         <div class="container-xxl">
             <h2>Personne ressource</h2>
             <div class="container-xxl" id="containerWithBorder">
@@ -83,25 +78,24 @@
             </div>
         </div>
 
-        <div>
-        @if($fournisseur->licences_rbqs->isNotEmpty())
-            <h2>Licences RBQ</h2>
-            <ul>
-                @foreach($fournisseur->licences_rbqs as $licence)
-                    <li>{{ $licence->sous_categorie }}</li>
-                @endforeach
-            </ul>
-        @endif
+        <div class="container-xxl">
+            @if($licences->isNotEmpty())
+                <h2>Licences RBQ</h2>
+                <div class="container-xxl" id="containerWithBorder">
+                    @foreach($licences as $licence)
+                        <p>{{ $licence->sous_categorie }}</p>
+                    @endforeach
+                </div>
+            @endif
 
-        @if($fournisseur->code_unspscs->isNotEmpty())
-            <h2>Code UNSPSC</h2>
-            <ul>
-                @foreach($fournisseur->code_unspscs as $code)
-                    <li>{{ $code->precision_categorie }}</li>
-                @endforeach
-            </ul>
-        @endif
+            @if($codes->isNotEmpty())
+                <h2>Code UNSPSC</h2>
+                <div class="container-xxl" id="containerWithBorder">
+                    @foreach($codes as $code)
+                        <p>{{ $code->precision_categorie }}</p>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
-
 @endsection

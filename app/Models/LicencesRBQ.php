@@ -13,7 +13,7 @@ class LicencesRBQ extends Model
     protected $primaryKey = 'id_licence_rbq';
     public $timestamps = false;
 
-    public function licences_rbq()
+    public function licencesRbqs()
     {
         return $this->belongsToMany(Fournisseur::class, 'fournisseur_licence_rbq_liaison', 'id_licence_rbq', 'id_fournisseurs');
     }
