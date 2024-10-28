@@ -11,6 +11,7 @@
 
     <!-- Add content here!
          https://tablericons.com/ for icons
+         https://www.coinduwebmaster.com/infobulles-tooltips-dynamiques/144/
     -->
 
     <script>
@@ -383,7 +384,7 @@
         
 
             <div id="bt-center">
-                <button type="submit" class="button">Envoyer le formulaire</button>
+                <button type="submit" class="button" id="bt_submit">Envoyer le formulaire</button>
             </div>
     </form>
 
