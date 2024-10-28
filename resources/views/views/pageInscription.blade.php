@@ -225,7 +225,7 @@
                                     <h3>{{ $section }}</h3> <!-- Display the section title -->
                                     <ul>
                                         @foreach($licences_rbqs as $licences_rbq)
-                                            <li class="licence-item" data-id="{{ $licences_rbq->id_licence_rbq }}">
+                                            <li class="licence-item" id="hoverable" data-id="{{ $licences_rbq->id_licence_rbq }}">
                                                 {{ $licences_rbq->sous_categorie }}
                                             </li>
                                         @endforeach
@@ -280,6 +280,7 @@
                                         // Add to selected list
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', licenceId);
+                                        newItem.setAttribute('id', 'hoverable');
                                         newItem.textContent = e.target.textContent;
                                         newItem.classList.add('selected-item');
                                         selectedLicencesList.appendChild(newItem);
@@ -352,6 +353,7 @@
                                         // Add to selected list
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', Codes);
+                                        newItem.setAttribute('id', 'hoverable');
                                         newItem.textContent = e.target.textContent;
                                         newItem.classList.add('selected-item');
                                         selectedCodeList.appendChild(newItem);

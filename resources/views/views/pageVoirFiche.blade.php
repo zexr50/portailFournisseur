@@ -56,26 +56,28 @@
         </div> 
         
         <div class="container-xxl">
-            <h2>Personne ressource</h2>
-            <div class="container-xxl" id="containerWithBorder">
-                <div class="contact-info">
-                    @foreach($fournisseur->personne_ressources as $contact)
-                        <div class="contact row">
-                            <p class="col-md-4">Prenom du contact: {{ $contact->prenom_contact }}</p>
-                            <p class="col-md-4">Nom du contact: {{ $contact->nom_contact }}</p>
-                            <p class="col-md-4">Fonction du contact: {{ $contact->fonction }}</p>
+            @if($fournisseur->personne_ressources->isNotEmpty())
+                <h2>Personne ressource</h2>
+                <div class="container-xxl" id="containerWithBorder">
+                    <div class="contact-info">
+                        @foreach($fournisseur->personne_ressources as $contact)
+                            <div class="contact row">
+                                <p class="col-md-4">Prenom du contact: {{ $contact->prenom_contact }}</p>
+                                <p class="col-md-4">Nom du contact: {{ $contact->nom_contact }}</p>
+                                <p class="col-md-4">Fonction du contact: {{ $contact->fonction }}</p>
 
-                            @foreach($contact->telephones as $phone)
-                                <p class="col-md-4">Type de téléphone: {{ $phone->type_tel }}</p>
-                                <p class="col-md-4">Numéro de téléphone: {{ $phone->no_tel }}</p>
-                                <p class="col-md-4">poste du téléphone: {{ $phone->poste_tel }}</p>
-                            @endforeach
+                                @foreach($contact->telephones as $phone)
+                                    <p class="col-md-4">Type de téléphone: {{ $phone->type_tel }}</p>
+                                    <p class="col-md-4">Numéro de téléphone: {{ $phone->no_tel }}</p>
+                                    <p class="col-md-4">poste du téléphone: {{ $phone->poste_tel }}</p>
+                                @endforeach
 
-                             <p class="col-md-6">Adresse courriel: {{ $contact->email_contact }}</p>
-                        </div>
-                    @endforeach
+                                <p class="col-md-6">Adresse courriel: {{ $contact->email_contact }}</p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <div class="container-xxl">
@@ -88,14 +90,39 @@
                 </div>
             @endif
 
-            @if($codes->isNotEmpty())
+            @if($categorieCode->isNotEmpty())
                 <h2>Code UNSPSC</h2>
                 <div class="container-xxl" id="containerWithBorder">
-                    @foreach($codes as $code)
-                        <p>{{ $code->precision_categorie }}</p>
+                    @foreach($categorieCode as $section1 => $classCategories)
+                        <h3>{{ $section1 }}</h3>
+                        @foreach($classCategories as $section2 => $codeUnspscs)
+                            <h5>{{ $section2 }}</h5>
+                            <ul>
+                                @foreach($codeUnspscs as $codeUnspsc)
+                                    <li class="licence-item" data-id="{{ $codeUnspsc->id_code_unspsc }}">
+                                        {{ $codeUnspsc->precision_categorie }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endforeach
                     @endforeach
                 </div>
             @endif
+        </div>
+
+        <div class="container-xxl">
+            <h2>Commentaire</h2>
+            <div class="container-xxl" id="containerWithBorder">
+                @if($fournisseur->commentaire->isNotEmpty())
+                    <h2>Votre commentaire</h2>
+                    <p class="col-sm-12">Votre commentaire: {{ $fournisseur->commentaire }} </p>
+                @endif
+
+                @if($fournisseur->demande->isNotEmpty())
+                    <h2>Commentaire lier à la demande</h2>
+                    <p class="col-sm-12">Votre commentaire: {{ $fournisseur->demande->raison_refus }} </p>
+                @endif
+            </div>
         </div>
     </div>
 @endsection

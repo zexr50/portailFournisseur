@@ -12,4 +12,9 @@ class Demande extends Model
     protected $fillable = ['id_fournisseurs', 'etat_demande', 'raison_refus', 'commentaire'];
 
    protected $table = 'demandesFournisseurs';
+
+   public function fournisseur()
+   {
+       return $this->belongTo(Fournisseur::class, 'id_fournisseurs', 'id_fournisseurs');
+   }
 }

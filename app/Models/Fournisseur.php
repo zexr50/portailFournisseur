@@ -39,7 +39,8 @@ class Fournisseur extends Model
         return $this->hasMany(Personne_ressource::class, 'id_fournisseurs', 'id_fournisseurs');
     }
 
-
-
-
+    public function demande()
+    {
+        return $this->hasOne(Demande::class, 'id_fournisseurs', 'id_fournisseurs');
+    }
 }

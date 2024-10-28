@@ -79,9 +79,6 @@ class InscriptionController extends Controller
                 $categorieCode[$categorie] = $items->groupBy('classe_categorie');
             }
 
-            Log::info($categorieCode);
-
-            Log::info('juste avant le retour à la vue partiel');
             return view('partials.codeUnspscListe', compact('categorieCode'));
 
         } catch (\Exception $e) {
@@ -300,7 +297,8 @@ class InscriptionController extends Controller
         $fournisseur = Fournisseur::with([
             'region',
             'telephones',
-            'personne_ressources.telephones'
+            'personne_ressources.telephones',
+            'demande'
         ])->where('id_fournisseurs', $id_fournisseur)
         ->first();
 
@@ -318,11 +316,20 @@ class InscriptionController extends Controller
         ->where('fournisseur_code_unspsc_liaison.id_fournisseurs', $id_fournisseur)
         ->get();
 
+        $categorieCode = $codes->groupBy('categorie');
+        Log::info($categorieCode);
+
+        // For each category, group by classe_categorie
+        foreach ($categorieCode as $categorie => $items) {
+            $categorieCode[$categorie] = $items->groupBy('classe_categorie');
+        }
+
         if (!$fournisseur) {
             abort(404);
         }
 
-        return view('views.pageVoirFiche', compact('fournisseur', 'phonesWithoutContact', 'licences', 'codes')); 
+        return view('views.pageVoirFiche', 
+        compact('fournisseur', 'phonesWithoutContact', 'licences', 'categorieCode')); 
     }
 
     /**
