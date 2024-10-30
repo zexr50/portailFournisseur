@@ -138,3 +138,9 @@ h3{
 .selected-item{
     font-weight: bold;
 }
+
+#fileList {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}

@@ -2,6 +2,7 @@
     @section('title',"V3R Fournisseur Login")
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/pageInscription.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/basic.min.css">
     @show
     @section('js')
         <script src="{{ asset('js/pageInscription.js') }}"></script>
@@ -380,39 +381,77 @@
 
                     <label for="commentaire">commentaires et informations importantes :</label><br>
                     <textarea id="commentaire" name="fournisseur[commentaire]" rows="5" cols="100" placeholder="Write your comment here..." style="resize: vertical;"></textarea><br>
+
+                    <h1>Document</h1>
+                    <input type="file" id="fileInput" name="file[]" multiple>
+
+                    <ul id="fileList"></ul>
                 </div>
-        </div>
+            </div>
 
         
 
             <div id="bt-center">
                 <button type="submit" class="button" id="bt_submit">Envoyer le formulaire</button>
             </div>
-    </form>
+        </form>
 
-    <script>
-        document.querySelector('form').addEventListener('submit', function () {
-            const selectedIdsLicences = Array.from(document.querySelectorAll('#selectedLicencesList li'))
-                .map(item => item.getAttribute('data-id'));
-            document.getElementById('licences_rbq_input').value = JSON.stringify(selectedIdsLicences);
+        <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
 
-            const selectedIdsCode = Array.from(document.querySelectorAll('#selectedCodeList li'))
-                .map(item => item.getAttribute('data-id'));
-            document.getElementById('code_input').value = JSON.stringify(selectedIdsCode);
+        // Function to format file size
+        function formatFileSize(size) {
+            if (size < 1024) return size + ' bytes';
+            else if (size < 1024 * 1024) return (size / 1024).toFixed(2) + ' KB';
+            else return (size / (1024 * 1024)).toFixed(2) + ' MB';
+        }
+
+        // Update the file list when files are selected
+        fileInput.addEventListener('change', function() {
+            let totalSize = 0;
+            //fileList.innerHTML = ''; // Clear the list for a fresh start
+
+            Array.from(fileInput.files).forEach(file => {
+                totalSize += file.size;
+
+                const li = document.createElement('li');
+                li.innerHTML = `${file.name} (${formatFileSize(file.size)})`;
+                fileList.appendChild(li);
+            });
+
+            // Check total size limit
+            if (totalSize > 70 * 1024 * 1024) { // 70 MB
+                alert('Total file size exceeds 70 MB. Please select smaller files.');
+                fileInput.value = ''; // Clear input if limit is exceeded
+                fileList.innerHTML = ''; // Clear the file list
+            }
         });
     </script>
 
+        <script>
+            document.querySelector('form').addEventListener('submit', function () {
+                const selectedIdsLicences = Array.from(document.querySelectorAll('#selectedLicencesList li'))
+                    .map(item => item.getAttribute('data-id'));
+                document.getElementById('licences_rbq_input').value = JSON.stringify(selectedIdsLicences);
 
-    <script>
-        function logToConsole() {
-            console.log('boutton \'envoyer formulaire\' cliquer ');
-        }
-    </script>
+                const selectedIdsCode = Array.from(document.querySelectorAll('#selectedCodeList li'))
+                    .map(item => item.getAttribute('data-id'));
+                document.getElementById('code_input').value = JSON.stringify(selectedIdsCode);
+            });
+        </script>
 
-    <div>
-        <button type="button" class="button" onclick="prevForm()" id="buttonLeft">Prev</button>
-        <div id="whatForm"></div>
-        <button type="button" class="button" onclick="nextForm()" id="buttonRight">Next</button>
-    </div>
 
-@endsection
+        <script>
+            function logToConsole() {
+                console.log('boutton \'envoyer formulaire\' cliquer ');
+            }
+        </script>
+
+        <div>
+            <button type="button" class="button" onclick="prevForm()" id="buttonLeft">Prev</button>
+            <div id="whatForm"></div>
+            <button type="button" class="button" onclick="nextForm()" id="buttonRight">Next</button>
+        </div>
+
+    @endsection
