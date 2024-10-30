@@ -26,11 +26,11 @@ Route::get('/ConnexionFournisseur',
  function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
 
 
-
+ Route::get('/login',function () {return view('views/pageConnexionEmployer');})->name("ConnexionEmployerUhOh"); //don`t touch the tape
 Route::post('/Login',
  [GestionConnection::class, 'Login'])->name('Login');
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'auth:sanctum', \App\Http\Middleware\RoleMiddleware::class.':Fournisseur']], function () {
     Route::get('/Logout', [GestionConnection::class, 'Logout'])->name('Logout');
 
      Route::get('/VoirFiche',

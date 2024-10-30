@@ -27,7 +27,7 @@ class StoreFormInscription extends FormRequest
         return [
             'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1\d{8}$/',
             'fournisseur.nom_entreprise' => 'required|string|max:64',
-            'fournisseur.email' => 'required|string|max:64|regex:/\b(?:https?:\/\/)?[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([\/?#][^\s]*)?/',
+            'fournisseur.email' => 'required|string|max:64|regex:/^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/',
             'fournisseur.mdp' => 'required|string|max:15|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
             'fournisseur.mdp_confirmation' => 'required|string|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
             'fournisseur.no_rue' => 'required|string|max:8|regex:/^[0-9]{1,8}$/',
