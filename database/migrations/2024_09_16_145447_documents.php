@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('id_fournisseur');
             $table->string('nomDocument', 32);
             $table->string('extension_document', 10);
-            $table->mediumText('document')->charset('binary');
-            table->timestamps();
+            $table->string('taille_document', 30);
+            $table->timestamps();
         });
     }
 

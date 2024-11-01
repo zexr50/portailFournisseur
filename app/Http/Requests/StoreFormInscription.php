@@ -77,6 +77,14 @@ class StoreFormInscription extends FormRequest
             'licences_rbq' => 'nullable|json',
 
             'codeUnspsc' => 'nullable|json',
+
+            'file' => 'nullable|array',
+            'file.*' => 'nullable|file|
+            mimetypes:image/jpeg, image/png, image/gif, image/svg+xml, image/bmp,
+            application/pdf,text/plain,
+            application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+            application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+            application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation',
         ];
 
         return $rules;

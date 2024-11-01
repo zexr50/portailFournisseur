@@ -36,6 +36,16 @@ return [
             'throw' => false,
         ],
 
+        'custom' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'), // Change this to your desired path
+        ],
+
+        'custom2' => [
+            'driver' => 'local',
+            'root' => 'C:/storage', // voici ou le fichier serait enregister
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

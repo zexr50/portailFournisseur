@@ -97,7 +97,7 @@ class InscriptionController extends Controller
 
     public function store(StoreFormInscription $request)
     {
-        Log::info('Starting the store process for fournisseur', [
+        Log::info('début du procéder de sauvegarde du fournisseur', [
             'request_data' => $request->all(),
             'timestamp' => now()->toDateTimeString(),
         ]);
@@ -111,8 +111,6 @@ class InscriptionController extends Controller
             }
 
             $fournisseur = Fournisseur::create($fournisseurData);
-            Log::info('Fournisseur created successfully', ['fournisseur_id' => $fournisseur->id]);
-
             \Log::info('before creating user');
             User::create([
                 'id_fournisseurs' => $fournisseur->id,
@@ -138,10 +136,6 @@ class InscriptionController extends Controller
                         'poste_tel' => $request->input('poste_tel.fournisseur.' . $index),
                         'id_fournisseurs' => $fournisseur->id,
                     ]);
-                    Log::info('Telephone created successfully', ['no_tel' => $phoneNumber],
-                    ['type_tel' => $request->input('type_tels.fournisseur.' . $index)],
-                     ['poste_tel' => $request->input('poste_tel.fournisseur.' . $index)],
-                     ['id_fournisseurs' => $fournisseur->id]);
                 }
             }
         
@@ -158,18 +152,12 @@ class InscriptionController extends Controller
                         'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
                         'id_fournisseurs' => $fournisseur->id,
                     ]);
-                    Log::info('Telephone created successfully', 
-                    ['no_tel' => $cleanPhone,
-                    'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
-                    'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
-                    'id_fournisseurs' => $fournisseur->id]);
                     \Log::info('before the Personne_ressource create');
                     Personne_ressource::create([
                         'id_fournisseurs' => $fournisseur->id,
                         'id_telephone' => $telephone->id,
                         'prenom_contact' => $request->input('prenom.personne_ressource.' . $index),
                         'nom_contact' => $request->input('nom.personne_ressource.' . $index),
-                        //'nom_contact' => $request->input('nom.personne_ressource.' . $index), //c\'est ici qu\'il y a l\'érreur
                         'fonction' => $request->input('fonction.personne_ressource.' . $index),
                         'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
                     ]);
@@ -179,25 +167,18 @@ class InscriptionController extends Controller
 
             if ($request->has('licences_rbq')) {
                 $selectedLicences = json_decode($request->input('licences_rbq'), true);
-                Log::info('selectedLicences data extracted', ['data' => $selectedLicences]);
-            
                 \Log::info('before the creation of licenceId');
                 foreach ($selectedLicences as $licenceId) {
                     Fourniseur_licences_rbq_liaison::create([
                         'id_fournisseurs' => $fournisseur->id,
                         'id_licence_rbq' => $licenceId,
                     ]);
-                    Log::info('Licences created successfully', 
-                        ['id_fournisseurs' => $fournisseur->id,
-                        'id_licence_rbq' => $licenceId]);
                 }
             }
 
 
             if ($request->has('codeUnspsc')) {
                 $selectedCodes = json_decode($request->input('codeUnspsc'), true);
-                Log::info('selectedCodes data extracted', ['data' => $selectedCodes]);
-            
                 \Log::info('before the creation of licenceId');
                 foreach ($selectedCodes as $code_unspsc) {
                     Fourniseur_code_unspsc_liaison::create([
@@ -215,6 +196,18 @@ class InscriptionController extends Controller
                 'id_fournisseurs' => $fournisseur->id,
                 'etat_demande' => 'en attente',
             ]);
+
+            \Log::info('avant enregistrement fichier');
+            // place pour sauvegarder les fichiers
+            $paths = [];
+            foreach ($request->file('file') as $file) {
+                $filename = $fournisseur->id . '-' . time() . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
+
+                // Store the file with the new filename
+                $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
+                //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
+                $paths[] = $path;
+            }
             
 
         } 
