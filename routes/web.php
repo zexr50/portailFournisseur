@@ -6,6 +6,7 @@ use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\GestionConnection;
 use App\Http\Controllers\FicheController;
 use App\Http\Controllers\MenuFournisseurController;
+use App\Http\Controllers\TestController;
 
 
 /*Route::get('/', function () {
@@ -83,3 +84,11 @@ Route::get('/Inscription/searchCodeUNSPSC',
 [InscriptionController::class, 'searchUNSPSC'])->name('inscriptions.search_unspsc');
 
 // fin section pour les routes inscriptions
+
+//début route tests
+
+Route::get('/test/index',
+[TestController::class, 'index'])->name('test.index');
+
+Route::post('/test/files',
+[TestController::class, 'testFile'])->name('testFiles');

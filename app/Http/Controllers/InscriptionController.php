@@ -13,6 +13,7 @@ use App\Models\Telephone;
 use App\Models\Fournisseur;
 use App\Models\User;
 use App\Models\Demande;
+use App\Models\Documents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -207,8 +208,19 @@ class InscriptionController extends Controller
                 $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
                 //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
                 $paths[] = $path;
+                $fileSizeInMB = round($file->size / 1048576, 2); // Size in MB
+                \Log::info('avant enregistrement fichier dans bd');
+                Documents::create([
+                    'id_fournisseur' => $fournisseur->id,
+                    'cheminDocument' => $path,
+                    'nomDocument' => $file->getClientOriginalName(),
+                    'extension_document' => $file->getClientOriginalExtension(),
+                    'taille_document' => $fileSizeInMB + 'MB',
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
             }
-            
+            \Log::info('après foreach fichiers');
 
         } 
         catch (\Exception $e) {

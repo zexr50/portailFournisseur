@@ -2,7 +2,6 @@
     @section('title',"V3R Fournisseur Login")
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/pageInscription.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/basic.min.css">
     @show
     @section('js')
         <script src="{{ asset('js/pageInscription.js') }}"></script>

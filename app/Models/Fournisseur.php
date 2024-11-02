@@ -43,4 +43,9 @@ class Fournisseur extends Model
     {
         return $this->hasOne(Demande::class, 'id_fournisseurs', 'id_fournisseurs');
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Documents::class, 'id_fournisseurs', 'id_fournisseurs');
+    }
 }
