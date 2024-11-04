@@ -44,37 +44,20 @@ class StoreFormInscription extends FormRequest
             'fournisseur.commentaire' => 'nullable|string|max:500',
 
             'type_tel.fournisseur' => 'nullable|string|in:bureau,cellulaire,fax',
-            
             'no_tel.fournisseur' => 'nullable|string|max:20|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
-            
             'poste_tel.fournisseur' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
-
-            
             'prenom.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-
-         
             'nom.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-
-            
             'fonction.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-
-            
             'email_contact.personne_ressource' => 'nullable|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
 
-            
             'type_tel.personne_ressource' => 'nullable|string|in:bureau,cellulaire,fax',
-            
-        
             'no_tel.personne_ressource' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
-            
-
             'poste_tel.personne_ressource' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
             'licences_rbq' => 'nullable|json',
-
             'codeUnspsc' => 'nullable|json',
-
             'file.*' => 'nullable|file|mimetypes:image/jpeg, image/png, image/gif, image/svg+xml, image/bmp,application/pdf,text/plain,application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation',
         ];
 
@@ -120,6 +103,8 @@ class StoreFormInscription extends FormRequest
             'email_contact.personne_ressource.*.regex' => 'L\'adresse email doit être valide de format email@email.com.',
             'no_tel.personne_ressource.*.regex' => 'Le numéro de téléphone ne doit être composé que de chiffres.',
             'poste_tel.personne_ressource.*.regex' => 'Le numéro de téléphone ne doit être composé que de chiffres.',
+            'file.*.file' => 'Le fichier doit être un fichier.',
+            'file.*.mimes' => 'extention de fichier incorrect*.',
         ];
     }
 }

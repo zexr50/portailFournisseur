@@ -192,7 +192,6 @@ class InscriptionController extends Controller
                 'etat_demande' => 'en attente',
             ]);
 
-
             \Log::info('avant enregistrement fichier');
             if ($request->has('file')) {
                 // place pour sauvegarder les fichiers
@@ -200,19 +199,26 @@ class InscriptionController extends Controller
                 $paths = [];
                 foreach ($request->file('file') as $file) {
                     $filename = $fournisseur->id . '-' . time() . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
-
                     // Store the file with the new filename
                     $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
                     //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
                     $paths[] = $path;
-                    $fileSizeInMB = round($file->size / 1048576, 2); // Size in MB
+
+                    if ($file->getSize() < 1024) {
+                        $fileSize = number_format($file->getSize(), 2) . ' bytes';
+                    } elseif ($file->getSize() < 1048576) {
+                        $fileSize = number_format($file->getSize() / 1024, 2) . ' KB';
+                    } else{
+                        $fileSize = number_format($file->getSize() / 1048576, 2) . ' MB';
+                    }
+
                     \Log::info('avant enregistrement fichier dans bd');
                     Documents::create([
-                        'id_fournisseur' => $fournisseur->id,
+                        'id_fournisseurs' => $fournisseur->id,
                         'cheminDocument' => $path,
                         'nomDocument' => $file->getClientOriginalName(),
                         'extension_document' => $file->getClientOriginalExtension(),
-                        'taille_document' => $fileSizeInMB + 'MB',
+                        'taille_document' => $fileSize,
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
