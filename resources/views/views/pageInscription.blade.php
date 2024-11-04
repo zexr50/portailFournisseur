@@ -62,7 +62,7 @@
                         <input type="password" class="form-control {{ $errors->has('fournisseur.mdp') ? 'failure' : (old('fournisseur.mdp') ? 'success' : '') }}" id="mdp" name="fournisseur[mdp]" value="{{ old('fournisseur.mdp') }}" required>
 
                         <label for="mdp2">*Ressaisir mot de passe:</label>
-                        <input type="password" class="form-control {{ $errors->has('fournisseur.mdp_confirmation') ? 'failure' : (old('fournisseur.mdp_confirmation') ? 'success' : '') }}" id="mdp_confirmation" name="fournisseur[mdp_confirmation]" value="{{ old('mdp_confirmation') }}" required>
+                        <input type="password" class="form-control {{ $errors->has('fournisseur.mdp_confirmation') ? 'failure' : (old('fournisseur.mdp_confirmation') ? 'success' : '') }}" id="mdp_confirmation" name="fournisseur[mdp_confirmation]" value="{{ old('fournisseur.mdp_confirmation') }}" required>
                     </div>  
                     
                 </div>
@@ -151,7 +151,7 @@
                             <div class="row phone-number-group">
                                 <div class="col-md-3">
                                     <label for="type_tel1">*Type de Téléphones</label>
-                                    <select id="type_tel1" name="type_tels[fournisseur][]" class="form-select {{ $errors->has('type_tels.fournisseur') ? 'failure' : (old('type_tels.fournisseur') ? 'success' : '') }}" value="{{ old('type_tels.fournisseur') }}" required>
+                                    <select id="type_tel1" name="type_tels[fournisseur]" class="form-select {{ $errors->has('type_tels.fournisseur') ? 'failure' : (old('type_tels.fournisseur') ? 'success' : '') }}" value="{{ old('type_tels.fournisseur') }}" required>
                                         <option value="bureau">Bureau</option>
                                         <option value="cellulaire">Célulaire</option>
                                         <option value="fax">Fax</option>
@@ -160,12 +160,12 @@
 
                                 <div class="col-md-6">
                                     <label for="no_tel1">*Téléphones:</label>
-                                    <input type="text" class="form-control {{ $errors->has('no_tel.fournisseur') ? 'failure' : (old('no_tel.fournisseur') ? 'success' : '') }}" id="no_tel1" name="no_tel[fournisseur][]" value="{{ old('no_tel.fournisseur') }}" required>
+                                    <input type="text" class="form-control {{ $errors->has('no_tel.fournisseur') ? 'failure' : (old('no_tel.fournisseur') ? 'success' : '') }}" id="no_tel1" name="no_tel[fournisseur]" value="{{ old('no_tel.fournisseur') }}" required>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="poste_tel1">Poste:</label>
-                                    <input type="text" class="form-control {{ $errors->has('poste_tel.fournisseur') ? 'failure' : (old('poste_tel.fournisseur') ? 'success' : '') }}" id="poste_tel1" name="poste_tel[fournisseur][]" value="{{ old('poste_tel.fournisseur') }}" >
+                                    <input type="text" class="form-control {{ $errors->has('poste_tel.fournisseur') ? 'failure' : (old('poste_tel.fournisseur') ? 'success' : '') }}" id="poste_tel1" name="poste_tel[fournisseur]" value="{{ old('poste_tel.fournisseur') }}" >
                                 </div>
                                     
                             </div> 
@@ -186,22 +186,22 @@
                         <div class="row contact-group">
                             <div class="col-lg-12">
                                 <label for="prenom_contact">*Prénom</label>
-                                <input type="text" class="form-control {{ $errors->has('prenom.personne_ressource') ? 'failure' : (old('prenom.personne_ressource') ? 'success' : '') }}" id="prenom_contact" name="prenom[personne_ressource][]" value="{{ old('prenom.personne_ressource') }}" required>
+                                <input type="text" class="form-control {{ $errors->has('prenom.personne_ressource') ? 'failure' : (old('prenom.personne_ressource') ? 'success' : '') }}" id="prenom_contact" name="prenom[personne_ressource]" value="{{ old('prenom.personne_ressource') }}" required>
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="nom_contact">*Nom:</label>
-                                <input type="text" class="form-control {{ $errors->has('nom.personne_ressource') ? 'failure' : (old('nom.personne_ressource') ? 'success' : '') }}" id="nom_contact" name="nom[personne_ressource][]" value="{{ old('nom.personne_ressource') }}" required>
+                                <input type="text" class="form-control {{ $errors->has('nom.personne_ressource') ? 'failure' : (old('nom.personne_ressource') ? 'success' : '') }}" id="nom_contact" name="nom[personne_ressource]" value="{{ old('nom.personne_ressource') }}" required>
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="fonction">Fonction:</label>
-                                <input type="text" class="form-control {{ $errors->has('fonction.personne_ressource') ? 'failure' : (old('fonction.personne_ressource') ? 'success' : '') }}" id="fonction" name="fonction[personne_ressource][]" value="{{ old('fonction.personne_ressource') }}" >
+                                <input type="text" class="form-control {{ $errors->has('fonction.personne_ressource') ? 'failure' : (old('fonction.personne_ressource') ? 'success' : '') }}" id="fonction" name="fonction[personne_ressource]" value="{{ old('fonction.personne_ressource') }}" >
                             </div>
 
                             <div class="col-lg-12">
                                 <label for="email_contact">*Adresse courriel:</label>
-                                <input type="text" class="form-control {{ $errors->has('email_contact.personne_ressource') ? 'failure' : (old('email_contact.personne_ressource') ? 'success' : '') }}" id="email_contact" name="email_contact[personne_ressource][]" value="{{ old('email_contact.personne_ressource') }}" >
+                                <input type="text" class="form-control {{ $errors->has('email_contact.personne_ressource') ? 'failure' : (old('email_contact.personne_ressource') ? 'success' : '') }}" id="email_contact" name="email_contact[personne_ressource]" value="{{ old('email_contact.personne_ressource') }}" >
                             </div>
                         </div>
                     
@@ -209,7 +209,7 @@
                             <div class="row contact-group-tel">
                                 <div class="col-md-3">
                                     <label for="type_tel2">*Type de Téléphones</label>
-                                    <select id="type_tel2" name="type_tels[personne_ressource][]" class="form-select {{ $errors->has('type_tels.personne_ressource') ? 'failure' : (old('type_tels.personne_ressource') ? 'success' : '') }}" value="{{ old('type_tels.personne_ressource') }}" required>
+                                    <select id="type_tel2" name="type_tels[personne_ressource]" class="form-select {{ $errors->has('type_tels.personne_ressource') ? 'failure' : (old('type_tels.personne_ressource') ? 'success' : '') }}" value="{{ old('type_tels.personne_ressource') }}" required>
                                         <option value="bureau">Bureau</option>
                                         <option value="cellulaire">Célulaire</option>
                                         <option value="fax">Fax</option>
@@ -218,12 +218,12 @@
 
                                 <div class="col-md-6">
                                     <label for="no_tel1">*Téléphones:</label>
-                                    <input type="text" class="form-control {{ $errors->has('no_tel.personne_ressource') ? 'failure' : (old('no_tel.personne_ressource') ? 'success' : '') }}" id="no_tel_contact1" name="no_tel[personne_ressource][]" value="{{ old('no_tel.personne_ressource') }}" required>
+                                    <input type="text" class="form-control {{ $errors->has('no_tel.personne_ressource') ? 'failure' : (old('no_tel.personne_ressource') ? 'success' : '') }}" id="no_tel_contact1" name="no_tel[personne_ressource]" value="{{ old('no_tel.personne_ressource') }}" required>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="poste_tel1">Poste:</label>
-                                    <input type="text" class="form-control {{ $errors->has('poste_tel.personne_ressource') ? 'failure' : (old('poste_tel.personne_ressource') ? 'success' : '') }}" id="poste_tel_contact1" name="poste_tel[personne_ressource][]" value="{{ old('no_tel.personne_ressource') }}">
+                                    <input type="text" class="form-control {{ $errors->has('poste_tel.personne_ressource') ? 'failure' : (old('poste_tel.personne_ressource') ? 'success' : '') }}" id="poste_tel_contact1" name="poste_tel[personne_ressource]" value="{{ old('no_tel.personne_ressource') }}">
                                 </div>
                                     
                             </div> 

@@ -43,36 +43,33 @@ class StoreFormInscription extends FormRequest
             //'fournisseur.commentaire' => 'nullable|string|max:500|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-]+)*$/',
             'fournisseur.commentaire' => 'nullable|string|max:500',
 
-            'type_tel.fournisseur' => 'nullable|array',
-            'type_tel.fournisseur.*' => 'nullable|string|in:bureau,cellulaire,fax',
+            'type_tel.fournisseur' => 'nullable|string|in:bureau,cellulaire,fax',
             
-            'no_tel.fournisseur' => 'nullable|array',
-            'no_tel.fournisseur.*' => 'nullable|string|max:20|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
+            'no_tel.fournisseur' => 'nullable|string|max:20|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
             
-            'poste_tel.fournisseur' => 'nullable|array',
-            'poste_tel.fournisseur.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
+            'poste_tel.fournisseur' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
 
-            'prenom.personne_ressource' => 'nullable|array',
-            'prenom.personne_ressource.*' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-
-            'nom.personne_ressource' => 'nullable|array',
-            'nom.personne_ressource.*' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-
-            'fonction.personne_ressource' => 'nullable|array',
-            'fonction.personne_ressource.*' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-
-            'email_contact.personne_ressource' => 'nullable|array',
-            'email_contact.personne_ressource.*' => 'nullable|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
-
-            'type_tel.personne_ressource' => 'nullable|array',
-            'type_tel.personne_ressource.*' => 'nullable|string|in:bureau,cellulaire,fax',
             
-            'no_tel.personne_ressource' => 'nullable|array',
-            'no_tel.personne_ressource.*' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
+            'prenom.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
+
+         
+            'nom.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
+
             
-            'poste_tel.personne_ressource' => 'nullable|array',
-            'poste_tel.personne_ressource.*' => 'nullable|string|max:10|regex:/^[0-9]+$/',
+            'fonction.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
+
+            
+            'email_contact.personne_ressource' => 'nullable|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
+
+            
+            'type_tel.personne_ressource' => 'nullable|string|in:bureau,cellulaire,fax',
+            
+        
+            'no_tel.personne_ressource' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
+            
+
+            'poste_tel.personne_ressource' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
             'licences_rbq' => 'nullable|json',
 
