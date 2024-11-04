@@ -128,41 +128,38 @@ class InscriptionController extends Controller
               \Log::info('before the if for creating phone for the fournisseur');
             // section pour les numéro de téléphone des founisseurs
             if ($request->has('no_tel.fournisseur')) {
-                foreach ($request->input('no_tel.fournisseur') as $index => $phoneNumber) {
-                    \Log::info('before the Telephone  create for fournisseur');
-                    $cleanPhone = preg_replace('/\D/', '', $phoneNumber);
-                    Telephone::create([
-                        'no_tel' => $cleanPhone,
-                        'type_tel' => $request->input('type_tels.fournisseur.' . $index),
-                        'poste_tel' => $request->input('poste_tel.fournisseur.' . $index),
-                        'id_fournisseurs' => $fournisseur->id,
-                    ]);
-                }
+                \Log::info('before the Telephone  create for fournisseur');
+                $cleanPhone = preg_replace('/\D/', '', $request->input('no_tel.fournisseur'));
+                Telephone::create([
+                    'no_tel' => $cleanPhone,
+                    'type_tel' => $request->input('type_tels.fournisseur'),
+                    'poste_tel' => $request->input('poste_tel.fournisseur'),
+                    'id_fournisseurs' => $fournisseur->id,
+                ]); 
+                \Log::info('after the Telephone  create for fournisseur');
             }
         
 
             \Log::info('before the if for creating contact and phone for the contacts');
             // section pour ce qui est des contacts/personne ressource.
             if ($request->has('no_tel.personne_ressource')) {
-                foreach ($request->input('no_tel.personne_ressource') as $index => $jobPhoneNumber) {
-                    \Log::info('before the Telephone create for the contacts');
-                    $cleanPhone = preg_replace('/\D/', '', $jobPhoneNumber);
-                    $telephone=Telephone::create([
-                        'no_tel' => $cleanPhone,
-                        'type_tel' => $request->input('type_tels.personne_ressource.' . $index),
-                        'poste_tel' => $request->input('poste_tel.personne_ressource.' . $index),
-                        'id_fournisseurs' => $fournisseur->id,
-                    ]);
-                    \Log::info('before the Personne_ressource create');
-                    Personne_ressource::create([
-                        'id_fournisseurs' => $fournisseur->id,
-                        'id_telephone' => $telephone->id,
-                        'prenom_contact' => $request->input('prenom.personne_ressource.' . $index),
-                        'nom_contact' => $request->input('nom.personne_ressource.' . $index),
-                        'fonction' => $request->input('fonction.personne_ressource.' . $index),
-                        'email_contact' => $request->input('email_contact.personne_ressource.' . $index), 
-                    ]);
-                }
+                \Log::info('before the Telephone create for the contacts');
+                $cleanPhone = preg_replace('/\D/', '', $request->input('no_tel.personne_ressource'));
+                $telephone=Telephone::create([
+                    'no_tel' => $cleanPhone,
+                    'type_tel' => $request->input('type_tels.personne_ressource'),
+                    'poste_tel' => $request->input('poste_tel.personne_ressource'),
+                    'id_fournisseurs' => $fournisseur->id,
+                ]);
+                \Log::info('before the Personne_ressource create');
+                Personne_ressource::create([
+                    'id_fournisseurs' => $fournisseur->id,
+                    'id_telephone' => $telephone->id,
+                    'prenom_contact' => $request->input('prenom.personne_ressource'),
+                    'nom_contact' => $request->input('nom.personne_ressource'),
+                    'fonction' => $request->input('fonction.personne_ressource'),
+                    'email_contact' => $request->input('email_contact.personne_ressource'), 
+                ]);
             }
     
 
@@ -186,9 +183,6 @@ class InscriptionController extends Controller
                         'id_fournisseurs' => $fournisseur->id,
                         'id_code_unspsc' => $code_unspsc,
                     ]);
-                    Log::info('code UNSPSC created successfully', 
-                        ['id_fournisseurs' => $fournisseur->id,
-                        'id_code_unspsc' => $code_unspsc]);
                 }
             }
 
@@ -198,34 +192,38 @@ class InscriptionController extends Controller
                 'etat_demande' => 'en attente',
             ]);
 
-            \Log::info('avant enregistrement fichier');
-            // place pour sauvegarder les fichiers
-            $paths = [];
-            foreach ($request->file('file') as $file) {
-                $filename = $fournisseur->id . '-' . time() . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
 
-                // Store the file with the new filename
-                $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
-                //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
-                $paths[] = $path;
-                $fileSizeInMB = round($file->size / 1048576, 2); // Size in MB
-                \Log::info('avant enregistrement fichier dans bd');
-                Documents::create([
-                    'id_fournisseur' => $fournisseur->id,
-                    'cheminDocument' => $path,
-                    'nomDocument' => $file->getClientOriginalName(),
-                    'extension_document' => $file->getClientOriginalExtension(),
-                    'taille_document' => $fileSizeInMB + 'MB',
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+            \Log::info('avant enregistrement fichier');
+            if ($request->has('file')) {
+                // place pour sauvegarder les fichiers
+                \Log::info('après le if pour fichier');
+                $paths = [];
+                foreach ($request->file('file') as $file) {
+                    $filename = $fournisseur->id . '-' . time() . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
+
+                    // Store the file with the new filename
+                    $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
+                    //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
+                    $paths[] = $path;
+                    $fileSizeInMB = round($file->size / 1048576, 2); // Size in MB
+                    \Log::info('avant enregistrement fichier dans bd');
+                    Documents::create([
+                        'id_fournisseur' => $fournisseur->id,
+                        'cheminDocument' => $path,
+                        'nomDocument' => $file->getClientOriginalName(),
+                        'extension_document' => $file->getClientOriginalExtension(),
+                        'taille_document' => $fileSizeInMB + 'MB',
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+                }
+                \Log::info('après foreach fichiers');
             }
-            \Log::info('après foreach fichiers');
 
         } 
         catch (\Exception $e) {
-            //Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
-            //return redirect()->route('Inscription')->with('Erreur dans de formulaire');
+            Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
+            return redirect()->route('Inscription')->with('Erreur dans de formulaire');
         }
  
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
