@@ -24,6 +24,10 @@ class StoreFormInscription extends FormRequest
      */
     public function rules(): array
     {
+        Log::info('File MIME type', [
+            'mime_type' => request()->file('files')[0]->getMimeType() ?? 'No file detected'
+        ]);
+
         return [
             'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1\d{8}$/',
             'fournisseur.nom_entreprise' => 'required|string|max:64',
@@ -59,11 +63,7 @@ class StoreFormInscription extends FormRequest
             'licences_rbq' => 'nullable|json',
             'codeUnspsc' => 'nullable|json',
 
-            'files.*' => 'nullable|file|mimetypes:image/jpeg, image/png, image/gif, image/svg+xml, image/bmp,
-            application/pdf,text/plain,
-            application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-            application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
-            application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            'files.*' => 'nullable|file|mimes:jpeg,png,gif,svg,bmp,pdf,txt,doc,docx,xls,xlsx,ppt,pptx',
         ];
 
         return $rules;
