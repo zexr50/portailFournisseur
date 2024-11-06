@@ -18,7 +18,7 @@
         const limit = 50; // Set your desired limit
     </script>
 
-        <form action="{{ route('Inscription.store') }}" method="POST" enctype="multipart/form-data" onsubmit="logToConsole()">
+        <form action="{{ route('Inscription.store') }}" method="POST" enctype="multipart/form-data" id="uploadForm" onsubmit="logToConsole()">
         @csrf
             <div class="container-xxl main-bx">
                 <div class="container-xxl sub-bx">
@@ -405,7 +405,7 @@
                     <textarea id="commentaire" name="fournisseur[commentaire]" rows="5" cols="100" placeholder="Write your comment here..." style="resize: vertical;"></textarea><br>
 
                     <h1>Document</h1>
-                    <input type="file" id="fileInput" name="file[]" multiple>
+                    <input type="file" id="fileInput" name="files[]" multiple>
 
                     <ul id="fileList"></ul>
                 </div>
@@ -468,6 +468,18 @@
             function logToConsole() {
                 console.log('boutton \'envoyer formulaire\' cliquer ');
             }
+
+            document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual submission for testing
+
+            const formData = new FormData(this);
+            formData.forEach((value, key) => {
+                console.log(key, value); // Check if files are listed here
+            });
+
+            // Uncomment this line to allow form submission after verification
+            this.submit();
+        });
         </script>
 
         <div>
