@@ -24,10 +24,6 @@ class StoreFormInscription extends FormRequest
      */
     public function rules(): array
     {
-        Log::info('File MIME type', [
-            'mime_type' => request()->file('files')[0]->getMimeType() ?? 'No file detected'
-        ]);
-
         return [
             'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1\d{8}$/',
             'fournisseur.nom_entreprise' => 'required|string|max:64',
@@ -63,7 +59,7 @@ class StoreFormInscription extends FormRequest
             'licences_rbq' => 'nullable|json',
             'codeUnspsc' => 'nullable|json',
 
-            'files.*' => 'nullable|file|mimes:jpeg,png,gif,svg,bmp,pdf,txt,doc,docx,xls,xlsx,ppt,pptx',
+            'fichiers' => 'nullable|file|mimes:jpeg,png,gif,svg,bmp,pdf,txt,doc,docx,xls,xlsx,ppt,pptx',
         ];
 
         return $rules;
@@ -108,8 +104,8 @@ class StoreFormInscription extends FormRequest
             'email_contact.personne_ressource.*.regex' => 'L\'adresse email doit être valide de format email@email.com.',
             'no_tel.personne_ressource.*.regex' => 'Le numéro de téléphone ne doit être composé que de chiffres.',
             'poste_tel.personne_ressource.*.regex' => 'Le numéro de téléphone ne doit être composé que de chiffres.',
-            'file.*.file' => 'Le fichier doit être un fichier.',
-            'file.*.mimes' => 'extention de fichier incorrect*.',
+            'fichiers.file' => 'Le fichier doit être un fichier.',
+            'fichiers.mimes' => 'extention de fichier incorrect*.',
         ];
     }
 }

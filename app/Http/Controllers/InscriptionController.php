@@ -160,8 +160,6 @@ class InscriptionController extends Controller
                     'email_contact' => $request->input('email_contact.personne_ressource'), 
                 ]);
             }
-    
-
             if ($request->has('licences_rbq')) {
                 $selectedLicences = json_decode($request->input('licences_rbq'), true);
                 \Log::info('before the creation of licenceId');
@@ -172,8 +170,6 @@ class InscriptionController extends Controller
                     ]);
                 }
             }
-
-
             if ($request->has('codeUnspsc')) {
                 $selectedCodes = json_decode($request->input('codeUnspsc'), true);
                 \Log::info('before the creation of licenceId');
@@ -192,16 +188,17 @@ class InscriptionController extends Controller
             ]);
 
             \Log::info('avant enregistrement fichier');
-            if ($request->has('file')) {
+            if ($request->has('fichiers') ) {
                 // place pour sauvegarder les fichiers
                 \Log::info('après le if pour fichier');
                 $paths = [];
-                foreach ($request->files('file') as $file) {
-                    $filename = $fournisseur->id . '-' . time() . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
-                    // Store the file with the new filename
-                    $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
-                    //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
+                foreach ($request->file('fichiers') as $file) {
+                    $uniqueId = uniqid();
+                    $filename = $fournisseur->id . '-' . $uniqueId . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
+                    
+                    $path = $file->storeAs('', $filename, 'public'); //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
                     $paths[] = $path;
+
                     \Log::info('avant enregistrement fichier dans bd');
                     Documents::create([
                         'id_fournisseurs' => $fournisseur->id,
@@ -213,15 +210,15 @@ class InscriptionController extends Controller
                         'updated_at' => now()
                     ]);
                 }
-                \Log::info('après foreach fichiers');
+            } else {
+                \Log::warning('No valid files found or fichiers is not an array');
             }
-
+            \Log::info('après if enregistrement des fichiers');
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
             return redirect()->route('Inscription')->with('Erreur dans de formulaire');
         }
- 
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
     }
 
@@ -323,12 +320,20 @@ class InscriptionController extends Controller
             $categorieCode[$categorie] = $items->groupBy('classe_categorie');
         }
 
+        $fichiers = Documents::where('id_fournisseurs', $id_fournisseur)->get();
+
         if (!$fournisseur) {
             abort(404);
         }
-
         return view('views.pageVoirFiche', 
-        compact('fournisseur', 'phonesWithoutContact', 'licences', 'categorieCode')); 
+        compact('fournisseur', 'phonesWithoutContact', 'licences', 'categorieCode', 'fichiers')); 
+    }
+
+    public function download($id_document)
+    {
+        Log::info('some things');
+        $fichier = Documents::findOrFail($id_document);
+        return Storage::download($fichier->cheminDocument, $fichier->nomDocument);
     }
 
     /**

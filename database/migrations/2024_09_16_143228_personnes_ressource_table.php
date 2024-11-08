@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_telephone');
             $table->string('prenom_contact', length: 32);
             $table->string('nom_contact', length: 32);
-            $table->string('fonction', length: 32);
+            $table->string('fonction', length: 32)->nullable();
             $table->string('email_contact', length: 64);
             $table->timestamps();
         });

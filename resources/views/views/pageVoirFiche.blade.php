@@ -1,5 +1,5 @@
 @extends('layouts.app')
-    @section('title',"V3R Fournisseur Login")
+    @section('title',"V3R Fournisseur")
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/pageInscription.css') }}">
     @show
@@ -113,15 +113,18 @@
         <div class="container-xxl">
             <h2>Commentaire</h2>
             <div class="container-xxl" id="containerWithBorder">
-                @if($fournisseur->commentaire->isNotEmpty())
+                @if($fournisseur->commentaire)
                     <h2>Votre commentaire</h2>
                     <p class="col-sm-12">Votre commentaire: {{ $fournisseur->commentaire }} </p>
                 @endif
 
-                @if($fournisseur->demande->isNotEmpty())
-                    <h2>Commentaire lier à la demande</h2>
-                    <p class="col-sm-12">Votre commentaire: {{ $fournisseur->demande->raison_refus }} </p>
-                @endif
+                @foreach ($fichiers as $fichier)
+                <p>
+                    <a href="{{ route('Inscription.download', $fichier->id_fournisseurs) }}">
+                        {{ $fichier->nomDocument }}
+                    </a>
+                </p>
+            @endforeach
             </div>
         </div>
     </div>

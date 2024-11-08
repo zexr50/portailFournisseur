@@ -61,6 +61,8 @@ Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'a
     Route::post('/AjoutFinances',
     [FinanceController::class, 'store'])->name('Finance.store');
 
+    Route::get('/Inscription/download/{$id_document}',
+    [InscriptionController::class, 'download'])->name('Inscription.download');
     
 
 });
@@ -73,6 +75,9 @@ Route::get('/Inscription',
 
 Route::post('/Inscription',
 [InscriptionController::class, 'store'])->name('Inscription.store');
+
+Route::get('/Inscription/download/{$id_document}',
+[InscriptionController::class, 'download'])->name('Inscription.download');
 
 Route::get('/Inscription/search',
 [InscriptionController::class, 'search'])->name('Inscription.search');
