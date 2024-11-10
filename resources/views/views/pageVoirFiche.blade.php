@@ -120,7 +120,7 @@
 
                 @foreach ($fichiers as $fichier)
                 <p>
-                    <a href="{{ route('Inscription.download', $fichier->id_fournisseurs) }}">
+                    <a href="{{ route('Inscription.download', $fichier->id_document) }}" download>
                         {{ $fichier->nomDocument }}
                     </a>
                 </p>

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class InscriptionController extends Controller
@@ -189,29 +190,27 @@ class InscriptionController extends Controller
 
             \Log::info('avant enregistrement fichier');
             if ($request->has('fichiers') ) {
-                // place pour sauvegarder les fichiers
                 \Log::info('après le if pour fichier');
-                $paths = [];
-                foreach ($request->file('fichiers') as $file) {
-                    $uniqueId = uniqid();
-                    $filename = $fournisseur->id . '-' . $uniqueId . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
-                    
-                    $path = $file->storeAs('', $filename, 'public'); //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
-                    $paths[] = $path;
 
-                    \Log::info('avant enregistrement fichier dans bd');
-                    Documents::create([
-                        'id_fournisseurs' => $fournisseur->id,
-                        'cheminDocument' => $path,
-                        'nomDocument' => $file->getClientOriginalName(),
-                        'extension_document' => $file->getClientOriginalExtension(),
-                        'taille_document' => $file->getSize(),
-                        'created_at' => now(),
-                        'updated_at' => now()
-                    ]);
-                }
+                $paths = [];
+                $file = $request->file('fichiers');
+                $uniqueId = uniqid();
+                $filename = $fournisseur->id . '-' . $uniqueId . '-' . $file->getClientOriginalName();
+                $path = $file->storeAs('uploads', $filename, 'public');
+                //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
+
+                \Log::info('avant enregistrement fichier dans bd');
+                Documents::create([
+                    'id_fournisseurs' => $fournisseur->id,
+                    'cheminDocument' => $path,
+                    'nomDocument' => $file->getClientOriginalName(),
+                    'extension_document' => $file->getClientOriginalExtension(),
+                    'taille_document' => $file->getSize(),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
             } else {
-                \Log::warning('No valid files found or fichiers is not an array');
+                \Log::warning('No valid files found');
             }
             \Log::info('après if enregistrement des fichiers');
         } 
@@ -331,9 +330,29 @@ class InscriptionController extends Controller
 
     public function download($id_document)
     {
-        Log::info('some things');
-        $fichier = Documents::findOrFail($id_document);
-        return Storage::download($fichier->cheminDocument, $fichier->nomDocument);
+        \Log::info('Before download');
+
+        //$fichier = Documents::findOrFail($id_document);
+        $fichier = Documents::where('id_document', $id_document)->first();
+
+        $filePath = $fichier->cheminDocument;
+        $fileName = $fichier->nomDocument;
+    
+        // Check if the file exists before proceeding
+        if (!Storage::disk('public')->exists($filePath)) {
+            \Log::error("File not found: $filePath");
+            abort(404, 'File not found');
+        }
+    
+        // Get the file size and MIME type
+        $fileSize = Storage::disk('public')->size($filePath);
+        $mimeType = Storage::disk('public')->mimeType($filePath);
+    
+        // Return the download response with custom headers
+        return response()->download(storage_path("app/public/$filePath"), $fileName, [
+            'Content-Length' => $fileSize,
+            'Content-Type' => $mimeType,
+        ]);
     }
 
     /**
