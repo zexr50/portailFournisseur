@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('parametre_site', function (Blueprint $table) {
+            $table->id("id_parametre_site");
+            $table->string('nom_parametre', length: 64);
+            $table->string('valeur_parametre', length: 128);
+            $table->timestamps();
+        });
     }
 
     /**

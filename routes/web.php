@@ -47,7 +47,8 @@ Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'a
     Route::post('/AjouterContacte',
     [InscriptionController::class, 'addPerson'])->name("AjouterContacte");
 
-    
+    Route::post('/AjouterFichier',
+    [InscriptionController::class, 'storeFile'])->name("AjouterFichier");
 
     
 

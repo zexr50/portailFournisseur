@@ -61,7 +61,7 @@
 
                         <input type="password" class="form-control {{ $errors->has('fournisseur.mdp') ? 'failure' : (old('fournisseur.mdp') ? 'success' : '') }}" id="mdp" name="fournisseur[mdp]" value="{{ old('fournisseur.mdp') }}" required>
 
-                        <label for="mdp2">*Ressaisir mot de passe:</label>
+                        <label for="mdp_confirmation">*Ressaisir mot de passe:</label>
                         <input type="password" class="form-control {{ $errors->has('fournisseur.mdp_confirmation') ? 'failure' : (old('fournisseur.mdp_confirmation') ? 'success' : '') }}" id="mdp_confirmation" name="fournisseur[mdp_confirmation]" value="{{ old('fournisseur.mdp_confirmation') }}" required>
                     </div>  
                     
@@ -169,6 +169,7 @@
                                 </div>
                                     
                             </div> 
+                            <p id="p_bleu"> Il est possible d'ajouter un numéro de téléphone plus tard, en utilisant le menu </p>
                         </div>
                         <!--
                         <div id="bt-center">
@@ -228,6 +229,7 @@
                                     
                             </div> 
                         </div>
+                        <p id="p_bleu"> Il est possible d'ajouter une autre personne contacte plus tard, en utilisant le menu </p>
                     </div>
 
                     <!--
@@ -408,6 +410,7 @@
                     <input type="file" id="fichiers" name="fichiers">
 
                     <ul id="listeFichiers"></ul>
+                    <p id="p_bleu"> Il est possible d'ajouter d'autre documents plus tard, en utilisant le menu* (pas encore vrai) </p>
                 </div>
             </div>
 

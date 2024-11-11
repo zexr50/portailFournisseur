@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StoreFormInscription;
+use App\Http\Requests\fileRequest;
 use App\Http\Requests\PhoneFormRequest;
 use App\Http\Requests\PersonFormRequest;
 use App\Models\LicencesRBQ;
@@ -219,6 +220,43 @@ class InscriptionController extends Controller
             return redirect()->route('Inscription')->with('Erreur dans de formulaire');
         }
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
+    }
+
+    public function storeFile(fileRequest $request)
+    {
+        try {
+            $id_fournisseur = Auth::user()->id_fournisseurs;
+            \Log::info('avant enregistrement fichier');
+            if ($request->has('fichiers') ) {
+                \Log::info('après le if pour fichier');
+
+                $paths = [];
+                $file = $request->file('fichiers');
+                $uniqueId = uniqid();
+                $filename = $id_fournisseur . '-' . $uniqueId . '-' . $file->getClientOriginalName();
+                $path = $file->storeAs('uploads', $filename, 'public');
+                //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
+
+                \Log::info('avant enregistrement fichier dans bd');
+                Documents::create([
+                    'id_fournisseurs' => $id_fournisseur,
+                    'cheminDocument' => $path,
+                    'nomDocument' => $file->getClientOriginalName(),
+                    'extension_document' => $file->getClientOriginalExtension(),
+                    'taille_document' => $file->getSize(),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            } else {
+                \Log::warning('No valid files found');
+            }
+            \Log::info('après if enregistrement des fichiers');
+        } 
+        catch (\Exception $e) {
+            Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
+            return redirect()->route('Inscription')->with('Erreur dans de formulaire');
+        }
+        return redirect()->route('MenuFournisseur')->with('success', 'Inscription faite!');
     }
 
     public function addPhone(PhoneFormRequest $request)

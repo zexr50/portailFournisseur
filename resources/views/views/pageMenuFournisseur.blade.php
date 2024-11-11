@@ -18,11 +18,17 @@
                 <button type="button" class="button" id="btMaFiche">Ma fiche</button>
             </a>
         </div>
+        @if($demandefournisseur->etat_demande == "accepté")
         <div class="col-md-6">
             <a href="{{url('/AjoutFinances')}}"> 
                 <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
             </a>
         </div>
+        @else
+        <div class="col-md-6">
+                <button type="button" class="button" id="btAjouterFinance">mes finances (disponible après être accepté</button>
+        </div>
+        @endif
     </div>
 
     <div class="row" style="text-align:center">
@@ -51,5 +57,54 @@
         </div>
     </div>
 
+    <div class="row" style="text-align:center">
 
+        <form action="{{ route('AjouterFichier') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+            <div class="container-xxl">
+                <h1>Document</h1>
+                <input type="file" id="fichiers" name="fichiers">
+
+                <ul id="listeFichiers"></ul>
+            </div>
+
+            <div id="bt-center">
+                <button type="submit" class="button" id="bt_submit">Ajouter le fichier</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+            const fileInput = document.getElementById('fichiers');
+            const fileList = document.getElementById('listeFichiers');
+
+            // Function to format file size
+            function formatFileSize(size) {
+                if (size < 1024) return size + ' bytes';
+                else if (size < 1024 * 1024) return (size / 1024).toFixed(2) + ' KB';
+                else return (size / (1024 * 1024)).toFixed(2) + ' MB';
+            }
+
+            // Update the file list when files are selected
+            fileInput.addEventListener('change', function() {
+                let totalSize = 0;
+
+                Array.from(fileInput.files).forEach(file => {
+                    totalSize += file.size;
+                    fileList.innerHTML = '';
+                    
+                    const li = document.createElement('li');
+                    li.innerHTML = `${file.name} (${formatFileSize(file.size)})`;
+                    fileList.appendChild(li);
+                });
+
+                // Check total size limit
+                if (totalSize > 70 * 1024 * 1024) { // 70 MB
+                    alert('La taille total des fichiers est trop grande.');
+                    fileInput.value = ''; // Clear input if limit is exceeded
+                    fileList.innerHTML = ''; // Clear the file list
+                }
+            });
+        </script>
 @endsection

@@ -58,7 +58,6 @@ p{
     text-align: left;
 }
 
-
 h3{ 
     color: white;
     text-align: left;
@@ -143,4 +142,9 @@ h3{
     list-style-type: none;
     padding: 0;
     margin: 20px 0;
+}
+
+#p_bleu{ 
+    color: rgb(120,198,224);
+    text-align: left;
 }

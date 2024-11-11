@@ -45,7 +45,10 @@
         <button onclick="closeMenu()">Fermer &times;</button>
         <a href="{{ route('ConnexionFournisseur') }}" class="">Se connecter</a>
         <a href="{{ route('Inscription') }}" class="">Inscription</a>
-        @auth <a href="{{ route('Logout') }}">Fermer Session</a> @endauth     
+        @auth 
+            <a href="{{ route('MenuFournisseur') }}">Aller au menu</a> 
+            <a href="{{ route('Logout') }}">Fermer Session</a> 
+        @endauth     
     </div>
 
     @if(session('erreur'))
