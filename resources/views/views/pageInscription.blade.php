@@ -410,7 +410,7 @@
                     <input type="file" id="fichiers" name="fichiers">
 
                     <ul id="listeFichiers"></ul>
-                    <p id="p_bleu"> Il est possible d'ajouter d'autre documents plus tard, en utilisant le menu* (pas encore vrai) </p>
+                    <p id="p_bleu"> Il est possible d'ajouter d'autre documents plus tard, en utilisant le menu</p>
                 </div>
             </div>
 
