@@ -196,7 +196,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <label for="fonction">*Fonction:</label>
+                                <label for="fonction">Fonction:</label>
                                 <input type="text" class="form-control {{ $errors->has('fonction.personne_ressource') ? 'failure' : (old('fonction.personne_ressource') ? 'success' : '') }}" id="fonction" name="fonction[personne_ressource]" value="{{ old('fonction.personne_ressource') }}" >
                             </div>
 

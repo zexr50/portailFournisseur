@@ -26,7 +26,7 @@
         </div>
         @else
         <div class="col-md-6">
-                <button type="button" class="button" id="btAjouterFinance">mes finances (disponible après être accepté</button>
+                <button type="button" class="button" id="btAjouterFinance">mes finances (disponible après être accepté)</button>
         </div>
         @endif
     </div>
