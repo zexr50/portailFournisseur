@@ -62,7 +62,7 @@
 
                                 <div class="col-md-3">
                                     <label for="poste_tel1">Poste:</label>
-                                    <input type="text" class="form-control {{ $errors->has('poste_tel.personne_ressource') ? 'failure' : (old('poste_tel.personne_ressource') ? 'success' : '') }}" id="poste_tel_contact1" name="poste_tel[personne_ressource]" value="{{ old('no_tel.personne_ressource') }}">
+                                    <input type="text" class="form-control {{ $errors->has('poste_tel.personne_ressource') ? 'failure' : (old('poste_tel.personne_ressource') ? 'success' : '') }}" id="poste_tel_contact1" name="poste_tel[personne_ressource]" value="{{ old('poste_tel.personne_ressource') }}">
                                 </div>
                                     
                             </div> 

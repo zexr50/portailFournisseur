@@ -49,7 +49,7 @@ class StoreFormInscription extends FormRequest
 
             'prenom.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
             'nom.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
-            'fonction.personne_ressource' => 'nullable|string|max:32|regex:/^[a-zA-Z0-9]{1,32}$/',
+            'fonction.personne_ressource' => 'nullable|string|max:32',
             'email_contact.personne_ressource' => 'nullable|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
 
             'type_tel.personne_ressource' => 'nullable|string|in:bureau,cellulaire,fax',
