@@ -36,19 +36,13 @@ class InscriptionController extends Controller
 
     public function searchRBQ(Request $request)
     {
-        Log::info('début fonction searchRBQ');
         $searchRBQ = $request->input('search2');
         $limit = $request->input('limit', 10);
-        Log::info($searchRBQ);
-        Log::info($limit);
 
         try {
             $licences = LicencesRBQ::where('sous_categorie','LIKE', "%{$searchRBQ}%")->limit($limit)->get();
-            Log::info($licences);
             $categorie = $licences->groupBy('categorie');
-            Log::info($categorie);
 
-            Log::info('juste avant le retour à la vue partiel');
             return view('partials.licencesRbqListe', compact('categorie'));
 
         } catch (\Exception $e) {
@@ -59,11 +53,8 @@ class InscriptionController extends Controller
 
     public function searchUNSPSC(Request $request)
     {
-        Log::info('début fonction searchRBQ');
         $searchUNSPSC = $request->input('search2');
         $limit = $request->input('limit', 10);
-        Log::info($searchUNSPSC);
-        Log::info($limit);
 
         try {
             $unspsc = CodesUNSPSC::where('code_unspsc','LIKE', "%{$searchUNSPSC}%")
@@ -72,10 +63,8 @@ class InscriptionController extends Controller
             ->orWhere('precision_categorie','LIKE', "%{$searchUNSPSC}%")
             ->limit($limit)
             ->get();
-            Log::info($unspsc);
 
             $categorieCode = $unspsc->groupBy('categorie');
-            Log::info($categorieCode);
 
             // For each category, group by classe_categorie
             foreach ($categorieCode as $categorie => $items) {
@@ -100,12 +89,8 @@ class InscriptionController extends Controller
 
     public function store(StoreFormInscription $request)
     {
-        Log::info('début du procéder de sauvegarde du fournisseur', [
-            'request_data' => $request->all(),
-            'timestamp' => now()->toDateTimeString(),
-        ]);
+        $remember_token = Str::random(10);
         try {
-            \Log::info($request->all());
             $fournisseurData = $request->input('fournisseur');
             Log::info('Fournisseur data extracted', ['data' => $fournisseurData]);
 
@@ -121,7 +106,7 @@ class InscriptionController extends Controller
                 'email' => $fournisseur->email,
                 'NEQ' => $fournisseur->NEQ,
                 'password' => $fournisseur->mdp,
-                'remember_token' => Str::random(10)
+                'remember_token' => $remember_token
             ]);
             Log::info('User created successfully', ['id_fournisseurs' => $fournisseur->id,'name' => $fournisseur->nom_entreprise, 'email' => $fournisseur->email,
              'NEQ' => $fournisseur->NEQ, 'password' => $fournisseur->mdp, 'remember_token' => $user->remember_token]);
@@ -129,7 +114,6 @@ class InscriptionController extends Controller
               \Log::info('before the if for creating phone for the fournisseur');
             // section pour les numéro de téléphone des founisseurs
             if ($request->has('no_tel.fournisseur')) {
-                \Log::info('before the Telephone  create for fournisseur');
                 $cleanPhone = preg_replace('/\D/', '', $request->input('no_tel.fournisseur'));
                 Telephone::create([
                     'no_tel' => $cleanPhone,
@@ -137,14 +121,11 @@ class InscriptionController extends Controller
                     'poste_tel' => $request->input('poste_tel.fournisseur'),
                     'id_fournisseurs' => $fournisseur->id,
                 ]); 
-                \Log::info('after the Telephone  create for fournisseur');
             }
         
 
-            \Log::info('before the if for creating contact and phone for the contacts');
             // section pour ce qui est des contacts/personne ressource.
             if ($request->has('no_tel.personne_ressource')) {
-                \Log::info('before the Telephone create for the contacts');
                 $cleanPhone = preg_replace('/\D/', '', $request->input('no_tel.personne_ressource'));
                 $telephone=Telephone::create([
                     'no_tel' => $cleanPhone,
@@ -152,7 +133,6 @@ class InscriptionController extends Controller
                     'poste_tel' => $request->input('poste_tel.personne_ressource'),
                     'id_fournisseurs' => $fournisseur->id,
                 ]);
-                \Log::info('before the Personne_ressource create');
                 Personne_ressource::create([
                     'id_fournisseurs' => $fournisseur->id,
                     'id_telephone' => $telephone->id,
@@ -164,7 +144,6 @@ class InscriptionController extends Controller
             }
             if ($request->has('licences_rbq')) {
                 $selectedLicences = json_decode($request->input('licences_rbq'), true);
-                \Log::info('before the creation of licenceId');
                 foreach ($selectedLicences as $licenceId) {
                     Fourniseur_licences_rbq_liaison::create([
                         'id_fournisseurs' => $fournisseur->id,
@@ -174,7 +153,6 @@ class InscriptionController extends Controller
             }
             if ($request->has('codeUnspsc')) {
                 $selectedCodes = json_decode($request->input('codeUnspsc'), true);
-                \Log::info('before the creation of licenceId');
                 foreach ($selectedCodes as $code_unspsc) {
                     Fourniseur_code_unspsc_liaison::create([
                         'id_fournisseurs' => $fournisseur->id,
@@ -183,16 +161,12 @@ class InscriptionController extends Controller
                 }
             }
 
-            \Log::info('before creating demande');
             Demande::create([
                 'id_fournisseurs' => $fournisseur->id,
                 'etat_demande' => 'en attente',
             ]);
 
-            \Log::info('avant enregistrement fichier');
             if ($request->has('fichiers') ) {
-                \Log::info('après le if pour fichier');
-
                 $paths = [];
                 $file = $request->file('fichiers');
                 $uniqueId = uniqid();
@@ -200,7 +174,6 @@ class InscriptionController extends Controller
                 $path = $file->storeAs('uploads', $filename, 'public');
                 //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
 
-                \Log::info('avant enregistrement fichier dans bd');
                 Documents::create([
                     'id_fournisseurs' => $fournisseur->id,
                     'cheminDocument' => $path,
@@ -213,7 +186,6 @@ class InscriptionController extends Controller
             } else {
                 \Log::warning('No valid files found');
             }
-            \Log::info('après if enregistrement des fichiers');
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
@@ -392,26 +364,4 @@ class InscriptionController extends Controller
             'Content-Type' => $mimeType,
         ]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function test()
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
 }
