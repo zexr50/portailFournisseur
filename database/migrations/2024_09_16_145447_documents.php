@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id('id_document');
             $table->foreignId('id_fournisseurs');
-            $table->string('nomDocument', 32);//nom du document
-            $table->string('cheminDocument', 64);//emplacement ou il est savegarder
+            $table->string('nomDocument', 64);//nom du document
+            $table->string('cheminDocument', 128);//emplacement ou il est savegarder
             $table->string('extension_document', 10);//nom de l'extention du document
             $table->string('taille_document', 30);
             $table->timestamps();
