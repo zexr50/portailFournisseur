@@ -32,11 +32,13 @@
     </div>
 
     <div class="row" style="text-align:center">
+    <!---->
         <div class="col-md-6">
-            <a href="{{url('/ConnexionFournisseur')}}"> 
+            <a href="{{url('/choixModifierFournisseur')}}">
                 <button type="button" class="button" id="btModifierFiche">Modifier ma fiche</button>
             </a>
         </div>
+    <!---->
         <div class="col-md-6">
             <a href="{{url('/AjouterTelephoneForm')}}"> 
                 <button type="button" class="button" id="btAjouterTelephone">Ajouter un telephone</button>

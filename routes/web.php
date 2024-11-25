@@ -7,6 +7,8 @@ use App\Http\Controllers\GestionConnection;
 use App\Http\Controllers\FicheController;
 use App\Http\Controllers\MenuFournisseurController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ModContactController;
+
 
 
 /*Route::get('/', function () {
@@ -31,6 +33,8 @@ Route::get('/ConnexionFournisseur',
 Route::post('/Login',
  [GestionConnection::class, 'Login'])->name('Login');
 
+
+
 Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'auth:sanctum', \App\Http\Middleware\RoleMiddleware::class.':Fournisseur']], function () {
     Route::get('/Logout', [GestionConnection::class, 'Logout'])->name('Logout');
 
@@ -44,13 +48,22 @@ Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'a
 
     Route::get('/AjouterContacteForm',
     [InscriptionController::class, 'formAddPerson'])->name("AjouterContacteForm");
+
     Route::post('/AjouterContacte',
     [InscriptionController::class, 'addPerson'])->name("AjouterContacte");
+
+
+    Route::get('/ChangerContactForm',
+    [ModContactController::class, 'index'])->name("ChangerContactForm");
+
+    Route::post('/ChangerContact', 
+    [ModContactController::class, 'ChangeContact'])->name("ChangerContact");
 
     Route::post('/AjouterFichier',
     [InscriptionController::class, 'storeFile'])->name("AjouterFichier");
 
-    
+    Route::get('/choixModifierFournisseur',
+    function () {return view('views/pageChoixModifierFournisseur');})->name('choixModifierFournisseur');
 
     //Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
 
@@ -64,6 +77,8 @@ Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'a
 
     Route::get('/Inscription/download/{id_document}',
     [InscriptionController::class, 'download'])->name('Inscription.download');
+
+
     
 
 });
