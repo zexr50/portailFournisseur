@@ -83,8 +83,8 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <label for="no_bureau">*Bureau:</label>
-                                <input type="text" class="form-control {{ $errors->has('fournisseur.no_bureau') ? 'failure' : (old('fournisseur.no_bureau') ? 'success' : '') }}" id="no_bureau" name="fournisseur[no_bureau]" value="{{ old('fournisseur.no_bureau') }}" required>
+                                <label for="no_bureau">Bureau:</label>
+                                <input type="text" class="form-control {{ $errors->has('fournisseur.no_bureau') ? 'failure' : (old('fournisseur.no_bureau') ? 'success' : '') }}" id="no_bureau" name="fournisseur[no_bureau]" value="{{ old('fournisseur.no_bureau') }}">
                             </div>
 
                             <div class="col-lg-12">
