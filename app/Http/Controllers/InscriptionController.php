@@ -189,7 +189,7 @@ class InscriptionController extends Controller
         } 
         catch (\Exception $e) {
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
-            return redirect()->route('Inscription')->with('Erreur dans de formulaire');
+            return redirect()->route('Inscription')->withErrors('Erreur dans de formulaire');
         }
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');
     }
@@ -228,7 +228,7 @@ class InscriptionController extends Controller
             Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
             return redirect()->route('Inscription')->with('Erreur dans de formulaire');
         }
-        return redirect()->route('MenuFournisseur')->with('success', 'Inscription faite!');
+        return redirect()->route('MenuFournisseur')->with('success', 'Document enregistrer!');
     }
 
     public function addPhone(PhoneFormRequest $request)

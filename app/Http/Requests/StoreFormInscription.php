@@ -48,7 +48,7 @@ class StoreFormInscription extends FormRequest
             'email_contact.personne_ressource' => 'nullable|string|max:32|regex:/^[\w\.-]+@[\w\.-]+\.\w{2,}$/',
 
             'type_tel.personne_ressource' => 'nullable|string|in:bureau,cellulaire,fax',
-            'no_tel.personne_ressource' => 'nullable|string|max:15|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
+            'no_tel.personne_ressource' => 'nullable|string|max:20|regex:/^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,3}\)?[-.\s]?)?(\d{3,4}[-.\s]?)?\d{3,4}$/',
             'poste_tel.personne_ressource' => 'nullable|string|max:10|regex:/^[0-9]+$/',
 
             'licences_rbq' => 'nullable|json',
@@ -73,6 +73,7 @@ class StoreFormInscription extends FormRequest
     public function messages()
     {
         return [
+            'fournisseur.NEQ.regex' => 'Notre numéro d\'entreprise du Québec n\'a pas le format valide.',
             'fournisseur.nom_entreprise.required' => 'Vous devez fournir un nom d\'entreprise.',
             'fournisseur.nom_entreprise.regex' => 'Le nom d\'entreprise doit seuleument contenir des lettres, des chiffres ainsi que c\'est caractére-ci : "’‘-.".',
             'fournisseur.email.regex' => 'L\'adresse email doit être valide de format email@email.com.',
