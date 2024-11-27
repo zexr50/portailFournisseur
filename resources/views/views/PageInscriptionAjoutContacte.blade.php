@@ -9,12 +9,9 @@
     @endsection
     @section('content')
 
-    <!-- Add content here!
-         https://tablericons.com/ for icons
-    -->
 
     <script>
-        const limit = 50; // Set your desired limit
+        const limit = 50;
     </script>
 
         <form action="{{ route('AjouterContacte') }}" method="POST" enctype="multipart/form-data" onsubmit="logToConsole()">

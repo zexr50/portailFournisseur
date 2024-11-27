@@ -11,14 +11,12 @@ use Illuminate\Support\Facades\Log;
 class RoleMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Gere une requete
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        //Log::info(Auth::user());
-
         if (Auth::check() && in_array(Auth::user()->role, $roles)) {
             return $next($request);
         }

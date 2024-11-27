@@ -46,11 +46,11 @@ class TestController extends Controller
             foreach ($request->file('file') as $file) {
                 $filename = $fournisseur->id . '-' . time() . '-' . $file->getClientOriginalName(); // e.g., 1-1633023500-filename.ext
 
-                // Store the file with the new filename
-                $path = $file->storeAs('', $filename, 'public'); // Store in the root of the public disk
+                // Store le fichier
+                $path = $file->storeAs('', $filename, 'public'); // Store dans le root dans le disk public
                 //$path = $file->storeAs('', $filename, 'custom2'); // le prendre pour le sauvegarder dans le disque avec le chemin personnalisé
                 $paths[] = $path;
-                $fileSizeInMB = round($file->size / 1048576, 2); // Size in MB
+                $fileSizeInMB = round($file->size / 1048576, 2); // Taille en MB
                 \Log::info('avant enregistrement fichier dans bd');
                 Documents::create([
                     'id_fournisseur' => 1,

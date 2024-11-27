@@ -8,9 +8,6 @@
     @endsection
     @section('content')
 
-    <!-- Add content here!
-         https://tablericons.com/ for icons
-    -->
 
     
 

@@ -19,7 +19,7 @@ use App\Models\Region_administrative;
 class FicheController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Liste les ressources 
      */
     public function index()
     {
@@ -29,20 +29,10 @@ class FicheController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Cherche une source specifique
      */
     public function show(string $id)
     {
-        //$id_fournisseur = Auth::user()->id;
-
-        /*
-        $fournisseur = Fournisseur::where('id_fournisseurs', $id)->first();
-        Log::info($fournisseur);
-
-        if (!$fournisseur) {
-            abort(404); // Handle the case when the supplier is not found
-        }*/
-
         $fournisseur = Fournisseur::with('region')->where('id_fournisseurs', $id)->first();
         Log::info($fournisseur);
 
@@ -52,21 +42,5 @@ class FicheController extends Controller
 
         return view('views.pageVoirFiche', compact('fournisseur'));
         
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 }

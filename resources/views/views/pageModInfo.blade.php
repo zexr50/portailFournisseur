@@ -9,23 +9,6 @@
     @endsection
     @section('content')
 
-    <!--
-    @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-    -->
-
-    <!--The "Fournisseur" should not be abel to change everything. we need to use a different request system so that he can't change to code in inspect to change what he shouldn't be allowed
-        The request change needs to also be there for contact.
-        When the user changes important information they have to be notified that they will be sent to re evaluate
-    -->
-
-
-
     <form action="{{ route('ChangeInfo', ['id' => request('id')]) }}" method="POST" enctype="multipart/form-data" onsubmit="logToConsole()">
     @csrf
     <div class="container-xxl">

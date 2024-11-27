@@ -32,13 +32,11 @@
     </div>
 
     <div class="row" style="text-align:center">
-    <!---->
         <div class="col-md-6">
             <a href="{{url('/choixModifierFournisseur')}}">
                 <button type="button" class="button" id="btModifierFiche">Modifier ma fiche</button>
             </a>
         </div>
-    <!---->
         <div class="col-md-6">
             <a href="{{url('/AjouterTelephoneForm')}}"> 
                 <button type="button" class="button" id="btAjouterTelephone">Ajouter un telephone</button>
@@ -81,14 +79,12 @@
             const fileInput = document.getElementById('fichiers');
             const fileList = document.getElementById('listeFichiers');
 
-            // Function to format file size
             function formatFileSize(size) {
                 if (size < 1024) return size + ' bytes';
                 else if (size < 1024 * 1024) return (size / 1024).toFixed(2) + ' KB';
                 else return (size / (1024 * 1024)).toFixed(2) + ' MB';
             }
 
-            // Update the file list when files are selected
             fileInput.addEventListener('change', function() {
                 let totalSize = 0;
 
@@ -101,11 +97,10 @@
                     fileList.appendChild(li);
                 });
 
-                // Check total size limit
-                if (totalSize > 70 * 1024 * 1024) { // 70 MB
+                if (totalSize > 70 * 1024 * 1024) {
                     alert('La taille total des fichiers est trop grande.');
-                    fileInput.value = ''; // Clear input if limit is exceeded
-                    fileList.innerHTML = ''; // Clear the file list
+                    fileInput.value = '';
+                    fileList.innerHTML = '';
                 }
             });
         </script>

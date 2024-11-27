@@ -10,9 +10,6 @@ use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::table('users')->insert([
@@ -32,9 +29,3 @@ class UserSeeder extends Seeder
         ]);
     }
 }
-
-//Need to chose how each role will be written
-//admin
-//responsable
-//commis 
-//fournisseur

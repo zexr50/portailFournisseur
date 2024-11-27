@@ -28,17 +28,14 @@
         const fileInput = document.getElementById('fileInput');
         const fileList = document.getElementById('fileList');
 
-        // Function to format file size
         function formatFileSize(size) {
             if (size < 1024) return size + ' bytes';
             else if (size < 1024 * 1024) return (size / 1024).toFixed(2) + ' KB';
             else return (size / (1024 * 1024)).toFixed(2) + ' MB';
         }
 
-        // Update the file list when files are selected
         fileInput.addEventListener('change', function() {
             let totalSize = 0;
-            //fileList.innerHTML = ''; // Clear the list for a fresh start
 
             Array.from(fileInput.files).forEach(file => {
                 totalSize += file.size;
@@ -48,11 +45,10 @@
                 fileList.appendChild(li);
             });
 
-            // Check total size limit
-            if (totalSize > 70 * 1024 * 1024) { // 70 MB
+            if (totalSize > 70 * 1024 * 1024) {
                 alert('Total file size exceeds 70 MB. Please select smaller files.');
-                fileInput.value = ''; // Clear input if limit is exceeded
-                fileList.innerHTML = ''; // Clear the file list
+                fileInput.value = '';
+                fileList.innerHTML = '';
             }
         });
     </script>

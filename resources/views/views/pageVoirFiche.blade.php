@@ -8,10 +8,6 @@
     @endsection
     @section('content')
 
-    <!-- Add content here!
-         https://tablericons.com/ for icons
-    -->
-
     <div class="container-xxl">
         <div class="container-xxl" id="containerWithBorder">
             <h1>Information</h1>

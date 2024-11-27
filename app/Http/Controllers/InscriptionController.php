@@ -66,7 +66,7 @@ class InscriptionController extends Controller
 
             $categorieCode = $unspsc->groupBy('categorie');
 
-            // For each category, group by classe_categorie
+            // Groupe par categorie
             foreach ($categorieCode as $categorie => $items) {
                 $categorieCode[$categorie] = $items->groupBy('classe_categorie');
             }
@@ -324,7 +324,7 @@ class InscriptionController extends Controller
         $categorieCode = $codes->groupBy('categorie');
         Log::info($categorieCode);
 
-        // For each category, group by classe_categorie
+        // Groupe par categorie
         foreach ($categorieCode as $categorie => $items) {
             $categorieCode[$categorie] = $items->groupBy('classe_categorie');
         }
@@ -348,17 +348,15 @@ class InscriptionController extends Controller
         $filePath = $fichier->cheminDocument;
         $fileName = $fichier->nomDocument;
     
-        // Check if the file exists before proceeding
+        // Verifier si le fichier existe avant de chercher
         if (!Storage::disk('public')->exists($filePath)) {
             \Log::error("File not found: $filePath");
             abort(404, 'File not found');
         }
     
-        // Get the file size and MIME type
         $fileSize = Storage::disk('public')->size($filePath);
         $mimeType = Storage::disk('public')->mimeType($filePath);
     
-        // Return the download response with custom headers
         return response()->download(storage_path("app/public/$filePath"), $fileName, [
             'Content-Length' => $fileSize,
             'Content-Type' => $mimeType,

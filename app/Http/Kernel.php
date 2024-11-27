@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
-     * The application's route middleware groups.
      *
      * @var array
      */
@@ -31,7 +30,6 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's global middleware stack.
      *
      * @var array
      */
@@ -44,7 +42,6 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware.
      *
      * @var array
      */

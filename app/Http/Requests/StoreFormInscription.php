@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class StoreFormInscription extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
@@ -34,13 +31,11 @@ class StoreFormInscription extends FormRequest
 
             'fournisseur.rue' => 'required|string|max:64',
             'fournisseur.no_bureau' => 'nullable|string|max:16|regex:/^[0-9]{1,16}$/',
-            //'fournisseur.ville' => 'required|string|max:64|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-]+)*$/',
             'fournisseur.ville' => 'required|string|max:64',
             'fournisseur.province' => 'required|string|in:Quebec,Alberta,Colombie-Britannique,Ile-du-Prince-Édouard,Manitoba,Nouveau-Brunswick,Nouvelle-Ecosse,Ontario,Saskatchewan,Terre-Neuve-et-Labrador,Territoires du Nord-Ouest,Nunavut,Yukon', 
             'fournisseur.no_region_admin' => 'required|string|in:00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17',
             'fournisseur.code_postal' => 'required|string|max:8|regex:/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i',
             'fournisseur.site_internet' => 'nullable|string|max:64|regex:/^(https?:\/\/)?(www\.)?([a-zA-Z0-9\-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$/',
-            //'fournisseur.commentaire' => 'nullable|string|max:500|regex:/^[a-zA-ZÀ-ÿ0-9\s’‘-]+(?:\s[a-zA-ZÀ-ÿ0-9\s’‘-]+)*$/',
             'fournisseur.commentaire' => 'nullable|string|max:500',
 
             'type_tel.fournisseur' => 'nullable|string|in:bureau,cellulaire,fax',
@@ -67,21 +62,17 @@ class StoreFormInscription extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        // Log the request data
-        
         Log::error('Validation failed', [
             'errors' => $validator->errors(),
             'request_data' => $this->all(),
         ]);
 
-        // Throw the validation exception
         throw new ValidationException($validator);
     }
 
     public function messages()
     {
         return [
-            //a faire un peu plus, mais cela va prendre du temps.
             'fournisseur.nom_entreprise.required' => 'Vous devez fournir un nom d\'entreprise.',
             'fournisseur.nom_entreprise.regex' => 'Le nom d\'entreprise doit seuleument contenir des lettres, des chiffres ainsi que c\'est caractére-ci : "’‘-.".',
             'fournisseur.email.regex' => 'L\'adresse email doit être valide de format email@email.com.',

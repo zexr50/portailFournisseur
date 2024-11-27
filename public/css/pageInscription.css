@@ -9,8 +9,8 @@ form{
 
 [role="navigation"] {
     display: flex; 
-    justify-content: center; /* Center the pagination */
-    margin: 20px 0; /* Adjust margin */
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .flex{ 

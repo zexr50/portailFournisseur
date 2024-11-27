@@ -3,7 +3,6 @@
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/pageAccueil.css') }}">
     @show
-    <!-- Needs to be adapted for bigger and smaller screens !-->
     
     @section('content')
     <h1>Votre Portail Fournisseur</h1>

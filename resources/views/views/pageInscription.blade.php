@@ -9,13 +9,9 @@
     @endsection
     @section('content')
 
-    <!-- Add content here!
-         https://tablericons.com/ for icons
-         https://www.coinduwebmaster.com/infobulles-tooltips-dynamiques/144/
-    -->
 
     <script>
-        const limit = 50; // Set your desired limit
+        const limit = 50;
     </script>
 
         <form action="{{ route('Inscription.store') }}" method="POST" enctype="multipart/form-data" id="uploadForm" onsubmit="logToConsole()">
@@ -171,11 +167,6 @@
                             </div> 
                             <p id="p_bleu"> Il est possible d'ajouter un numéro de téléphone plus tard, en utilisant le menu </p>
                         </div>
-                        <!--
-                        <div id="bt-center">
-                            <button type="button" onclick="addPhoneNumber()" class="button" id="btAddTelephone">Ajouter un téléphone</button>
-                        </div>
-                        -->
                             
                     </div> 
 
@@ -231,12 +222,6 @@
                         </div>
                         <p id="p_bleu"> Il est possible d'ajouter une autre personne contacte plus tard, en utilisant le menu </p>
                     </div>
-
-                    <!--
-                    <div id="bt-center">
-                    <button type="button" onclick="addContactPerson()" class="button" id="btAddContact">Ajouter une personne contact</button>
-                    </div>
-                    -->
                     
                 </div>
             
@@ -248,7 +233,7 @@
                             <button type="button" class="button" id="searchButtonRBQ">Rechercher</button>
                             <div id="listeRBQ">
                                 @foreach($categorie as $section => $licences_rbqs)
-                                    <h3>{{ $section }}</h3> <!-- Display the section title -->
+                                    <h3>{{ $section }}</h3>
                                     <ul>
                                         @foreach($licences_rbqs as $licences_rbq)
                                             <li class="licence-item" id="hoverable" data-id="{{ $licences_rbq->id_licence_rbq }}">
@@ -282,8 +267,6 @@
                                     limit: limit,
                                 },
                                 success: function(data) {
-                                    //console.log(data);
-                                    //console.log(searchField2);
                                     $('#listeRBQ').html(data);
                                 }
                                 
@@ -293,17 +276,14 @@
                         document.addEventListener('DOMContentLoaded', function () {
                             const selectedLicencesList = document.getElementById('selectedLicencesList');
 
-                            // Event delegation for adding/removing licences
                             document.getElementById('listeRBQ').addEventListener('click', function (e) {
                                 if (e.target.classList.contains('licence-item')) {
                                     const licenceId = e.target.getAttribute('data-id');
 
-                                    // Check if the item is already selected
                                     const alreadySelected = Array.from(selectedLicencesList.children)
                                         .some(item => item.getAttribute('data-id') === licenceId);
 
                                     if (!alreadySelected) {
-                                        // Add to selected list
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', licenceId);
                                         newItem.setAttribute('id', 'hoverable');
@@ -315,7 +295,6 @@
                             });
                             selectedLicencesList.addEventListener('click', function (e) {
                                 if (e.target.classList.contains('selected-item')) {
-                                    // Remove the clicked item from the selected list
                                     selectedLicencesList.removeChild(e.target);
                                 }
                             });
@@ -355,8 +334,6 @@
                                     limit: limit,
                                 },
                                 success: function(data) {
-                                    //console.log(data);
-                                    //console.log(searchField);
                                     $('#listeCodes').html(data);
                                 }
                                 
@@ -366,17 +343,14 @@
                         document.addEventListener('DOMContentLoaded', function () {
                             const selectedCodeList = document.getElementById('selectedCodeList');
 
-                            // Event delegation for adding/removing licences
                             document.getElementById('listeCodes').addEventListener('click', function (e) {
                                 if (e.target.classList.contains('licence-item')) {
                                     const Codes = e.target.getAttribute('data-id');
 
-                                    // Check if the item is already selected
                                     const alreadySelected = Array.from(selectedCodeList.children)
                                         .some(item => item.getAttribute('data-id') === Codes);
 
                                     if (!alreadySelected) {
-                                        // Add to selected list
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', Codes);
                                         newItem.setAttribute('id', 'hoverable');
@@ -388,7 +362,6 @@
                             });
                             selectedCodeList.addEventListener('click', function (e) {
                                 if (e.target.classList.contains('selected-item')) {
-                                    // Remove the clicked item from the selected list
                                     selectedCodeList.removeChild(e.target);
                                 }
                             });
@@ -425,14 +398,12 @@
             const fileInput = document.getElementById('fichiers');
             const fileList = document.getElementById('listeFichiers');
 
-            // Function to format file size
             function formatFileSize(size) {
                 if (size < 1024) return size + ' bytes';
                 else if (size < 1024 * 1024) return (size / 1024).toFixed(2) + ' KB';
                 else return (size / (1024 * 1024)).toFixed(2) + ' MB';
             }
 
-            // Update the file list when files are selected
             fileInput.addEventListener('change', function() {
                 let totalSize = 0;
 
@@ -445,11 +416,10 @@
                     fileList.appendChild(li);
                 });
 
-                // Check total size limit
-                if (totalSize > 70 * 1024 * 1024) { // 70 MB
+                if (totalSize > 70 * 1024 * 1024) {
                     alert('La taille total des fichiers est trop grande.');
-                    fileInput.value = ''; // Clear input if limit is exceeded
-                    fileList.innerHTML = ''; // Clear the file list
+                    fileInput.value = '';
+                    fileList.innerHTML = '';
                 }
             });
         </script>
@@ -473,14 +443,13 @@
             }
 
             document.getElementById('uploadForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent actual submission for testing
+            event.preventDefault();
 
             const formData = new FormData(this);
             formData.forEach((value, key) => {
-                console.log(key, value); // Check if files are listed here
+                console.log(key, value);
             });
 
-            // Uncomment this line to allow form submission after verification
             this.submit();
         });
         </script>
