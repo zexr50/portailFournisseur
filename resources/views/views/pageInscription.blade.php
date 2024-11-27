@@ -324,7 +324,7 @@
                         </div>
                             
                         <div class="col-md-3">
-                            <h3> liste des catégorie UNSPSC sélectionner </h3>
+                            <h3> Liste des catégories UNSPSC sélectionnées </h3>
                             <ul id="selectedCodeList"> </ul>
                             
                         </div>
@@ -384,9 +384,9 @@
 
 
                 <div class="container-xxl sub-bx">
-                    <h1>commentaires</h1>
+                    <h1>Commentaires</h1>
 
-                    <label for="commentaire">commentaires et informations importantes :</label><br>
+                    <label for="commentaire">Commentaires et informations importantes :</label><br>
                     <textarea id="commentaire" name="fournisseur[commentaire]" rows="5" cols="100" placeholder="Commentaire..." style="resize: vertical;"></textarea><br>
 
                     <h1>Document</h1>
