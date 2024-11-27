@@ -8,6 +8,7 @@ use App\Http\Controllers\FicheController;
 use App\Http\Controllers\MenuFournisseurController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ModContactController;
+use App\Http\Controllers\ModInfoController;
 
 
 Route::get('/',
@@ -51,6 +52,12 @@ Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'a
 
     Route::get('/choixModifierFournisseur',
     function () {return view('views/pageChoixModifierFournisseur');})->name('choixModifierFournisseur');
+
+    Route::get('/ChangeInfoPage', 
+    [ModInfoController::class, 'index'])->name('ChangeInfoPage');
+    
+    Route::post('/ChangeInfo', 
+    [ModInfoController::class, 'ChangeInfo'])->name("ChangeInfo");
 
     Route::get('/MenuFournisseur',
     [MenuFournisseurController::class, 'index'])->name("MenuFournisseur");

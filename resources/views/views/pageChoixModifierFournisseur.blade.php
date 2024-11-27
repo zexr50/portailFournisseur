@@ -22,7 +22,7 @@
 
     <div class="row" style="text-align:center">
         <div class="col-md-6">
-            <a href="{{url('')}}">
+            <a href="{{url('ChangeInfoPage')}}">
                 <button type="button" class="button" id="btModifierFiche">Modifier fiche</button>
             </a>
 
