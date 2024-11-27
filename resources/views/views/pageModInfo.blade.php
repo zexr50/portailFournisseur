@@ -12,25 +12,7 @@
     <form action="{{ route('ChangeInfo', ['id' => request('id')]) }}" method="POST" enctype="multipart/form-data" onsubmit="logToConsole()">
     @csrf
     <div class="container-xxl">
-        <div class="container-xxl" id="containerWithBorder">
-            <h1>Information</h1>
-
-            <div class="edit-info">
-                <p id="text-NEQ" data-field="NEQ">Numéro d'entreprise du Québec: {{ $fournisseur->NEQ }}</p>
-                <img src="{{ asset('img/edit.svg') }}" width="25" height="25" alt="Logo Edit" class="edit-icon" data-field="NEQ" onclick="makeEditable(this)">
-            </div>
-
-            <div class="edit-info">
-                <p id="text-nom_entreprise" data-field="nom_entreprise">Nom de l'entreprise: {{ $fournisseur->nom_entreprise }}</p>
-                <img src="{{ asset('img/edit.svg') }}" width="25" height="25" alt="Logo Edit" class="edit-icon" data-field="nom_entreprise" onclick="makeEditable(this)">
-            </div>
-
-            <div class="edit-info">
-                <p id="text-email" data-field="email">Adresse courriel: {{ $fournisseur->email }}</p>
-                <img src="{{ asset('img/edit.svg') }}" width="25" height="25" alt="Logo Edit" class="edit-icon" data-field="email" onclick="makeEditable(this)">
-            </div>
-        </div>
-
+        
         <div class="container-xxl">
             <h1>Coordonnées</h1>
             <div class="container-xxl" id="containerWithBorder">

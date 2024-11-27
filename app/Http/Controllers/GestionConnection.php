@@ -15,7 +15,7 @@ class GestionConnection extends Controller
     public function login(LoginUserRequest $request)
     {
 
-        Log::info('Login attempt', $request->all());
+        //Log::info('Login attempt', $request->all());
         $credentials = $request->only('email', 'NEQ', 'password');
         
         

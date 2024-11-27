@@ -29,9 +29,6 @@ class UpdateSingleFieldRequest extends FormRequest
         $type = $this->input('TypeInfo');
 
         $fieldRules = [
-            'NEQ' => 'nullable|string|max:15|regex:/^([1238])\1[456789]\d{7}$/',
-            'nom_entreprise' => 'required|string|max:64',
-            'email' => 'nullable|string|max:64|regex:/\b(?:https?:\/\/)?[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+([\/?#][^\s]*)?/',
             'mdp' => 'required|string|max:15|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
             'mdp_confirmation' => 'required|string|max:15|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
             'no_rue' => 'required|string|max:8|regex:/^[0-9]{1,8}$/',

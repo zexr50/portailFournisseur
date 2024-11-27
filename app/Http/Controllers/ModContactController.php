@@ -17,7 +17,7 @@ class ModContactController extends Controller
     public function index()
     {
         $id_fournisseur =  Auth::user()->id_fournisseurs;
-        Log::info($id_fournisseur);
+        //Log::info($id_fournisseur);
         $fournisseur = Fournisseur::with([
             'region',
             'telephones',
@@ -44,13 +44,15 @@ class ModContactController extends Controller
         $id_fournisseurs =  Auth::user()->id_fournisseurs;
         $contactId = $request->input('contact_id');
 
-        Log::info('Change Info request received', [
-            'TypeInfo' => $TypeInfo,
-            'Info' => $Info,
-            'id' => $id_fournisseurs,
-            "ContactId" => $contactId,
-        ]);
-
+        /*
+            Log::info('Change Info request received', [
+                'TypeInfo' => $TypeInfo,
+                'Info' => $Info,
+                'id' => $id_fournisseurs,
+                "ContactId" => $contactId,
+            ]);
+        */
+        
         if (!$id_fournisseurs) {
             Log::error('Fournisseur ID missing from request');
             return redirect()->back()->with(['erreur' => 'Fournisseur ID is required.']);

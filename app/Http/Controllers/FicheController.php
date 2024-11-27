@@ -34,7 +34,7 @@ class FicheController extends Controller
     public function show(string $id)
     {
         $fournisseur = Fournisseur::with('region')->where('id_fournisseurs', $id)->first();
-        Log::info($fournisseur);
+        //Log::info($fournisseur);
 
         if (!$fournisseur) {
             abort(404); // Handle the case when the supplier is not found
