@@ -89,6 +89,7 @@ class InscriptionController extends Controller
 
     public function store(StoreFormInscription $request)
     {
+        DB::beginTransaction();
         $remember_token = Str::random(10);
         try {
             $fournisseurData = $request->input('fournisseur');
@@ -186,9 +187,11 @@ class InscriptionController extends Controller
             } else {
                 \Log::warning('No valid files found');
             }
+
+            DB::commit();
         } 
         catch (\Exception $e) {
-            Log::error('Erreur dans la fonction store du controller d\'inscription ' . $e->getMessage());
+            DB::rollBack();
             return redirect()->route('Inscription')->withErrors('Erreur dans de formulaire');
         }
         return redirect()->route('Accueil')->with('success', 'Inscription faite!');

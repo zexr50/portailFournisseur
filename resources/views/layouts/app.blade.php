@@ -43,8 +43,10 @@
 
     <div class="" style="display:none;right:0;" id="Menu">
         <button onclick="closeMenu()">Fermer &times;</button>
-        <a href="{{ route('ConnexionFournisseur') }}" class="">Se connecter</a>
-        <a href="{{ route('Inscription') }}" class="">Inscription</a>
+        @guest
+            <a href="{{ route('ConnexionFournisseur') }}" class="">Se connecter</a>
+            <a href="{{ route('Inscription') }}" class="">Inscription</a>
+        @endguest
         @auth 
             <a href="{{ route('MenuFournisseur') }}">Aller au menu</a> 
             <a href="{{ route('Logout') }}">Fermer Session</a> 
