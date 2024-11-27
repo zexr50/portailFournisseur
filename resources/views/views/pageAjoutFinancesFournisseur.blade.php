@@ -23,9 +23,15 @@
     <div class="container-xxl">
                         <label for="condition_paiement">Conditions de paiement</label>
                         <select id="condition_paiement" name="condition_paiement" class="form-select" required>
-                            <option value="Option1">Option1</option>
-                            <option value="Option2">Option2</option>
-                            <option value="Option3">Option3</option>
+                            <option value="Payable immédiatemnt sans déduction">Payable immédiatemnt sans déduction</option>
+                            <option value="Payable immédiatemnt sans déduction, date de base au 15 du mois suivant">Payable immédiatemnt sans déduction, date de base au 15 au mois suivant</option>
+                            <option value="Dans les 15 jours 2% escompte, dans les 30 jours suivant déduction">Dans les 15 jours 2% escompte, dans les 30 jours suivant déduction</option>
+                            <option value="Après entrée facture jusqu'au 15 du mois, jusqu'au 15 du mois suivant 2% escompte">Après entrée facture jusqu'au 15 du mois, jusqu'au 15 du mois suivant 2% escompte</option>
+                            <option value="Dans les 10 jours 2% escompte, dans les 30 jours sans déduction">Dans les 10 jours 2% escompte, dans les 30 jours sans déduction</option>
+                            <option value="Dans les 15 jours sans déduction">Dans les 15 jours sans déduction</option>
+                            <option value="Dans les 30 jours sans déduction">Dans les 30 jours sans déduction</option>
+                            <option value="Dans les 45 jours sans déduction">Dans les 45 jours sans déduction</option>
+                            <option value="Dans les 60 jours sans déduction">Dans les 60 jours sans déduction</option>
                         </select>
     </div>
 

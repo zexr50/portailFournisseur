@@ -22,7 +22,7 @@
     <header>
         @if (!isset($showNavbar) || $showNavbar)
         <nav class="navbar  fixed-top navbar-light">
-            <a class="navbar-brand" href="{{ route('Accueil') }}">
+            <a class="navbar-brand" href="{{ auth()->check() ? route('MenuFournisseur') : route('Accueil') }}">
                 <p id="brandName">fournisseur.v3r.net</p>
             </a>
             <div id="navbarNav">

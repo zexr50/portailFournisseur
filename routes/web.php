@@ -10,20 +10,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ModContactController;
 
 
-
-/*Route::get('/', function () {
-    return view('welcome');
-});
-*/
-
-Route::get('/dmp',
- function () {return view('views/dmp');})->name("dmp"); //dump page
-
 Route::get('/',
  function () {return view('views/pageAccueil');})->name("Accueil");
-
-Route::get('/PageInscriptionsLicences',
- function () {return view('views/pageInscriptionsLicences');})->name("InscriptionLicences");
 
 Route::get('/ConnexionFournisseur',
  function () {return view('views/pageConnexionFournisseur');})->name("ConnexionFournisseur");
@@ -32,7 +20,6 @@ Route::get('/ConnexionFournisseur',
  Route::get('/login',function () {return view('views/pageConnexionEmployer');})->name("ConnexionEmployerUhOh"); //don`t touch the tape
 Route::post('/Login',
  [GestionConnection::class, 'Login'])->name('Login');
-
 
 
 Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'auth:sanctum', \App\Http\Middleware\RoleMiddleware::class.':Fournisseur']], function () {
@@ -65,27 +52,21 @@ Route::group(['middleware' => [\App\Http\Middleware\PreventBackHistory::class,'a
     Route::get('/choixModifierFournisseur',
     function () {return view('views/pageChoixModifierFournisseur');})->name('choixModifierFournisseur');
 
-    //Route::get('/MenuFournisseur', function () {return view('views/pageMenuFournisseur');})->name("MenuFournisseur");
-
     Route::get('/MenuFournisseur',
     [MenuFournisseurController::class, 'index'])->name("MenuFournisseur");
 
     Route::get('/AjoutFinances',
     [FinanceController::class, 'index'])->name("AjoutFinances");
+
     Route::post('/AjoutFinances',
     [FinanceController::class, 'store'])->name('Finance.store');
 
     Route::get('/Inscription/download/{id_document}',
     [InscriptionController::class, 'download'])->name('Inscription.download');
-
-
-    
-
 });
 
 
-// début section pour les routes inscriptions
-
+// début section pour les routes inscriptions, elle doivent rester hors de la section connecter.
 Route::get('/Inscription',
 [InscriptionController::class, 'index'])->name('Inscription');
 
@@ -100,11 +81,10 @@ Route::get('/Inscription/searchLicencesRBQ',
 
 Route::get('/Inscription/searchCodeUNSPSC', 
 [InscriptionController::class, 'searchUNSPSC'])->name('inscriptions.search_unspsc');
-
 // fin section pour les routes inscriptions
 
-//début route tests
 
+//début route tests
 Route::get('/test/index',
 [TestController::class, 'index'])->name('test.index');
 
