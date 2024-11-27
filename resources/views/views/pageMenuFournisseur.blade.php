@@ -18,7 +18,7 @@
                 <button type="button" class="button" id="btMaFiche">Ma fiche</button>
             </a>
         </div>
-        @if($demandefournisseur->etat_demande == "actif")
+        @if($demandefournisseur->etat_demande == "Actif" || $demandefournisseur->etat_demande == "actif")
         <div class="col-md-6">
             <a href="{{url('/AjoutFinances')}}"> 
                 <button type="button" class="button" id="btAjouterFinance">Ajouter ou voir mes finances</button>
