@@ -377,7 +377,7 @@
                     <h1>commentaires</h1>
 
                     <label for="commentaire">commentaires et informations importantes :</label><br>
-                    <textarea id="commentaire" name="fournisseur[commentaire]" rows="5" cols="100" placeholder="Write your comment here..." style="resize: vertical;"></textarea><br>
+                    <textarea id="commentaire" name="fournisseur[commentaire]" rows="5" cols="100" placeholder="Commentaire..." style="resize: vertical;"></textarea><br>
 
                     <h1>Document</h1>
                     <input type="file" id="fichiers" name="fichiers">

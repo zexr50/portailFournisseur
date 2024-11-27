@@ -16,9 +16,9 @@
         </div>
 
         <div id="slideShowText">
-            <h3 class="text" style="opacity: 1;">Hello this is a test</h3>
-            <h3 class="text" style="opacity: 0;">Hello this is working</h3>
-            <h3 class="text" style="opacity: 0;">Lets a go itsa me mario</h3>
+            <h3 class="text" style="opacity: 1;">Image 1</h3>
+            <h3 class="text" style="opacity: 0;">Image 2</h3>
+            <h3 class="text" style="opacity: 0;">Image 3</h3>
         </div>
 
         <button type="button" class="button" id="buttonRight" onclick="showNextSlide()">></button>
