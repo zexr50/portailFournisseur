@@ -22,7 +22,7 @@ class StoreFormInscription extends FormRequest
     public function rules(): array
     {
         return [
-            'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1\d{8}$/',
+            'fournisseur.NEQ' => 'nullable|string|max:15|regex:/^([1238])\1\d{8}$/|unique:users,NEQ',
             'fournisseur.nom_entreprise' => 'required|string|max:64',
             'fournisseur.email' => 'required|string|max:64|regex:/^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/',
             'fournisseur.mdp' => 'required|string|max:15|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/',
@@ -73,7 +73,8 @@ class StoreFormInscription extends FormRequest
     public function messages()
     {
         return [
-            'fournisseur.NEQ.regex' => 'Notre numéro d\'entreprise du Québec n\'a pas le format valide.',
+            'fournisseur.NEQ.regex' => 'Votre numéro d\'entreprise du Québec n\'a pas le format valide.',
+            'fournisseur.NEQ.unique' => 'Votre numéro d\'entreprise du Québec à déjà été enregistrer, vérifier que c\'est bel et bien le bon NEQ.',
             'fournisseur.nom_entreprise.required' => 'Vous devez fournir un nom d\'entreprise.',
             'fournisseur.nom_entreprise.regex' => 'Le nom d\'entreprise doit seuleument contenir des lettres, des chiffres ainsi que c\'est caractére-ci : "’‘-.".',
             'fournisseur.email.regex' => 'L\'adresse email doit être valide de format email@email.com.',
