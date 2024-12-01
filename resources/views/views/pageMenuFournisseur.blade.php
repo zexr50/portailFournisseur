@@ -51,9 +51,7 @@
             </a>
         </div>
         <div class="col-md-6">
-            <a href="{{url('/ConnexionFournisseur')}}"> 
-                <button type="button" class="button" id="btSupprimerFiche">Supprimer ma fiche</button>
-            </a>
+            <button type="button" class="button" id="btSupprimerFiche">Supprimer ma fiche (pas disponible)</button>
         </div>
     </div>
 
