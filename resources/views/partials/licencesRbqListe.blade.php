@@ -3,7 +3,7 @@
     <ul>
         @foreach($licences_rbqs as $licences_rbq)
             <li class="licence-item" id="hoverable" data-id="{{ $licences_rbq->id_licence_rbq }}">
-                {{ $licences_rbq->sous_categorie }}
+              + {{ $licences_rbq->sous_categorie }}
             </li>
         @endforeach
     </ul>

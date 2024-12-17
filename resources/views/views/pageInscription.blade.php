@@ -247,7 +247,7 @@
                                     <ul>
                                         @foreach($licences_rbqs as $licences_rbq)
                                             <li class="licence-item" id="hoverable" data-id="{{ $licences_rbq->id_licence_rbq }}">
-                                                {{ $licences_rbq->sous_categorie }}
+                                                + {{ $licences_rbq->sous_categorie }}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -290,6 +290,7 @@
                                 if (e.target.classList.contains('licence-item')) {
                                     const licenceId = e.target.getAttribute('data-id');
 
+                                    // Check if item already exists in the second list
                                     const alreadySelected = Array.from(selectedLicencesList.children)
                                         .some(item => item.getAttribute('data-id') === licenceId);
 
@@ -297,12 +298,18 @@
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', licenceId);
                                         newItem.setAttribute('id', 'hoverable');
-                                        newItem.textContent = e.target.textContent;
+
+                                        // Clean the "+" symbol and add "-" dynamically
+                                        const originalText = e.target.textContent.trim();
+                                        const cleanedText = originalText.replace(/^\+\s*/, ''); // Remove leading "+ "
+                                        newItem.textContent = '- ' + cleanedText;
+
                                         newItem.classList.add('selected-item');
                                         selectedLicencesList.appendChild(newItem);
                                     }
                                 }
                             });
+
                             selectedLicencesList.addEventListener('click', function (e) {
                                 if (e.target.classList.contains('selected-item')) {
                                     selectedLicencesList.removeChild(e.target);
@@ -319,14 +326,14 @@
                             <input type="text" id="searchFieldCode" placeholder="recherche de catégorie de licences rbq">
                             <button type="button" class="button" id="searchButtonCode">Rechercher</button>
                             <div id="listeCodes">
-
+                                <p> faite une recherche pour voir les services possible </p>
                             </div>
                         </div>
                             
                         <div class="col-md-3">
                             <h3> Liste des catégories UNSPSC sélectionnées </h3>
                             <ul id="selectedCodeList"> </ul>
-                            
+                                
                         </div>
                     </div>
 
@@ -360,6 +367,7 @@
                                     const alreadySelected = Array.from(selectedCodeList.children)
                                         .some(item => item.getAttribute('data-id') === Codes);
 
+                                    /*
                                     if (!alreadySelected) {
                                         const newItem = document.createElement('li');
                                         newItem.setAttribute('data-id', Codes);
@@ -368,6 +376,20 @@
                                         newItem.classList.add('selected-item');
                                         selectedCodeList.appendChild(newItem);
                                     } 
+                                    */
+                                    if (!alreadySelected) {
+                                        const newItem = document.createElement('li');
+                                        newItem.setAttribute('data-id', Codes);
+                                        newItem.setAttribute('id', 'hoverable');
+
+                                        // Clean the "+" symbol and add "-" dynamically
+                                        const originalText = e.target.textContent.trim();
+                                        const cleanedText = originalText.replace(/^\+\s*/, ''); // Remove leading "+ "
+                                        newItem.textContent = '- ' + cleanedText;
+
+                                        newItem.classList.add('selected-item');
+                                        selectedCodeList.appendChild(newItem);
+                                    }
                                 }
                             });
                             selectedCodeList.addEventListener('click', function (e) {

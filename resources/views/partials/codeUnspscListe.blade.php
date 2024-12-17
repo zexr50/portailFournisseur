@@ -5,7 +5,7 @@
         <ul>
             @foreach($codeUnspscs as $codeUnspsc)
                 <li class="licence-item" id="hoverable" data-id="{{ $codeUnspsc->id_code_unspsc }}">
-                    {{ $codeUnspsc->precision_categorie }}
+                    + {{ $codeUnspsc->precision_categorie }}
                 </li>
             @endforeach
         </ul>

@@ -68,6 +68,12 @@ h3{
     justify-content: center;
 }
 
+.symbol {
+    font-weight: bold;
+    color: #2c3e50; /* Adjust color as needed */
+    margin-right: 5px;
+}
+
 .button
 { 
     border-style: solid;
