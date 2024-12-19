@@ -1,11 +1,10 @@
 body {
-    background-color:rgb(0,118,213); 
+    background-color: #F2F2F2; 
 }
 
-form{
+form {
     padding: 20px;
 }
-
 
 [role="navigation"] {
     display: flex; 
@@ -13,17 +12,16 @@ form{
     margin: 20px 0;
 }
 
-.flex{ 
+.flex { 
     align-items: left;
 }
 
-
-.container-fluid, .container, .container-xl, .container-lg, .container-xxl{ 
-    border-color: rgb(0,118,213);
+.container-fluid, .container, .container-xl, .container-lg, .container-xxl { 
+    border-color: #D6D6D6;
     border-radius: 10px;
     margin-top: 10px;
     padding: 15px;
-    background-color:rgb(11,35,65);
+    background-color: #FFFFFF; 
     align-items: center;
 }
 
@@ -32,115 +30,104 @@ form{
     margin-bottom: 10px;
 }
 
-#containerWithBorder{ 
+#containerWithBorder { 
     border-style: solid;
-    border-color: rgb(0,118,213);
+    border-color: #D6D6D6;
     border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
-    background-color:rgb(11,35,65);
+    background-color: #FFFFFF; 
     align-items: center;
 }
 
-
-.main-container{ 
+.main-container { 
     padding: 5px;
-    background-color:rgb(0,118,213);
+    background-color: #F2F2F2;
 }
 
-h1, h2, h3, h4, h5, h6, label, li{ 
-    color: rgb(120,198,224);
+h1, h2, h3, h4, h5, h6, label, li { 
+    color: #2C2B30;
     text-align: left;
 }
 
-p{ 
-    color: rgb(255,255,255);
+p { 
+    color: #4F4F51; 
     text-align: left;
 }
 
-h3{ 
-    color: white;
+h3 { 
+    color: #2C2B30;
     text-align: left;
 }
 
-#bt-center{
+#bt-center {
     display: flex;
     justify-content: center;
 }
 
 .symbol {
     font-weight: bold;
-    color: #2c3e50; /* Adjust color as needed */
+    color: #2C2B30;
     margin-right: 5px;
 }
 
-.button
-{ 
+.button { 
     border-style: solid;
     border-radius: 10px;
-    color: rgb(120,198,224);
-    background-color:rgb(11,35,65) ;
+    color: #2C2B30; 
+    background-color: #D6D6D6; 
     text-align: center;
     padding: 10px;
     margin: 10px;
     min-height: 50px;
 }
 
-#btAddTelephone, #btAddContact, #searchButtonRBQ, #searchButtonCode
-{
-    color: rgb(0,0,0);
-    background-color:rgb(120,198,224) ;
+#btAddTelephone, #btAddContact, #searchButtonRBQ, #searchButtonCode {
+    color: #FFFFFF;
+    background-color: #F2C4CE;
 }
 
-#buttonLeft
-{
+#buttonLeft {
     bottom: 10px;
-    left:10px;
+    left: 10px;
     position: fixed;
 }
 
-#buttonRight
-{
+#buttonRight {
     bottom: 10px;
-    right:10px;
+    right: 10px;
     position: fixed;
 }
 
-#notFunctioningButton
-{
-    background-color:rgb(120,198,224) ;
-    color: rgb(11,35,65);
+#notFunctioningButton {
+    background-color: #F2C4CE; 
+    color: #2C2B30; 
 }
 
-#whatForm
-{
+#whatForm {
     display: flex;
     justify-content: center;
 }
 
-#centerDiv
-{
+#centerDiv {
     display: flex;
     justify-content: center;
-    
 }
 
-#absoluteButton
-{
+#absoluteButton {
     position: absolute;
-    
 }
 
-#hoverable:hover{
-    background-color: black;
+#hoverable:hover {
+    background-color: #D6D6D6; 
     font-size: 18px;
-    color: white;
-    border-color: rgb(0,118,213);
+    color: #FFFFFF; 
+    border-color: #D6D6D6; 
     border-radius: 10px;
     padding: 10px;
 }
 
-.selected-item{
+.selected-item {
     font-weight: bold;
 }
 
@@ -150,12 +137,12 @@ h3{
     margin: 20px 0;
 }
 
-#p_bleu{ 
-    color: rgb(120,198,224);
+#p_bleu { 
+    color: #2C2B30; 
     text-align: left;
 }
 
-#liNoir{ 
-    color: rgb(0,0,0);
+#liNoir { 
+    color: #2C2B30; 
     text-align: left;
 }

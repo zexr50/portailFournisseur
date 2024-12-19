@@ -254,21 +254,16 @@ function addContactPerson() {
     });
 
     function confirmAction(event) {
-        event.preventDefault();
-
         const userConfirmed = confirm("Êtes-vous sûr de vouloir créer un compte?");
-
-        if (userConfirmed) 
-        {
+    
+        if (userConfirmed) {
             console.log("Action confirmed!");
             const form = document.querySelector('form');
-            if (form) 
-            {
+            if (form) {
                 form.submit();
             }
-        } 
-        else 
-        {
+        } else {
+            event.preventDefault();
             console.log("Action canceled!");
         }
     }
