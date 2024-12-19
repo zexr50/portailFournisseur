@@ -252,4 +252,24 @@ function addContactPerson() {
             }
         });
     });
+
+    function confirmAction(event) {
+        event.preventDefault();
+
+        const userConfirmed = confirm("Êtes-vous sûr de vouloir créer un compte?");
+
+        if (userConfirmed) 
+        {
+            console.log("Action confirmed!");
+            const form = document.querySelector('form');
+            if (form) 
+            {
+                form.submit();
+            }
+        } 
+        else 
+        {
+            console.log("Action canceled!");
+        }
+    }
     

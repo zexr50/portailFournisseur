@@ -422,7 +422,7 @@
         
 
             <div id="bt-center">
-                <button type="submit" class="button" id="bt_submit">Envoyer le formulaire</button>
+                <button type="submit" class="button" id="bt_submit" onclick="confirmAction(event)" >Envoyer le formulaire</button>
             </div>
         </form>
 
